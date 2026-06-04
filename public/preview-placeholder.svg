@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#08112e"/>
+  <path d="M0 160h1200M0 315h1200M0 470h1200M240 0v630M480 0v630M720 0v630M960 0v630" stroke="#63f7ff" stroke-opacity=".08"/>
+  <text x="90" y="285" fill="#dce1ff" font-family="Arial, sans-serif" font-size="72" font-weight="700">Norman Aguirre</text>
+  <text x="94" y="360" fill="#63f7ff" font-family="Arial, sans-serif" font-size="32">Portafolio de Desarrollo de Software</text>
+</svg>
