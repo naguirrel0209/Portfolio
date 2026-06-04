@@ -2,6 +2,10 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Database, GraduationCap, MapPin, Plane, Sparkles } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ProjectCard from '../components/ui/ProjectCard.jsx';
+import TimelineItem from '../components/ui/TimelineItem.jsx';
+import { featuredProjects } from '../data/projects.js';
+import { timelineEvents } from '../data/timeline.js';
 
 const introText =
   'Soy estudiante de Ciencias de la Computación apasionado por el desarrollo de aplicaciones web, sistemas backend y soluciones basadas en bases de datos. Disfruto transformar ideas en software funcional mientras continúo aprendiendo nuevas tecnologías, herramientas y buenas prácticas de desarrollo.';
@@ -287,6 +291,54 @@ export default function Home() {
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {skillGroups.map((group) => (
             <SkillsCard key={group.category} group={group} />
+          ))}
+        </div>
+      </SectionShell>
+
+      <SectionShell className="space-y-8">
+        <div className="max-w-3xl space-y-4">
+          <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
+            Selected Work
+          </p>
+          <h2 className="text-3xl font-bold text-text sm:text-4xl">Featured Projects</h2>
+          <p className="text-base leading-8 text-muted-text">
+            A selection of projects that showcase my experience in web development, databases and
+            software engineering.
+          </p>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {featuredProjects.map((project, index) => (
+            <ProjectCard key={project.name} project={project} index={index} />
+          ))}
+        </div>
+
+        <div className="flex justify-center pt-2">
+          <Link
+            to="/projects"
+            className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)]"
+          >
+            View All Projects
+            <ArrowRight size={17} />
+          </Link>
+        </div>
+      </SectionShell>
+
+      <SectionShell className="space-y-10">
+        <div className="max-w-3xl space-y-4">
+          <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
+            Timeline
+          </p>
+          <h2 className="text-3xl font-bold text-text sm:text-4xl">My Journey</h2>
+          <p className="text-base leading-8 text-muted-text">
+            Academic and professional milestones that shaped my development as a software engineer.
+          </p>
+        </div>
+
+        <div className="relative space-y-6 pl-7 md:space-y-8 md:pl-0">
+          <div className="absolute left-1.5 top-0 h-full w-px bg-border-cyber md:left-1/2" />
+          {timelineEvents.map((event, index) => (
+            <TimelineItem key={event.year} event={event} index={index} />
           ))}
         </div>
       </SectionShell>
