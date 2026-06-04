@@ -1,32 +1,104 @@
-export const featuredProjects = [
+export const projects = [
   {
-    name: 'Business Card - Wester Aguirre',
-    description:
+    id: 1,
+    slug: 'business-card',
+    nombre: 'Business Card - Wester Aguirre',
+    descripcion:
       'Tarjeta de presentación digital desarrollada para ofrecer una experiencia moderna, profesional y completamente responsive.',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
+    descripcionGeneral:
+      'Proyecto web enfocado en presentar información profesional de contacto de forma clara, moderna y accesible desde cualquier dispositivo. La experiencia prioriza una navegación simple, tiempos de carga rápidos y una presentación visual consistente.',
+    categoria: 'Desarrollo Web',
+    filtros: ['Desarrollo Web', 'Personales'],
+    tecnologias: ['HTML', 'CSS', 'JavaScript'],
+    github: 'https://github.com/placeholder/business-card',
+    imagen: 'IMAGEN_BUSINESS_CARD.png',
+    aprendizajes: [
+      'Diseño responsive',
+      'Experiencia de usuario',
+      'Diseño visual profesional',
+      'Organización de contenido para presentación personal',
+    ],
   },
   {
-    name: 'UVG Eats',
-    description:
+    id: 2,
+    slug: 'uvg-eats',
+    nombre: 'UVG Eats',
+    descripcion:
       'Aplicación universitaria desarrollada utilizando programación orientada a objetos para gestionar pedidos y servicios de alimentación.',
-    technologies: ['Java', 'POO'],
+    descripcionGeneral:
+      'Aplicación académica orientada a modelar un sistema de pedidos universitarios, aplicando principios de programación orientada a objetos, separación de responsabilidades y trabajo colaborativo en el desarrollo.',
+    categoria: 'Académicos',
+    filtros: ['Académicos', 'Aplicaciones'],
+    tecnologias: ['Java', 'POO'],
+    github: 'https://github.com/placeholder/uvg-eats',
+    imagen: 'IMAGEN_UVG_EATS.png',
+    aprendizajes: [
+      'Programación orientada a objetos',
+      'Trabajo colaborativo',
+      'Modelado de clases',
+      'Estructuración de lógica de negocio',
+    ],
   },
   {
-    name: 'VisaApp - Guevara Advisory',
-    description:
+    id: 3,
+    slug: 'visa-app',
+    nombre: 'VisaApp - Guevara Advisory',
+    descripcion:
       'Plataforma orientada a la gestión de procesos migratorios y seguimiento de solicitudes de visa.',
-    technologies: ['JavaScript', 'Desarrollo Web'],
+    descripcionGeneral:
+      'Plataforma diseñada para apoyar procesos de consultoría migratoria, centralizando información relevante, seguimiento de solicitudes y una experiencia clara para gestionar flujos de trabajo administrativos.',
+    categoria: 'Desarrollo Web',
+    filtros: ['Desarrollo Web', 'Bases de Datos'],
+    tecnologias: ['JavaScript', 'Desarrollo Web'],
+    github: 'https://github.com/placeholder/visa-app',
+    imagen: 'IMAGEN_VISA_APP.png',
+    aprendizajes: [
+      'Desarrollo web',
+      'Diseño de interfaces',
+      'Gestión de requerimientos',
+      'Organización de procesos orientados al usuario',
+    ],
   },
   {
-    name: 'PiggyMobile - App de Ahorro',
-    description:
+    id: 4,
+    slug: 'piggymobile',
+    nombre: 'PiggyMobile - App de Ahorro',
+    descripcion:
       'Aplicación enfocada en la administración de gastos personales y el desarrollo de hábitos de ahorro.',
-    technologies: ['JavaScript', 'Desarrollo Móvil'],
+    descripcionGeneral:
+      'Aplicación pensada para apoyar la gestión financiera personal mediante registro de gastos, organización de información y una experiencia enfocada en hábitos de ahorro sostenibles.',
+    categoria: 'Aplicaciones',
+    filtros: ['Aplicaciones', 'Personales'],
+    tecnologias: ['JavaScript', 'Desarrollo Móvil'],
+    github: 'https://github.com/placeholder/piggymobile',
+    imagen: 'IMAGEN_PIGGYMOBILE.png',
+    aprendizajes: [
+      'Diseño de aplicaciones',
+      'Gestión financiera personal',
+      'Desarrollo frontend',
+      'Diseño de flujos para usuarios móviles',
+    ],
   },
   {
-    name: 'Movie Tracker',
-    description:
+    id: 5,
+    slug: 'movie-tracker',
+    nombre: 'Movie Tracker',
+    descripcion:
       'Aplicación Full Stack para gestionar listas de películas, historial de visualización y seguimiento de contenido.',
-    technologies: ['Go', 'SQLite', 'JavaScript'],
+    descripcionGeneral:
+      'Aplicación desarrollada para gestionar listas de películas y realizar seguimiento del contenido visualizado, integrando lógica de servidor, persistencia de datos y una experiencia web funcional.',
+    categoria: 'Bases de Datos',
+    filtros: ['Desarrollo Web', 'Bases de Datos', 'Personales'],
+    tecnologias: ['Go', 'SQLite', 'JavaScript'],
+    github: 'https://github.com/placeholder/movie-tracker',
+    imagen: 'IMAGEN_MOVIE_TRACKER.png',
+    aprendizajes: [
+      'Desarrollo backend con Go',
+      'Persistencia de datos con SQLite',
+      'Manejo de rutas',
+      'Arquitectura web',
+    ],
   },
 ];
+
+export const featuredProjects = projects;
