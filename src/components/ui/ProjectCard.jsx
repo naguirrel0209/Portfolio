@@ -8,6 +8,10 @@ export default function ProjectCard({
   actionLabel = 'Ver Proyecto',
   showCategory = false,
 }) {
+  const useProductionLink = actionLabel === 'Ver Proyecto' && project.productionUrl;
+  const buttonClass =
+    'mt-7 inline-flex w-full items-center justify-center gap-2 rounded-md border border-border-cyber bg-surface-high/70 px-4 py-3 text-sm font-semibold text-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright';
+
   return (
     <motion.article
       className="group flex h-full flex-col rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:bg-surface-high/65 hover:shadow-[0_0_42px_rgba(0,220,229,0.14)]"
@@ -18,6 +22,15 @@ export default function ProjectCard({
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.42, delay: index * 0.05, ease: 'easeOut' }}
     >
+      <div className="mb-6 overflow-hidden rounded-lg border border-border-cyber/70 bg-background/45">
+        <img
+          src={project.imagen}
+          alt={`Imagen de ${project.nombre}`}
+          className="aspect-video w-full object-cover opacity-90 transition duration-300 group-hover:scale-[1.03] group-hover:opacity-100"
+          loading="lazy"
+        />
+      </div>
+
       <div className="mb-5 flex items-start justify-between gap-4">
         <div>
           <p className="font-mono text-xs uppercase text-primary-cyan-bright">
@@ -43,13 +56,17 @@ export default function ProjectCard({
         ))}
       </div>
 
-      <Link
-        to={`/projects/${project.slug}`}
-        className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-md border border-border-cyber bg-surface-high/70 px-4 py-3 text-sm font-semibold text-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright"
-      >
-        {actionLabel}
-        <ArrowUpRight size={16} />
-      </Link>
+      {useProductionLink ? (
+        <a href={project.productionUrl} target="_blank" rel="noreferrer" className={buttonClass}>
+          {actionLabel}
+          <ArrowUpRight size={16} />
+        </a>
+      ) : (
+        <Link to={`/projects/${project.slug}`} className={buttonClass}>
+          {actionLabel}
+          <ArrowUpRight size={16} />
+        </Link>
+      )}
     </motion.article>
   );
 }
