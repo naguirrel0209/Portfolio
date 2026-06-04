@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --color-background: #08112e;
+  --color-surface: #151e3b;
+  --color-surface-high: #202846;
+  --color-surface-highest: #2b3352;
+  --color-primary-cyan: #00dce5;
+  --color-primary-cyan-bright: #63f7ff;
+  --color-text: #dce1ff;
+  --color-muted-text: #b9caca;
+  --color-border-cyber: #3a494a;
+}
+
+:root {
+  color-scheme: dark;
+  --app-background: #08112e;
+  --app-surface: #151e3b;
+  --app-surface-high: #202846;
+  --app-surface-highest: #2b3352;
+  --app-primary-cyan: #00dce5;
+  --app-primary-cyan-bright: #63f7ff;
+  --app-text: #dce1ff;
+  --app-muted-text: #b9caca;
+  --app-border: #3a494a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: var(--app-background);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background:
+    linear-gradient(rgba(99, 247, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 247, 255, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at top right, rgba(0, 220, 229, 0.14), transparent 28rem),
+    var(--app-background);
+  background-size: 44px 44px, 44px 44px, auto, auto;
+  color: var(--app-text);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(0, 220, 229, 0.28);
+  color: var(--app-text);
+}
