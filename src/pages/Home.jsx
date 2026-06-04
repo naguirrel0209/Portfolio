@@ -302,8 +302,8 @@ export default function Home() {
           </p>
           <h2 className="text-3xl font-bold text-text sm:text-4xl">Proyectos Destacados</h2>
           <p className="text-base leading-8 text-muted-text">
-            Una selección de proyectos que muestran mi experiencia en desarrollo web, bases de
-            datos e ingeniería de software.
+            Una selección de proyectos que reflejan mi experiencia en desarrollo web, bases de
+            datos y construcción de software.
           </p>
         </div>
 

@@ -27,6 +27,6 @@ export const timelineEvents = [
     year: '2026',
     title: 'Quinto Semestre y Liderazgo Universitario',
     description:
-      'Actualmente curso el quinto semestre de la carrera. He sido auxiliar de dos cursos dentro de la universidad y tuve el honor de desempeñarme como Presidente de la Asociación de Estudiantes de mi carrera. También continúo desarrollando proyectos de software enfocados en desarrollo web, bases de datos y tecnologías en la nube.',
+      'Actualmente curso el quinto semestre de la carrera. He sido auxiliar de dos cursos dentro de la universidad y tuve el honor de desempeñarme como Presidente de la Asociación de Estudiantes de mi carrera. También continúo desarrollando proyectos enfocados en desarrollo web, bases de datos y tecnologías en la nube.',
   },
 ];
