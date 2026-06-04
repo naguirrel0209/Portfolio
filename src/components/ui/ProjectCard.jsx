@@ -13,7 +13,7 @@ export default function ProjectCard({ project, index }) {
       <div className="mb-5 flex items-start justify-between gap-4">
         <div>
           <p className="font-mono text-xs uppercase text-primary-cyan-bright">
-            Project 0{index + 1}
+            Proyecto 0{index + 1}
           </p>
           <h3 className="mt-3 text-xl font-semibold leading-snug text-text">{project.name}</h3>
         </div>
@@ -39,7 +39,7 @@ export default function ProjectCard({ project, index }) {
         type="button"
         className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-md border border-border-cyber bg-surface-high/70 px-4 py-3 text-sm font-semibold text-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright"
       >
-        View Project
+        Ver Proyecto
         <ArrowUpRight size={16} />
       </button>
     </motion.article>

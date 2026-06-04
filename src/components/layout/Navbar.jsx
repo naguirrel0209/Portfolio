@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 const navItems = [
-  { label: 'Home', path: '/' },
-  { label: 'Projects', path: '/projects' },
-  { label: 'Contact', path: '/contact' },
+  { label: 'Inicio', path: '/' },
+  { label: 'Proyectos', path: '/projects' },
+  { label: 'Contacto', path: '/contact' },
 ];
 
 const navLinkClass = ({ isActive }) =>
@@ -45,7 +45,7 @@ export default function Navbar() {
         <button
           type="button"
           className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/80 bg-surface-high/70 text-muted-text transition-colors duration-200 hover:border-primary-cyan hover:text-primary-cyan md:hidden"
-          aria-label={isOpen ? 'Close navigation' : 'Open navigation'}
+          aria-label={isOpen ? 'Cerrar navegación' : 'Abrir navegación'}
           aria-expanded={isOpen}
           onClick={() => setIsOpen((current) => !current)}
         >

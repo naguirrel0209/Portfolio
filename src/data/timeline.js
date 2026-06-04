@@ -1,32 +1,32 @@
 export const timelineEvents = [
   {
     year: '2022',
-    title: 'Started Computer Science',
+    title: 'Primeros Fundamentos de Programación',
     description:
-      'Started my Computer Science journey and began exploring programming fundamentals.',
+      'Inicié mis estudios de nivel diversificado en el Colegio Suizo Americano y aprendí mis primeros fundamentos de programación utilizando Python.',
   },
   {
     year: '2023',
-    title: 'Built Academic Software Projects',
+    title: 'Graduación de Bachillerato',
     description:
-      'Developed academic projects focused on object-oriented programming and software design.',
+      'Me gradué como Bachiller en Ciencias y Letras con Orientación en Computación del Colegio Suizo Americano.',
   },
   {
     year: '2024',
-    title: 'Expanded Into Web And Databases',
+    title: 'Inicio de la Universidad',
     description:
-      'Built web applications and strengthened my understanding of databases and backend systems.',
+      'Inicié mis estudios universitarios en Ingeniería en Ciencias de la Computación y Tecnologías de la Información en la Universidad del Valle de Guatemala gracias a la beca Potencia T.',
   },
   {
     year: '2025',
-    title: 'Worked On Full-Stack Projects',
+    title: 'Hackatones y Desarrollo de Software',
     description:
-      'Worked on full-stack projects and expanded my knowledge of cloud technologies.',
+      'Participé en distintos hackatones, fortalecí mis conocimientos en desarrollo de software y continué avanzando en mi formación universitaria.',
   },
   {
     year: '2026',
-    title: 'Focused On Scalable Engineering',
+    title: 'Quinto Semestre y Liderazgo Universitario',
     description:
-      'Focused on software engineering, databases and scalable web development.',
+      'Actualmente curso el quinto semestre de la carrera. He sido auxiliar de dos cursos dentro de la universidad y tuve el honor de desempeñarme como Presidente de la Asociación de Estudiantes de mi carrera. También continúo desarrollando proyectos de software enfocados en desarrollo web, bases de datos y tecnologías en la nube.',
   },
 ];

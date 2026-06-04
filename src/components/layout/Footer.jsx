@@ -3,7 +3,7 @@ import { Code2, Mail, Network } from 'lucide-react';
 const footerLinks = [
   { label: 'GitHub', href: 'https://github.com/placeholder', icon: Code2 },
   { label: 'LinkedIn', href: 'https://linkedin.com/in/placeholder', icon: Network },
-  { label: 'Email', href: 'mailto:placeholder@example.com', icon: Mail },
+  { label: 'Correo', href: 'mailto:placeholder@example.com', icon: Mail },
 ];
 
 export default function Footer() {
@@ -19,8 +19,8 @@ export default function Footer() {
               href={href}
               className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/70 bg-surface-high/50 text-muted-text transition-colors duration-200 hover:border-primary-cyan hover:text-primary-cyan"
               aria-label={label}
-              target={label === 'Email' ? undefined : '_blank'}
-              rel={label === 'Email' ? undefined : 'noreferrer'}
+              target={label === 'Correo' ? undefined : '_blank'}
+              rel={label === 'Correo' ? undefined : 'noreferrer'}
             >
               <Icon size={17} />
             </a>

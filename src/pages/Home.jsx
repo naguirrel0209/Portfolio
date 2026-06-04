@@ -8,24 +8,24 @@ import { featuredProjects } from '../data/projects.js';
 import { timelineEvents } from '../data/timeline.js';
 
 const introText =
-  'Soy estudiante de Ciencias de la Computación apasionado por el desarrollo de aplicaciones web, sistemas backend y soluciones basadas en bases de datos. Disfruto transformar ideas en software funcional mientras continúo aprendiendo nuevas tecnologías, herramientas y buenas prácticas de desarrollo.';
+  'Soy estudiante de Ciencias de la Computación apasionado por el desarrollo de aplicaciones web, sistemas de servidor y soluciones basadas en bases de datos. Disfruto transformar ideas en software funcional mientras continúo aprendiendo nuevas tecnologías, herramientas y buenas prácticas de desarrollo.';
 
 const terminalLines = [
-  'building web applications',
-  'designing database systems',
-  'learning every day',
+  'Building Web Applications',
+  'Designing Database Systems',
+  'Learning Every Day',
 ];
 
 const aboutCards = [
-  { label: 'Location', value: 'Guatemala', icon: MapPin },
-  { label: 'Education', value: 'Computer Science', icon: GraduationCap },
-  { label: 'Focus', value: 'Frontend, Backend & Databases', icon: Database },
-  { label: 'Goal', value: 'Study Abroad & Continuous Learning', icon: Plane },
+  { label: 'Location', value: 'Guatemala, Guatemala', icon: MapPin },
+  { label: 'Education', value: 'Computer Science at UVG', icon: GraduationCap },
+  { label: 'Focus', value: 'Interface, Server and Database', icon: Database },
+  { label: 'Goal', value: 'Study Abroad and Learn Always', icon: Plane },
 ];
 
 const skillGroups = [
   {
-    category: 'Frontend',
+    category: 'Interfaz',
     skills: [
       { name: 'React', segments: 7 },
       { name: 'JavaScript', segments: 8 },
@@ -35,7 +35,7 @@ const skillGroups = [
     ],
   },
   {
-    category: 'Backend',
+    category: 'Servidor',
     skills: [
       { name: 'Node.js', segments: 7 },
       { name: 'Express', segments: 7 },
@@ -44,7 +44,7 @@ const skillGroups = [
     ],
   },
   {
-    category: 'Databases',
+    category: 'Bases de Datos',
     skills: [
       { name: 'PostgreSQL', segments: 8 },
       { name: 'MySQL', segments: 8 },
@@ -54,10 +54,10 @@ const skillGroups = [
     ],
   },
   {
-    category: 'Languages',
+    category: 'Lenguajes',
     skills: [
-      { name: 'Java', segments: 10 },
-      { name: 'Python', segments: 8 },
+      { name: 'Java', segments: 6 },
+      { name: 'Python', segments: 10 },
       { name: 'JavaScript', segments: 8 },
       { name: 'Go', segments: 6 },
       { name: 'PHP', segments: 6 },
@@ -65,7 +65,7 @@ const skillGroups = [
     ],
   },
   {
-    category: 'Cloud & Tools',
+    category: 'Nube y Herramientas',
     skills: [
       { name: 'AWS', segments: 5 },
       { name: 'Cloudflare R2', segments: 5 },
@@ -133,7 +133,7 @@ function PhotoPlaceholder() {
       <div className="absolute inset-4 rounded-lg border border-primary-cyan/15 bg-surface-high/35" />
       <div className="relative flex h-full w-full items-center justify-center rounded-lg border border-dashed border-primary-cyan/45 bg-background/45">
         <p className="max-w-44 text-center font-mono text-xs font-medium uppercase text-primary-cyan-bright">
-          PHOTO_PLACEHOLDER.png
+          FOTO_PENDIENTE.png
         </p>
       </div>
       <div className="absolute -inset-px rounded-xl opacity-0 ring-1 ring-primary-cyan/40 transition duration-300 group-hover:opacity-100" />
@@ -211,14 +211,14 @@ export default function Home() {
         <div className="space-y-8">
           <div className="space-y-5">
             <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-              Frontend & Backend Developer
+              Desarrollador de Interfaz y Servidor
             </p>
             <div className="space-y-3">
               <h1 className="text-5xl font-bold leading-tight text-text sm:text-6xl lg:text-7xl">
                 Norman Aguirre
               </h1>
               <p className="text-xl font-semibold text-primary-cyan sm:text-2xl">
-                Computer Science Student
+                Estudiante de Ciencias de la Computación
               </p>
             </div>
             <p className="max-w-2xl text-base leading-8 text-muted-text sm:text-lg">{introText}</p>
@@ -229,14 +229,14 @@ export default function Home() {
               to="/projects"
               className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)]"
             >
-              Explore My Work
+              Explorar Proyectos
               <ArrowRight size={17} />
             </Link>
             <Link
               to="/contact"
               className="inline-flex items-center justify-center rounded-md border border-border-cyber bg-surface-high/65 px-5 py-3 text-sm font-semibold text-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright"
             >
-              Contact Me
+              Escríbeme
             </Link>
           </div>
 
@@ -248,8 +248,8 @@ export default function Home() {
 
       <SectionShell className="space-y-8">
         <div className="max-w-3xl space-y-4">
-          <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">Profile</p>
-          <h2 className="text-3xl font-bold text-text sm:text-4xl">About Me</h2>
+          <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">Perfil</p>
+          <h2 className="text-3xl font-bold text-text sm:text-4xl">Sobre Mí</h2>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
@@ -283,9 +283,9 @@ export default function Home() {
       <SectionShell className="space-y-8">
         <div className="max-w-3xl space-y-4">
           <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-            Skills Matrix
+            Matriz de Habilidades
           </p>
-          <h2 className="text-3xl font-bold text-text sm:text-4xl">Technical Skills</h2>
+          <h2 className="text-3xl font-bold text-text sm:text-4xl">Habilidades Técnicas</h2>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -298,12 +298,12 @@ export default function Home() {
       <SectionShell className="space-y-8">
         <div className="max-w-3xl space-y-4">
           <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-            Selected Work
+            Proyectos propios
           </p>
-          <h2 className="text-3xl font-bold text-text sm:text-4xl">Featured Projects</h2>
+          <h2 className="text-3xl font-bold text-text sm:text-4xl">Proyectos Destacados</h2>
           <p className="text-base leading-8 text-muted-text">
-            A selection of projects that showcase my experience in web development, databases and
-            software engineering.
+            Una selección de proyectos que muestran mi experiencia en desarrollo web, bases de
+            datos e ingeniería de software.
           </p>
         </div>
 
@@ -318,7 +318,7 @@ export default function Home() {
             to="/projects"
             className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)]"
           >
-            View All Projects
+            Ver Todos los Proyectos
             <ArrowRight size={17} />
           </Link>
         </div>
@@ -327,11 +327,12 @@ export default function Home() {
       <SectionShell className="space-y-10">
         <div className="max-w-3xl space-y-4">
           <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-            Timeline
+            Trayectoria
           </p>
-          <h2 className="text-3xl font-bold text-text sm:text-4xl">My Journey</h2>
+          <h2 className="text-3xl font-bold text-text sm:text-4xl">Mi Trayectoria</h2>
           <p className="text-base leading-8 text-muted-text">
-            Academic and professional milestones that shaped my development as a software engineer.
+            Algunos de los momentos más importantes de mi formación académica y crecimiento
+            profesional.
           </p>
         </div>
 

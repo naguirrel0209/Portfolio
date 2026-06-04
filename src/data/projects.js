@@ -1,32 +1,32 @@
 export const featuredProjects = [
   {
-    name: 'Business Card - Wester Aguirre',
+    name: 'Bussiness Card - Wester Aguirre',
     description:
-      'Digital business card designed to provide professional contact information through a modern and responsive web experience.',
+      'Tarjeta de presentación digital diseñada para compartir información profesional de contacto mediante una experiencia web moderna y adaptable.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
   },
   {
     name: 'UVG Eats',
     description:
-      'University food ordering platform developed using object-oriented programming principles and collaborative development practices.',
-    technologies: ['Java', 'OOP'],
+      'Plataforma universitaria de pedidos de comida desarrollada con principios de programación orientada a objetos y prácticas de trabajo colaborativo.',
+    technologies: ['Java', 'POO'],
   },
   {
     name: 'VisaApp - Guevara Advisory',
     description:
-      'Platform designed to support immigration consulting workflows and visa application management.',
-    technologies: ['Web Development', 'Databases'],
+      'Plataforma diseñada para apoyar flujos de consultoría migratoria y gestión de solicitudes de visa.',
+    technologies: ['Desarrollo Web', 'Bases de Datos'],
   },
   {
-    name: 'PiggyMobile - Savings App',
+    name: 'PiggyMobile - Aplicación de Ahorro',
     description:
-      'Personal finance application focused on helping users manage expenses and develop saving habits.',
-    technologies: ['Mobile Development', 'JavaScript'],
+      'Aplicación de finanzas personales enfocada en ayudar a los usuarios a gestionar gastos y desarrollar hábitos de ahorro.',
+    technologies: ['Desarrollo Móvil', 'JavaScript'],
   },
   {
-    name: 'Movie Tracker',
+    name: 'Tracker de Películas',
     description:
-      'Full-stack application for tracking movies, organizing watchlists and monitoring viewing progress.',
-    technologies: ['Go', 'SQLite', 'Web Development'],
+      'Aplicación de pila completa para registrar películas, organizar listas de reproducción y dar seguimiento al progreso de visualización.',
+    technologies: ['Go', 'SQLite', 'Desarrollo Web'],
   },
 ];
