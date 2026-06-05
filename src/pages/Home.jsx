@@ -17,6 +17,21 @@ const terminalLines = [
   'Learning Every Day',
 ];
 
+const techStackBadges = [
+  'React',
+  'JavaScript',
+  'Node.js',
+  'Go',
+  'Java',
+  'Python',
+  'PostgreSQL',
+  'MySQL',
+  'AWS',
+  'Cloudflare R2',
+  'Docker',
+  'GitHub',
+];
+
 const aboutCards = [
   { label: 'Location', value: 'Guatemala, Guatemala', icon: MapPin },
   { label: 'Education', value: 'Computer Science at UVG', icon: GraduationCap },
@@ -160,6 +175,46 @@ function TerminalCard() {
         <span className="inline-block h-4 w-2 animate-pulse bg-primary-cyan-bright" />
       </div>
     </div>
+  );
+}
+
+function TechStackBadges() {
+  return (
+    <motion.div
+      className="rounded-lg border border-border-cyber/70 bg-surface/60 p-5 shadow-[0_0_46px_rgba(0,220,229,0.1)] backdrop-blur-xl"
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45, delay: 0.12, ease: 'easeOut' }}
+    >
+      <div className="mb-5 flex items-center justify-between gap-4">
+        <div>
+          <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
+            stack_principal.json
+          </p>
+          <h2 className="mt-2 text-xl font-semibold text-text">Tecnologías Principales</h2>
+        </div>
+        <div className="flex gap-1.5" aria-hidden="true">
+          <span className="h-2 w-2 rounded-full bg-primary-cyan" />
+          <span className="h-2 w-2 rounded-full bg-primary-cyan/55" />
+          <span className="h-2 w-2 rounded-full bg-primary-cyan/25" />
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-2.5">
+        {techStackBadges.map((technology, index) => (
+          <motion.span
+            key={technology}
+            className="rounded-md border border-border-cyber/70 bg-background/45 px-3 py-2 font-mono text-xs font-medium text-muted-text transition duration-200 hover:-translate-y-0.5 hover:border-primary-cyan/80 hover:bg-surface-high/70 hover:text-primary-cyan-bright hover:shadow-[0_0_22px_rgba(0,220,229,0.16)]"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25, delay: 0.18 + index * 0.035, ease: 'easeOut' }}
+            whileHover={{ y: -2 }}
+          >
+            {technology}
+          </motion.span>
+        ))}
+      </div>
+    </motion.div>
   );
 }
 
@@ -663,7 +718,10 @@ export default function Home() {
           <TerminalCard />
         </div>
 
-        <ProfilePhoto />
+        <div className="space-y-5">
+          <TechStackBadges />
+          <ProfilePhoto />
+        </div>
       </SectionShell>
 
       <SectionShell className="space-y-8">

@@ -43,22 +43,108 @@ const contactLinks = [
 const fieldClass =
   'w-full rounded-md border border-border-cyber/70 bg-background/45 px-4 py-3 text-sm text-text outline-none transition duration-200 placeholder:text-muted-text/60 focus:border-primary-cyan focus:shadow-[0_0_24px_rgba(0,220,229,0.12)]';
 
+const initialFormData = {
+  name: '',
+  email: '',
+  subject: '',
+  message: '',
+};
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function validateForm(values) {
+  const nextErrors = {};
+
+  if (!values.name.trim()) {
+    nextErrors.name = 'Ingresa tu nombre.';
+  }
+
+  if (!values.email.trim()) {
+    nextErrors.email = 'Ingresa tu correo.';
+  } else if (!emailRegex.test(values.email.trim())) {
+    nextErrors.email = 'Ingresa un correo válido.';
+  }
+
+  if (!values.subject.trim()) {
+    nextErrors.subject = 'Ingresa un asunto.';
+  }
+
+  if (!values.message.trim()) {
+    nextErrors.message = 'Escribe tu mensaje.';
+  }
+
+  return nextErrors;
+}
+
 export default function Contact() {
-  const [notice, setNotice] = useState('');
+  const [formData, setFormData] = useState(initialFormData);
+  const [errors, setErrors] = useState({});
+  const [status, setStatus] = useState({ type: 'idle', message: '' });
+  const isSubmitting = status.type === 'loading';
 
   useEffect(() => {
-    if (!notice) {
+    if (!status.message || status.type === 'loading') {
       return undefined;
     }
 
-    const timer = window.setTimeout(() => setNotice(''), 4200);
+    const timer = window.setTimeout(
+      () => setStatus({ type: 'idle', message: '' }),
+      5200,
+    );
     return () => window.clearTimeout(timer);
-  }, [notice]);
+  }, [status.message, status.type]);
 
-  const handleSubmit = (event) => {
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((current) => ({
+      ...current,
+      [name]: value,
+    }));
+
+    if (errors[name]) {
+      setErrors((current) => {
+        const nextErrors = { ...current };
+        delete nextErrors[name];
+        return nextErrors;
+      });
+    }
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setNotice('Gracias por tu mensaje. Actualmente este formulario se encuentra en fase de demostración.');
-    event.currentTarget.reset();
+
+    const nextErrors = validateForm(formData);
+
+    if (Object.keys(nextErrors).length > 0) {
+      setErrors(nextErrors);
+      setStatus({ type: 'idle', message: '' });
+      return;
+    }
+
+    setErrors({});
+    setStatus({ type: 'loading', message: '' });
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        setErrors(data.errors ?? {});
+        throw new Error(data.message ?? 'No fue posible enviar el mensaje.');
+      }
+
+      setFormData(initialFormData);
+      setStatus({ type: 'success', message: '✅ Mensaje enviado correctamente.' });
+    } catch {
+      setStatus({ type: 'error', message: '❌ No fue posible enviar el mensaje.' });
+    }
   };
 
   return (
@@ -134,15 +220,48 @@ export default function Contact() {
           <div className="grid gap-4">
             <label className="grid gap-2">
               <span className="font-mono text-xs uppercase text-muted-text">Nombre</span>
-              <input className={fieldClass} name="name" type="text" placeholder="Tu nombre" />
+              <input
+                className={fieldClass}
+                name="name"
+                type="text"
+                placeholder="Tu nombre"
+                value={formData.name}
+                onChange={handleChange}
+                aria-invalid={Boolean(errors.name)}
+              />
+              {errors.name ? (
+                <span className="font-mono text-xs text-red-300">{errors.name}</span>
+              ) : null}
             </label>
             <label className="grid gap-2">
               <span className="font-mono text-xs uppercase text-muted-text">Correo</span>
-              <input className={fieldClass} name="email" type="email" placeholder="tu@correo.com" />
+              <input
+                className={fieldClass}
+                name="email"
+                type="email"
+                placeholder="tu@correo.com"
+                value={formData.email}
+                onChange={handleChange}
+                aria-invalid={Boolean(errors.email)}
+              />
+              {errors.email ? (
+                <span className="font-mono text-xs text-red-300">{errors.email}</span>
+              ) : null}
             </label>
             <label className="grid gap-2">
               <span className="font-mono text-xs uppercase text-muted-text">Asunto</span>
-              <input className={fieldClass} name="subject" type="text" placeholder="Motivo del mensaje" />
+              <input
+                className={fieldClass}
+                name="subject"
+                type="text"
+                placeholder="Motivo del mensaje"
+                value={formData.subject}
+                onChange={handleChange}
+                aria-invalid={Boolean(errors.subject)}
+              />
+              {errors.subject ? (
+                <span className="font-mono text-xs text-red-300">{errors.subject}</span>
+              ) : null}
             </label>
             <label className="grid gap-2">
               <span className="font-mono text-xs uppercase text-muted-text">Mensaje</span>
@@ -150,26 +269,37 @@ export default function Contact() {
                 className={`${fieldClass} min-h-36 resize-y`}
                 name="message"
                 placeholder="Cuéntame sobre tu proyecto, idea u oportunidad."
+                value={formData.message}
+                onChange={handleChange}
+                aria-invalid={Boolean(errors.message)}
               />
+              {errors.message ? (
+                <span className="font-mono text-xs text-red-300">{errors.message}</span>
+              ) : null}
             </label>
           </div>
 
           <button
             type="submit"
-            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)]"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)] disabled:cursor-not-allowed disabled:opacity-70"
+            disabled={isSubmitting}
           >
-            Enviar Mensaje
+            {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
             <ArrowRight size={17} />
           </button>
 
-          {notice ? (
+          {status.message ? (
             <motion.p
-              className="mt-4 rounded-md border border-primary-cyan/50 bg-background/45 px-4 py-3 text-sm leading-6 text-primary-cyan-bright"
+              className={`mt-4 rounded-md border bg-background/45 px-4 py-3 text-sm leading-6 ${
+                status.type === 'success'
+                  ? 'border-primary-cyan/50 text-primary-cyan-bright'
+                  : 'border-red-300/50 text-red-200'
+              }`}
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
             >
-              {notice}
+              {status.message}
             </motion.p>
           ) : null}
         </motion.form>
