@@ -92,7 +92,7 @@ export default function ProjectDetail() {
                   href={project.productionUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)]"
+                  className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]"
                 >
                   <ExternalLink size={17} />
                   Ver Proyecto en Producción
@@ -107,7 +107,7 @@ export default function ProjectDetail() {
                   rel="noreferrer"
                   className={`inline-flex items-center justify-center gap-2 rounded-md border px-5 py-3 text-sm font-semibold transition duration-200 ${
                     index === 0 && !project.productionUrl
-                      ? 'border-primary-cyan bg-primary-cyan text-background hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)]'
+                      ? 'border-primary-cyan bg-primary-cyan text-background hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]'
                       : 'border-border-cyber bg-surface-high/65 text-text hover:border-primary-cyan hover:text-primary-cyan-bright'
                   }`}
                 >
@@ -126,7 +126,7 @@ export default function ProjectDetail() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-border-cyber/80 bg-surface/55 p-5 shadow-[0_0_70px_rgba(0,220,229,0.14)] backdrop-blur-xl">
+          <div className="rounded-xl border border-border-cyber/80 bg-surface/55 p-5 shadow-[0_0_70px_var(--primary-glow-soft)] backdrop-blur-xl">
             <img
               src={project.imagen}
               alt={`Imagen de ${project.nombre}`}
@@ -158,7 +158,7 @@ export default function ProjectDetail() {
           <ul className="space-y-3">
             {project.aprendizajes.map((item) => (
               <li key={item} className="flex gap-3">
-                <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-cyan shadow-[0_0_12px_rgba(0,220,229,0.7)]" />
+                <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-cyan shadow-[0_0_12px_var(--primary-glow-strong)]" />
                 <span>{item}</span>
               </li>
             ))}

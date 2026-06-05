@@ -41,7 +41,7 @@ const contactLinks = [
 ];
 
 const fieldClass =
-  'w-full rounded-md border border-border-cyber/70 bg-background/45 px-4 py-3 text-sm text-text outline-none transition duration-200 placeholder:text-muted-text/60 focus:border-primary-cyan focus:shadow-[0_0_24px_rgba(0,220,229,0.12)]';
+  'w-full rounded-md border border-border-cyber/70 bg-background/45 px-4 py-3 text-sm text-text outline-none transition duration-300 placeholder:text-muted-text/60 focus:border-primary-cyan focus:shadow-[0_0_24px_var(--primary-glow-soft)]';
 
 const initialFormData = {
   name: '',
@@ -281,7 +281,7 @@ export default function Contact() {
 
           <button
             type="submit"
-            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)] disabled:cursor-not-allowed disabled:opacity-70"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)] disabled:cursor-not-allowed disabled:opacity-70"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
@@ -326,7 +326,7 @@ export default function Contact() {
               href={href}
               target={href.startsWith('mailto:') ? undefined : '_blank'}
               rel={href.startsWith('mailto:') ? undefined : 'noreferrer'}
-              className="group rounded-lg border border-border-cyber/70 bg-surface/60 p-5 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:bg-surface-high/65 hover:shadow-[0_0_42px_rgba(0,220,229,0.14)]"
+              className="group rounded-lg border border-border-cyber/70 bg-surface/60 p-5 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:bg-surface-high/65 hover:shadow-[0_0_42px_var(--primary-glow-soft)]"
             >
               <div className="mb-5 flex items-center justify-between gap-4">
                 <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright">
@@ -363,7 +363,7 @@ export default function Contact() {
         <a
           href={cvPlaceholder}
           download="CV-Norman-Aguirre.pdf"
-          className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)]"
+          className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]"
         >
           <Download size={17} />
           Descargar CV
@@ -386,7 +386,7 @@ export default function Contact() {
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Link
             to="/projects"
-            className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)]"
+            className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]"
           >
             Ver Proyectos
             <ArrowRight size={17} />

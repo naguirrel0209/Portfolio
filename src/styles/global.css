@@ -5,28 +5,35 @@
   --font-sans: 'Hanken Grotesk', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
 
-  --color-background: #08112e;
-  --color-surface: #151e3b;
-  --color-surface-high: #202846;
-  --color-surface-highest: #2b3352;
-  --color-primary-cyan: #00dce5;
-  --color-primary-cyan-bright: #63f7ff;
-  --color-text: #dce1ff;
-  --color-muted-text: #b9caca;
-  --color-border-cyber: #3a494a;
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-high: var(--surface-high);
+  --color-surface-highest: var(--surface-highest);
+  --color-primary-cyan: var(--primary);
+  --color-primary-cyan-bright: var(--primary-hover);
+  --color-text: var(--text);
+  --color-muted-text: var(--text-muted);
+  --color-border-cyber: var(--border);
 }
 
 :root {
   color-scheme: dark;
-  --app-background: #08112e;
-  --app-surface: #151e3b;
-  --app-surface-high: #202846;
-  --app-surface-highest: #2b3352;
-  --app-primary-cyan: #00dce5;
-  --app-primary-cyan-bright: #63f7ff;
-  --app-text: #dce1ff;
-  --app-muted-text: #b9caca;
-  --app-border: #3a494a;
+  --background: #08112e;
+  --surface: #151e3b;
+  --surface-high: #202846;
+  --surface-highest: #2b3352;
+  --primary: #00dce5;
+  --primary-hover: #63f7ff;
+  --glow: rgba(0, 220, 229, 0.35);
+  --border: #3a494a;
+  --text: #dce1ff;
+  --text-muted: #b9caca;
+  --primary-grid: color-mix(in srgb, var(--primary) 16%, transparent);
+  --primary-background-glow: color-mix(in srgb, var(--glow) 55%, transparent);
+  --primary-selection: color-mix(in srgb, var(--primary) 32%, transparent);
+  --primary-glow-soft: color-mix(in srgb, var(--glow) 38%, transparent);
+  --primary-glow: color-mix(in srgb, var(--glow) 74%, transparent);
+  --primary-glow-strong: var(--glow);
 }
 
 * {
@@ -35,8 +42,11 @@
 
 html {
   min-height: 100%;
-  background: var(--app-background);
+  background: var(--background);
   scroll-behavior: smooth;
+  transition:
+    background-color 300ms ease,
+    color 300ms ease;
 }
 
 body {
@@ -45,14 +55,17 @@ body {
   margin: 0;
   overflow-x: hidden;
   background:
-    linear-gradient(rgba(99, 247, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(99, 247, 255, 0.035) 1px, transparent 1px),
-    radial-gradient(circle at top right, rgba(0, 220, 229, 0.14), transparent 28rem),
-    var(--app-background);
+    linear-gradient(var(--primary-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--primary-grid) 1px, transparent 1px),
+    radial-gradient(circle at top right, var(--primary-background-glow), transparent 28rem),
+    var(--background);
   background-size: 44px 44px, 44px 44px, auto, auto;
-  color: var(--app-text);
+  color: var(--text);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
+  transition:
+    background 300ms ease,
+    color 300ms ease;
 }
 
 a {
@@ -68,6 +81,6 @@ select {
 }
 
 ::selection {
-  background: rgba(0, 220, 229, 0.28);
-  color: var(--app-text);
+  background: var(--primary-selection);
+  color: var(--text);
 }

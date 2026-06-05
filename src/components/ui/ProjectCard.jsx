@@ -14,7 +14,7 @@ export default function ProjectCard({
 
   return (
     <motion.article
-      className="group flex h-full flex-col rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:bg-surface-high/65 hover:shadow-[0_0_42px_rgba(0,220,229,0.14)]"
+      className="group flex h-full flex-col rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:bg-surface-high/65 hover:shadow-[0_0_42px_var(--primary-glow-soft)]"
       layout
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ export default function ProjectCard({
           </p>
           <h3 className="mt-3 text-xl font-semibold leading-snug text-text">{project.nombre}</h3>
         </div>
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright transition duration-300 group-hover:border-primary-cyan group-hover:shadow-[0_0_22px_rgba(0,220,229,0.18)]">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright transition duration-300 group-hover:border-primary-cyan group-hover:shadow-[0_0_22px_var(--primary-glow-soft)]">
           <ArrowUpRight size={18} />
         </span>
       </div>

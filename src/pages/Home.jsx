@@ -151,7 +151,7 @@ function TerminalCard() {
   }, []);
 
   return (
-    <div className="overflow-hidden rounded-lg border border-border-cyber/70 bg-surface/65 shadow-[0_0_40px_rgba(0,220,229,0.08)] backdrop-blur-xl">
+    <div className="overflow-hidden rounded-lg border border-border-cyber/70 bg-surface/65 shadow-[0_0_40px_var(--primary-glow-soft)] backdrop-blur-xl">
       <div className="flex items-center gap-2 border-b border-border-cyber/60 bg-surface-high/70 px-4 py-3">
         <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
         <span className="h-2.5 w-2.5 rounded-full bg-yellow-300/80" />
@@ -181,7 +181,7 @@ function TerminalCard() {
 function TechStackBadges() {
   return (
     <motion.div
-      className="rounded-lg border border-border-cyber/70 bg-surface/60 p-5 shadow-[0_0_46px_rgba(0,220,229,0.1)] backdrop-blur-xl"
+      className="rounded-lg border border-border-cyber/70 bg-surface/60 p-5 shadow-[0_0_46px_var(--primary-glow-soft)] backdrop-blur-xl"
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, delay: 0.12, ease: 'easeOut' }}
@@ -204,7 +204,7 @@ function TechStackBadges() {
         {techStackBadges.map((technology, index) => (
           <motion.span
             key={technology}
-            className="rounded-md border border-border-cyber/70 bg-background/45 px-3 py-2 font-mono text-xs font-medium text-muted-text transition duration-200 hover:-translate-y-0.5 hover:border-primary-cyan/80 hover:bg-surface-high/70 hover:text-primary-cyan-bright hover:shadow-[0_0_22px_rgba(0,220,229,0.16)]"
+            className="rounded-md border border-border-cyber/70 bg-background/45 px-3 py-2 font-mono text-xs font-medium text-muted-text transition duration-300 hover:-translate-y-0.5 hover:border-primary-cyan/80 hover:bg-surface-high/70 hover:text-primary-cyan-bright hover:shadow-[0_0_22px_var(--primary-glow-soft)]"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25, delay: 0.18 + index * 0.035, ease: 'easeOut' }}
@@ -221,7 +221,7 @@ function TechStackBadges() {
 function ProfilePhoto() {
   return (
     <motion.div
-      className="group relative mx-auto flex aspect-[4/5] w-full max-w-sm items-center justify-center overflow-hidden rounded-xl border border-border-cyber/80 bg-surface/55 p-5 shadow-[0_0_70px_rgba(0,220,229,0.16)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:shadow-[0_0_90px_rgba(0,220,229,0.22)]"
+      className="group relative mx-auto flex aspect-[4/5] w-full max-w-sm items-center justify-center overflow-hidden rounded-xl border border-border-cyber/80 bg-surface/55 p-5 shadow-[0_0_70px_var(--primary-glow-soft)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:shadow-[0_0_90px_var(--primary-glow)]"
       whileHover={{ scale: 1.015 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
     >
@@ -258,7 +258,7 @@ function SegmentedBar({ count }) {
         <span
           key={index}
           className={`h-2 flex-1 rounded-sm ${
-            index < count ? 'bg-primary-cyan shadow-[0_0_10px_rgba(0,220,229,0.45)]' : 'bg-surface-highest'
+            index < count ? 'bg-primary-cyan shadow-[0_0_10px_var(--primary-glow-strong)]' : 'bg-surface-highest'
           }`}
         />
       ))}
@@ -336,7 +336,7 @@ function LanguageShowcase({ group }) {
         </div>
       </div>
 
-      <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_rgba(0,220,229,0.08)]">
+      <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_var(--primary-glow-soft)]">
         <div className="mb-6 flex items-center justify-between gap-4">
           <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
             lenguajes_matrix.json
@@ -371,7 +371,7 @@ function LanguageShowcase({ group }) {
                       key={`${skill.name}-${index}`}
                       className={`h-2 flex-1 rounded-sm ${
                         index < skill.segments
-                          ? 'bg-primary-cyan shadow-[0_0_10px_rgba(0,220,229,0.45)]'
+                          ? 'bg-primary-cyan shadow-[0_0_10px_var(--primary-glow-strong)]'
                           : 'bg-surface-highest'
                       }`}
                     />
@@ -410,7 +410,7 @@ function SkillSegments({ count, name }) {
           key={`${name}-${index}`}
           className={`h-2 flex-1 rounded-sm ${
             index < count
-              ? 'bg-primary-cyan shadow-[0_0_10px_rgba(0,220,229,0.45)]'
+              ? 'bg-primary-cyan shadow-[0_0_10px_var(--primary-glow-strong)]'
               : 'bg-surface-highest'
           }`}
         />
@@ -515,7 +515,7 @@ function SkillsCarousel({ groups }) {
             </div>
           </div>
 
-          <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_rgba(0,220,229,0.08)]">
+          <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_var(--primary-glow-soft)]">
             <div className="mb-6 flex items-center justify-between gap-4">
               <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
                 habilidades_matrix.json
@@ -623,7 +623,7 @@ function CleanSkillsCarousel({ groups }) {
             </div>
           </div>
 
-          <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_rgba(0,220,229,0.08)]">
+          <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_var(--primary-glow-soft)]">
             <div className="mb-6 flex items-center justify-between gap-4">
               <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
                 habilidades_matrix.json
@@ -702,7 +702,7 @@ export default function Home() {
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               to="/projects"
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)]"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]"
             >
               Explorar Proyectos
               <ArrowRight size={17} />
@@ -790,7 +790,7 @@ export default function Home() {
         <div className="flex justify-center pt-2">
           <Link
             to="/projects"
-            className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_rgba(0,220,229,0.26)]"
+            className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]"
           >
             Ver Todos los Proyectos
             <ArrowRight size={17} />

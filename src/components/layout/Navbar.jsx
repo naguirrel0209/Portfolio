@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import ThemeSwitcher from '../ui/ThemeSwitcher.jsx';
 
 const navItems = [
   { label: 'Inicio', path: '/' },
@@ -40,17 +41,23 @@ export default function Navbar() {
               {item.label}
             </NavLink>
           ))}
+          <div className="ml-2">
+            <ThemeSwitcher />
+          </div>
         </div>
 
-        <button
-          type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/80 bg-surface-high/70 text-muted-text transition-colors duration-200 hover:border-primary-cyan hover:text-primary-cyan md:hidden"
-          aria-label={isOpen ? 'Cerrar navegación' : 'Abrir navegación'}
-          aria-expanded={isOpen}
-          onClick={() => setIsOpen((current) => !current)}
-        >
-          {isOpen ? <X size={18} /> : <Menu size={18} />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <ThemeSwitcher onSelect={() => setIsOpen(false)} />
+          <button
+            type="button"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/80 bg-surface-high/70 text-muted-text transition-colors duration-300 hover:border-primary-cyan hover:text-primary-cyan"
+            aria-label={isOpen ? 'Cerrar navegación' : 'Abrir navegación'}
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen((current) => !current)}
+          >
+            {isOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </nav>
 
       {isOpen ? (

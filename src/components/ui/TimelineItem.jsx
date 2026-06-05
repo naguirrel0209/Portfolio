@@ -21,7 +21,7 @@ export default function TimelineItem({ event, index }) {
         <p className="mt-3 text-sm leading-7 text-muted-text">{event.description}</p>
       </div>
 
-      <div className="absolute left-0 top-6 z-10 h-3 w-3 rounded-full bg-primary-cyan shadow-[0_0_18px_rgba(0,220,229,0.75)] md:relative md:left-auto md:top-8 md:col-start-2 md:row-start-1" />
+      <div className="absolute left-0 top-6 z-10 h-3 w-3 rounded-full bg-primary-cyan shadow-[0_0_18px_var(--primary-glow-strong)] md:relative md:left-auto md:top-8 md:col-start-2 md:row-start-1" />
       <div className={`hidden md:row-start-1 md:block ${isEven ? 'md:col-start-3' : 'md:col-start-1'}`} />
     </motion.article>
   );

@@ -49,7 +49,7 @@ export default function Projects() {
               type="button"
               className={`rounded-md border px-4 py-2 font-mono text-xs font-semibold transition duration-200 ${
                 isActive
-                  ? 'border-primary-cyan bg-primary-cyan text-background shadow-[0_0_24px_rgba(0,220,229,0.2)]'
+                  ? 'border-primary-cyan bg-primary-cyan text-background shadow-[0_0_24px_var(--primary-glow-soft)]'
                   : 'border-border-cyber bg-surface/60 text-muted-text hover:border-primary-cyan hover:text-primary-cyan-bright'
               }`}
               onClick={() => setActiveFilter(filter)}
