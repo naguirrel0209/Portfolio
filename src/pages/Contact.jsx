@@ -141,7 +141,7 @@ export default function Contact() {
       }
 
       setFormData(initialFormData);
-      setStatus({ type: 'success', message: '✅ Mensaje enviado correctamente.' });
+      setStatus({ type: 'success', message: 'Mensaje enviado correctamente. En breve me pondré en contacto contigo.' });
     } catch {
       setStatus({ type: 'error', message: '❌ No fue posible enviar el mensaje.' });
     }
