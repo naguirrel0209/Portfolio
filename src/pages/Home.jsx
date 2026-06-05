@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, Database, GraduationCap, MapPin, Plane, Sparkles } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -77,6 +77,45 @@ const skillGroups = [
     ],
   },
 ];
+
+const skillGroupDetails = {
+  Interfaz:
+    'Herramientas que utilizo para construir interfaces modernas, responsivas y enfocadas en la experiencia del usuario.',
+  Servidor:
+    'Tecnologías que me ayudan a estructurar lógica de negocio, rutas, servicios y fundamentos de aplicaciones de servidor.',
+  'Bases de Datos':
+    'Sistemas y herramientas que he usado para modelar información, consultar datos y construir persistencia para aplicaciones.',
+  Lenguajes:
+    'Lenguajes que forman la base de mi trabajo actual, desde fundamentos académicos hasta desarrollo web y lógica de servidor.',
+  'Nube y Herramientas':
+    'Herramientas de despliegue, control de versiones, contenedores y entorno técnico para trabajar proyectos de software.',
+};
+
+const skillDescriptions = {
+  React: 'Componentes reutilizables, estado, rutas y construcción de interfaces dinámicas.',
+  JavaScript: 'Interactividad web, manejo de datos en cliente y lógica para aplicaciones modernas.',
+  HTML: 'Estructura semántica, accesibilidad base y organización del contenido.',
+  CSS: 'Estilos responsivos, layouts, efectos visuales y adaptación a diferentes pantallas.',
+  'Tailwind CSS': 'Sistema utilitario para crear interfaces consistentes y rápidas de iterar.',
+  'Node.js': 'Fundamentos de servidor, ejecución de JavaScript y estructura de APIs.',
+  Express: 'Rutas, middlewares y organización de endpoints para aplicaciones de servidor.',
+  Go: 'Servicios backend, manejo de rutas y construcción de lógica de servidor.',
+  PHP: 'Desarrollo web del lado del servidor y fundamentos de aplicaciones dinámicas.',
+  PostgreSQL: 'Modelado relacional, consultas SQL y gestión de datos estructurados.',
+  MySQL: 'Consultas, relaciones y administración de información en proyectos académicos.',
+  'SQL Server': 'Bases de datos relacionales, consultas y comprensión de sistemas empresariales.',
+  SQLite: 'Persistencia ligera para prototipos, proyectos locales y aplicaciones de pila completa.',
+  Prisma: 'Modelado de datos, acceso tipado y organización de consultas desde la aplicación.',
+  Java: 'Programación orientada a objetos, modelado de clases y proyectos académicos.',
+  Python: 'Fundamentos de programación, automatización, lógica y aprendizaje constante.',
+  'C++': 'Estructuras, lógica de bajo nivel y comprensión de fundamentos computacionales.',
+  AWS: 'Conceptos de nube, despliegue y servicios base para aplicaciones modernas.',
+  'Cloudflare R2': 'Almacenamiento compatible con objetos y recursos para proyectos web.',
+  Docker: 'Contenedores, entornos reproducibles y preparación de servicios.',
+  Git: 'Control de versiones, historial de cambios y trabajo ordenado en proyectos.',
+  GitHub: 'Repositorios, colaboración, documentación y publicación de código.',
+  Linux: 'Uso de terminal, comandos base y entorno de desarrollo para servidores.',
+};
 
 const fadeIn = {
   hidden: { opacity: 0, y: 28 },
@@ -205,6 +244,386 @@ function SkillsCard({ group }) {
   );
 }
 
+function LanguageShowcase({ group }) {
+  return (
+    <motion.article
+      className="grid gap-6 rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl transition duration-300 hover:border-primary-cyan/70 hover:bg-surface-high/60 lg:grid-cols-[0.8fr_1.2fr] lg:p-8"
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.22 }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
+    >
+      <div className="space-y-5">
+        <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
+          Perfil técnico
+        </p>
+        <h3 className="text-3xl font-bold text-text">Lenguajes de Programación</h3>
+        <p className="text-base leading-8 text-muted-text">
+          Estos lenguajes forman la base de mi trabajo actual. Los porcentajes son una referencia
+          visual de familiaridad práctica, tomando como punto de partida proyectos académicos,
+          desarrollo web, lógica de servidor y aprendizaje personal.
+        </p>
+
+        <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-4">
+          <p className="font-mono text-xs uppercase text-primary-cyan-bright">
+            enfoque_actual.json
+          </p>
+          <div className="mt-4 grid grid-cols-2 gap-2">
+            {group.skills.map((skill) => (
+              <span
+                key={`lenguaje-chip-${skill.name}`}
+                className="rounded-md border border-border-cyber/70 bg-surface-high/45 px-3 py-2 font-mono text-xs text-muted-text"
+              >
+                {skill.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_rgba(0,220,229,0.08)]">
+        <div className="mb-6 flex items-center justify-between gap-4">
+          <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
+            lenguajes_matrix.json
+          </p>
+          <div className="flex gap-1.5" aria-hidden="true">
+            <span className="h-2 w-2 rounded-full bg-primary-cyan" />
+            <span className="h-2 w-2 rounded-full bg-primary-cyan/55" />
+            <span className="h-2 w-2 rounded-full bg-primary-cyan/25" />
+          </div>
+        </div>
+
+        <div className="space-y-5">
+          {group.skills.map((skill) => {
+            const percentage = skill.segments * 10;
+
+            return (
+              <div key={`lenguaje-row-${skill.name}`} className="space-y-2">
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="font-mono text-sm font-semibold text-text">{skill.name}</p>
+                    <p className="mt-1 text-xs leading-5 text-muted-text">
+                      {languageDescriptions[skill.name]}
+                    </p>
+                  </div>
+                  <span className="font-mono text-sm font-semibold text-primary-cyan-bright">
+                    {percentage}%
+                  </span>
+                </div>
+                <div className="flex gap-1" aria-hidden="true">
+                  {Array.from({ length: 10 }).map((_, index) => (
+                    <span
+                      key={`${skill.name}-${index}`}
+                      className={`h-2 flex-1 rounded-sm ${
+                        index < skill.segments
+                          ? 'bg-primary-cyan shadow-[0_0_10px_rgba(0,220,229,0.45)]'
+                          : 'bg-surface-highest'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+function getSkillRangeLabel(segments) {
+  if (segments <= 2) {
+    return '0-25% · En exploración';
+  }
+
+  if (segments <= 5) {
+    return '25-50% · Lo he utilizado en proyectos puntuales';
+  }
+
+  if (segments <= 7) {
+    return '50-75% · Lo he utilizado bastante';
+  }
+
+  return '75-100% · Uso avanzado';
+}
+
+function SkillSegments({ count, name }) {
+  return (
+    <div className="flex gap-1" aria-hidden="true">
+      {Array.from({ length: 10 }).map((_, index) => (
+        <span
+          key={`${name}-${index}`}
+          className={`h-2 flex-1 rounded-sm ${
+            index < count
+              ? 'bg-primary-cyan shadow-[0_0_10px_rgba(0,220,229,0.45)]'
+              : 'bg-surface-highest'
+          }`}
+        />
+      ))}
+    </div>
+  );
+}
+
+function SkillsCarousel({ groups }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeGroup = groups[activeIndex];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % groups.length);
+    }, 5200);
+
+    return () => window.clearInterval(timer);
+  }, [groups.length]);
+
+  const goToPrevious = () => {
+    setActiveIndex((current) => (current === 0 ? groups.length - 1 : current - 1));
+  };
+
+  const goToNext = () => {
+    setActiveIndex((current) => (current + 1) % groups.length);
+  };
+
+  return (
+    <motion.article
+      className="overflow-hidden rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl transition duration-300 hover:border-primary-cyan/70 hover:bg-surface-high/60 lg:p-8"
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.22 }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
+    >
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3">
+          <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright">
+            <Sparkles size={18} />
+          </span>
+          <div>
+            <p className="font-mono text-xs font-medium uppercase text-primary-cyan-bright">
+              Carrusel técnico
+            </p>
+            <p className="text-sm text-muted-text">
+              Cambia automáticamente para mostrar cada área de habilidades.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex gap-2">
+          <button
+            type="button"
+            className="rounded-md border border-border-cyber bg-surface-high/65 px-3 py-2 font-mono text-xs text-muted-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright"
+            onClick={goToPrevious}
+          >
+            Anterior
+          </button>
+          <button
+            type="button"
+            className="rounded-md border border-border-cyber bg-surface-high/65 px-3 py-2 font-mono text-xs text-muted-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright"
+            onClick={goToNext}
+          >
+            Siguiente
+          </button>
+        </div>
+      </div>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeGroup.category}
+          className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]"
+          initial={{ opacity: 0, x: 32 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -32 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+        >
+          <div className="space-y-5">
+            <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
+              Perfil técnico
+            </p>
+            <h3 className="text-3xl font-bold text-text">{activeGroup.category}</h3>
+            <p className="text-base leading-8 text-muted-text">
+              {skillGroupDetails[activeGroup.category]}
+            </p>
+
+            <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-4">
+              <p className="font-mono text-xs uppercase text-primary-cyan-bright">
+                enfoque_actual.json
+              </p>
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                {activeGroup.skills.map((skill) => (
+                  <span
+                    key={`${activeGroup.category}-chip-${skill.name}`}
+                    className="rounded-md border border-border-cyber/70 bg-surface-high/45 px-3 py-2 font-mono text-xs text-muted-text"
+                  >
+                    {skill.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_rgba(0,220,229,0.08)]">
+            <div className="mb-6 flex items-center justify-between gap-4">
+              <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
+                habilidades_matrix.json
+              </p>
+              <div className="flex gap-1.5" aria-hidden="true">
+                <span className="h-2 w-2 rounded-full bg-primary-cyan" />
+                <span className="h-2 w-2 rounded-full bg-primary-cyan/55" />
+                <span className="h-2 w-2 rounded-full bg-primary-cyan/25" />
+              </div>
+            </div>
+
+            <div className="space-y-5">
+              {activeGroup.skills.map((skill) => (
+                <div key={`${activeGroup.category}-row-${skill.name}`} className="space-y-2">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="font-mono text-sm font-semibold text-text">{skill.name}</p>
+                      <p className="mt-1 text-xs leading-5 text-muted-text">
+                        {skillDescriptions[skill.name]}
+                      </p>
+                    </div>
+                    <span className="max-w-36 text-right font-mono text-xs font-semibold leading-5 text-primary-cyan-bright">
+                      {getSkillRangeLabel(skill.segments)}
+                    </span>
+                  </div>
+                  <SkillSegments count={skill.segments} name={`${activeGroup.category}-${skill.name}`} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      <div className="mt-6 flex justify-center gap-2">
+        {groups.map((group, index) => (
+          <button
+            key={`skill-dot-${group.category}`}
+            type="button"
+            className={`h-2.5 rounded-full transition-all duration-200 ${
+              activeIndex === index
+                ? 'w-8 bg-primary-cyan'
+                : 'w-2.5 bg-surface-highest hover:bg-primary-cyan/60'
+            }`}
+            aria-label={`Mostrar ${group.category}`}
+            onClick={() => setActiveIndex(index)}
+          />
+        ))}
+      </div>
+    </motion.article>
+  );
+}
+
+function CleanSkillsCarousel({ groups }) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const activeGroup = groups[activeIndex];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % groups.length);
+    }, 5200);
+
+    return () => window.clearInterval(timer);
+  }, [groups.length]);
+
+  return (
+    <motion.article
+      className="overflow-hidden rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl transition duration-300 hover:border-primary-cyan/70 hover:bg-surface-high/60 lg:p-8"
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.22 }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
+    >
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={activeGroup.category}
+          className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]"
+          initial={{ opacity: 0, x: 32 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -32 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+        >
+          <div className="space-y-5">
+            <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
+              Perfil técnico
+            </p>
+            <h3 className="text-3xl font-bold text-text">{activeGroup.category}</h3>
+            <p className="text-base leading-8 text-muted-text">
+              {skillGroupDetails[activeGroup.category]}
+            </p>
+
+            <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-4">
+              <p className="font-mono text-xs uppercase text-primary-cyan-bright">
+                enfoque_actual.json
+              </p>
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                {activeGroup.skills.map((skill) => (
+                  <span
+                    key={`${activeGroup.category}-clean-chip-${skill.name}`}
+                    className="rounded-md border border-border-cyber/70 bg-surface-high/45 px-3 py-2 font-mono text-xs text-muted-text"
+                  >
+                    {skill.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_rgba(0,220,229,0.08)]">
+            <div className="mb-6 flex items-center justify-between gap-4">
+              <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
+                habilidades_matrix.json
+              </p>
+              <div className="flex gap-1.5" aria-hidden="true">
+                <span className="h-2 w-2 rounded-full bg-primary-cyan" />
+                <span className="h-2 w-2 rounded-full bg-primary-cyan/55" />
+                <span className="h-2 w-2 rounded-full bg-primary-cyan/25" />
+              </div>
+            </div>
+
+            <div className="space-y-5">
+              {activeGroup.skills.map((skill) => (
+                <div key={`${activeGroup.category}-clean-row-${skill.name}`} className="space-y-2">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="font-mono text-sm font-semibold text-text">{skill.name}</p>
+                      <p className="mt-1 text-xs leading-5 text-muted-text">
+                        {skillDescriptions[skill.name]}
+                      </p>
+                    </div>
+                    <span className="max-w-36 text-right font-mono text-xs font-semibold leading-5 text-primary-cyan-bright">
+                      {getSkillRangeLabel(skill.segments)}
+                    </span>
+                  </div>
+                  <SkillSegments
+                    count={skill.segments}
+                    name={`${activeGroup.category}-clean-${skill.name}`}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+
+      <div className="mt-6 flex justify-center gap-2">
+        {groups.map((group, index) => (
+          <button
+            key={`clean-skill-dot-${group.category}`}
+            type="button"
+            className={`h-2.5 rounded-full transition-all duration-200 ${
+              activeIndex === index
+                ? 'w-8 bg-primary-cyan'
+                : 'w-2.5 bg-surface-highest hover:bg-primary-cyan/60'
+            }`}
+            aria-label={`Mostrar ${group.category}`}
+            onClick={() => setActiveIndex(index)}
+          />
+        ))}
+      </div>
+    </motion.article>
+  );
+}
+
 export default function Home() {
   return (
     <div className="w-full space-y-24">
@@ -212,14 +631,14 @@ export default function Home() {
         <div className="space-y-8">
           <div className="space-y-5">
             <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-              Desarrollador de Interfaz y Servidor
+              Junior Full Stack Developer
             </p>
             <div className="space-y-3">
               <h1 className="text-5xl font-bold leading-tight text-text sm:text-6xl lg:text-7xl">
                 Norman Aguirre
               </h1>
               <p className="text-xl font-semibold text-primary-cyan sm:text-2xl">
-                Estudiante de Ciencias de la Computación
+                Estudiante de Ingeniería en Ciencias de la Computación
               </p>
             </div>
             <p className="max-w-2xl text-base leading-8 text-muted-text sm:text-lg">{introText}</p>
@@ -289,11 +708,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold text-text sm:text-4xl">Habilidades Técnicas</h2>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {skillGroups.map((group) => (
-            <SkillsCard key={group.category} group={group} />
-          ))}
-        </div>
+        <CleanSkillsCarousel groups={skillGroups} />
       </SectionShell>
 
       <SectionShell className="space-y-8">

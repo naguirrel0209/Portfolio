@@ -49,7 +49,7 @@ export const projects = [
     descripcionGeneral:
       'Plataforma diseñada para apoyar procesos de consultoría migratoria, centralizando información relevante, seguimiento de solicitudes y una experiencia clara para gestionar flujos de trabajo administrativos.',
     categoria: 'Desarrollo Web',
-    filtros: ['Desarrollo Web', 'Bases de Datos'],
+    filtros: ['Desarrollo Web', 'Bases de Datos','Académicos'],
     tecnologias: ['JavaScript', 'Desarrollo Web'],
     github: 'https://github.com/dquan123/Software_Proyecto',
     productionUrl: 'http://3.14.12.212:5173/',
@@ -70,7 +70,7 @@ export const projects = [
     descripcionGeneral:
       'Aplicación pensada para apoyar la gestión financiera personal mediante registro de gastos, organización de información y una experiencia enfocada en hábitos de ahorro sostenibles.',
     categoria: 'Aplicaciones',
-    filtros: ['Aplicaciones', 'Personales'],
+    filtros: ['Aplicaciones', 'Personales','Académicos'],
     tecnologias: ['JavaScript', 'Desarrollo Móvil'],
     github: 'https://github.com/YayaG2805/Proyectoplats',
     imagen: '/images/projects/piggymobile.jpeg',
@@ -90,7 +90,7 @@ export const projects = [
     descripcionGeneral:
       'Aplicación desarrollada para gestionar listas de películas y realizar seguimiento del contenido visualizado, integrando lógica de servidor, persistencia de datos y una experiencia web funcional.',
     categoria: 'Bases de Datos',
-    filtros: ['Desarrollo Web', 'Bases de Datos', 'Personales'],
+    filtros: ['Desarrollo Web', 'Bases de Datos', 'Académicos'],
     tecnologias: ['Go', 'SQLite', 'JavaScript'],
     githubFrontend: "https://github.com/Naguirrel/Proyecto1_web_cliente",
     githubBackend: "https://github.com/Naguirrel/Proyecto1_web_backend",
