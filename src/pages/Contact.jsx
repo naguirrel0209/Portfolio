@@ -203,143 +203,143 @@ export default function Contact() {
           </div>
         </div>
 
-        <motion.form
-          className="rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl sm:p-8"
-          onSubmit={handleSubmit}
+        <motion.div
+          className="space-y-8"
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.08, ease: 'easeOut' }}
         >
-          <div className="mb-6 flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright">
-              <Send size={18} />
-            </span>
-            <h2 className="text-2xl font-bold text-text">Mensaje</h2>
+          <div className="space-y-4">
+            <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
+              Enlaces
+            </p>
+            <h2 className="text-3xl font-bold text-text sm:text-4xl">Conecta Conmigo</h2>
           </div>
 
-          <div className="grid gap-4">
-            <label className="grid gap-2">
-              <span className="font-mono text-xs uppercase text-muted-text">Nombre</span>
-              <input
-                className={fieldClass}
-                name="name"
-                type="text"
-                placeholder="Tu nombre"
-                value={formData.name}
-                onChange={handleChange}
-                aria-invalid={Boolean(errors.name)}
-              />
-              {errors.name ? (
-                <span className="font-mono text-xs text-red-300">{errors.name}</span>
-              ) : null}
-            </label>
-            <label className="grid gap-2">
-              <span className="font-mono text-xs uppercase text-muted-text">Correo</span>
-              <input
-                className={fieldClass}
-                name="email"
-                type="email"
-                placeholder="tu@correo.com"
-                value={formData.email}
-                onChange={handleChange}
-                aria-invalid={Boolean(errors.email)}
-              />
-              {errors.email ? (
-                <span className="font-mono text-xs text-red-300">{errors.email}</span>
-              ) : null}
-            </label>
-            <label className="grid gap-2">
-              <span className="font-mono text-xs uppercase text-muted-text">Asunto</span>
-              <input
-                className={fieldClass}
-                name="subject"
-                type="text"
-                placeholder="Motivo del mensaje"
-                value={formData.subject}
-                onChange={handleChange}
-                aria-invalid={Boolean(errors.subject)}
-              />
-              {errors.subject ? (
-                <span className="font-mono text-xs text-red-300">{errors.subject}</span>
-              ) : null}
-            </label>
-            <label className="grid gap-2">
-              <span className="font-mono text-xs uppercase text-muted-text">Mensaje</span>
-              <textarea
-                className={`${fieldClass} min-h-36 resize-y`}
-                name="message"
-                placeholder="Cuéntame sobre tu proyecto, idea u oportunidad."
-                value={formData.message}
-                onChange={handleChange}
-                aria-invalid={Boolean(errors.message)}
-              />
-              {errors.message ? (
-                <span className="font-mono text-xs text-red-300">{errors.message}</span>
-              ) : null}
-            </label>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {contactLinks.map(({ label, href, description, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith('mailto:') ? undefined : '_blank'}
+                rel={href.startsWith('mailto:') ? undefined : 'noreferrer'}
+                className="group rounded-lg border border-border-cyber/70 bg-surface/60 p-5 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:bg-surface-high/65 hover:shadow-[0_0_42px_var(--primary-glow-soft)]"
+              >
+                <div className="mb-5 flex items-center justify-between gap-4">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright">
+                    <Icon size={18} />
+                  </span>
+                  <ExternalLink size={17} className="text-muted-text transition group-hover:text-primary-cyan-bright" />
+                </div>
+                <h3 className="text-lg font-semibold text-text">{label}</h3>
+                <p className="mt-3 text-sm leading-7 text-muted-text">{description}</p>
+              </a>
+            ))}
           </div>
-
-          <button
-            type="submit"
-            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)] disabled:cursor-not-allowed disabled:opacity-70"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
-            <ArrowRight size={17} />
-          </button>
-
-          {status.message ? (
-            <motion.p
-              className={`mt-4 rounded-md border bg-background/45 px-4 py-3 text-sm leading-6 ${
-                status.type === 'success'
-                  ? 'border-primary-cyan/50 text-primary-cyan-bright'
-                  : 'border-red-300/50 text-red-200'
-              }`}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
-            >
-              {status.message}
-            </motion.p>
-          ) : null}
-        </motion.form>
+        </motion.div>
       </motion.section>
 
-      <motion.section
-        className="space-y-8"
+      <motion.form
+        className="mx-auto max-w-3xl rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl sm:p-8"
+        onSubmit={handleSubmit}
         initial={{ opacity: 0, y: 28 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.22 }}
         transition={{ duration: 0.45, ease: 'easeOut' }}
       >
-        <div className="max-w-3xl space-y-4">
-          <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-            Enlaces
-          </p>
-          <h2 className="text-3xl font-bold text-text sm:text-4xl">Conecta Conmigo</h2>
+        <div className="mb-6 flex items-center gap-3">
+          <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright">
+            <Send size={18} />
+          </span>
+          <h2 className="text-2xl font-bold text-text">Mensaje</h2>
         </div>
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {contactLinks.map(({ label, href, description, icon: Icon }) => (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith('mailto:') ? undefined : '_blank'}
-              rel={href.startsWith('mailto:') ? undefined : 'noreferrer'}
-              className="group rounded-lg border border-border-cyber/70 bg-surface/60 p-5 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:bg-surface-high/65 hover:shadow-[0_0_42px_var(--primary-glow-soft)]"
-            >
-              <div className="mb-5 flex items-center justify-between gap-4">
-                <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright">
-                  <Icon size={18} />
-                </span>
-                <ExternalLink size={17} className="text-muted-text transition group-hover:text-primary-cyan-bright" />
-              </div>
-              <h3 className="text-lg font-semibold text-text">{label}</h3>
-              <p className="mt-3 text-sm leading-7 text-muted-text">{description}</p>
-            </a>
-          ))}
+        <div className="grid gap-4">
+          <label className="grid gap-2">
+            <span className="font-mono text-xs uppercase text-muted-text">Nombre</span>
+            <input
+              className={fieldClass}
+              name="name"
+              type="text"
+              placeholder="Tu nombre"
+              value={formData.name}
+              onChange={handleChange}
+              aria-invalid={Boolean(errors.name)}
+            />
+            {errors.name ? (
+              <span className="font-mono text-xs text-red-300">{errors.name}</span>
+            ) : null}
+          </label>
+          <label className="grid gap-2">
+            <span className="font-mono text-xs uppercase text-muted-text">Correo</span>
+            <input
+              className={fieldClass}
+              name="email"
+              type="email"
+              placeholder="tu@correo.com"
+              value={formData.email}
+              onChange={handleChange}
+              aria-invalid={Boolean(errors.email)}
+            />
+            {errors.email ? (
+              <span className="font-mono text-xs text-red-300">{errors.email}</span>
+            ) : null}
+          </label>
+          <label className="grid gap-2">
+            <span className="font-mono text-xs uppercase text-muted-text">Asunto</span>
+            <input
+              className={fieldClass}
+              name="subject"
+              type="text"
+              placeholder="Motivo del mensaje"
+              value={formData.subject}
+              onChange={handleChange}
+              aria-invalid={Boolean(errors.subject)}
+            />
+            {errors.subject ? (
+              <span className="font-mono text-xs text-red-300">{errors.subject}</span>
+            ) : null}
+          </label>
+          <label className="grid gap-2">
+            <span className="font-mono text-xs uppercase text-muted-text">Mensaje</span>
+            <textarea
+              className={`${fieldClass} min-h-36 resize-y`}
+              name="message"
+              placeholder="Cuéntame sobre tu proyecto, idea u oportunidad."
+              value={formData.message}
+              onChange={handleChange}
+              aria-invalid={Boolean(errors.message)}
+            />
+            {errors.message ? (
+              <span className="font-mono text-xs text-red-300">{errors.message}</span>
+            ) : null}
+          </label>
         </div>
-      </motion.section>
+
+        <button
+          type="submit"
+          className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)] disabled:cursor-not-allowed disabled:opacity-70"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
+          <ArrowRight size={17} />
+        </button>
+
+        {status.message ? (
+          <motion.p
+            className={`mt-4 rounded-md border bg-background/45 px-4 py-3 text-sm leading-6 ${
+              status.type === 'success'
+                ? 'border-primary-cyan/50 text-primary-cyan-bright'
+                : 'border-red-300/50 text-red-200'
+            }`}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+          >
+            {status.message}
+          </motion.p>
+        ) : null}
+      </motion.form>
 
       <motion.section
         className="grid gap-6 rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl sm:p-8 md:grid-cols-[1fr_auto] md:items-center"
