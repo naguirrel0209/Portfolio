@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
+import LanguageSwitcher from '../ui/LanguageSwitcher.jsx';
 import ThemeSwitcher from '../ui/ThemeSwitcher.jsx';
 
 const navItems = [
-  { label: 'Inicio', path: '/' },
-  { label: 'Proyectos', path: '/projects' },
-  { label: 'Contacto', path: '/contact' },
+  { labelKey: 'common.nav.home', path: '/' },
+  { labelKey: 'common.nav.projects', path: '/projects' },
+  { labelKey: 'common.nav.contact', path: '/contact' },
 ];
 
 const navLinkClass = ({ isActive }) =>
@@ -18,6 +20,7 @@ const navLinkClass = ({ isActive }) =>
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <motion.header
@@ -32,26 +35,28 @@ export default function Navbar() {
           className="font-mono text-sm font-semibold tracking-normal text-text transition-colors duration-200 hover:text-primary-cyan-bright"
           onClick={() => setIsOpen(false)}
         >
-          Norman Aguirre
+          {t('common.brand')}
         </NavLink>
 
         <div className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => (
             <NavLink key={item.path} to={item.path} className={navLinkClass}>
-              {item.label}
+              {t(item.labelKey)}
             </NavLink>
           ))}
-          <div className="ml-2">
+          <div className="ml-2 flex items-center gap-2">
+            <LanguageSwitcher />
             <ThemeSwitcher />
           </div>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
+          <LanguageSwitcher onSelect={() => setIsOpen(false)} />
           <ThemeSwitcher onSelect={() => setIsOpen(false)} />
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/80 bg-surface-high/70 text-muted-text transition-colors duration-300 hover:border-primary-cyan hover:text-primary-cyan"
-            aria-label={isOpen ? 'Cerrar navegación' : 'Abrir navegación'}
+            aria-label={isOpen ? t('common.nav.close') : t('common.nav.open')}
             aria-expanded={isOpen}
             onClick={() => setIsOpen((current) => !current)}
           >
@@ -76,7 +81,7 @@ export default function Navbar() {
                 className={navLinkClass}
                 onClick={() => setIsOpen(false)}
               >
-                {item.label}
+                {t(item.labelKey)}
               </NavLink>
             ))}
           </div>

@@ -1,14 +1,18 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 export default function ProjectCard({
   project,
   index,
-  actionLabel = 'Ver Proyecto',
+  actionKey = 'viewProject',
   showCategory = false,
 }) {
-  const useProductionLink = actionLabel === 'Ver Proyecto' && project.productionUrl;
+  const { t } = useTranslation();
+  const projectName = t(`projects.items.${project.key}.name`);
+  const actionLabel = t(`projects.actions.${actionKey}`);
+  const useProductionLink = actionKey === 'viewProject' && project.productionUrl;
   const buttonClass =
     'mt-7 inline-flex w-full items-center justify-center gap-2 rounded-md border border-border-cyber bg-surface-high/70 px-4 py-3 text-sm font-semibold text-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright';
 
@@ -24,8 +28,8 @@ export default function ProjectCard({
     >
       <div className="mb-6 overflow-hidden rounded-lg border border-border-cyber/70 bg-background/45">
         <img
-          src={project.imagen}
-          alt={`Imagen de ${project.nombre}`}
+          src={project.image}
+          alt={t('projects.labels.imageAlt', { name: projectName })}
           className="aspect-video w-full object-cover opacity-90 transition duration-300 group-hover:scale-[1.03] group-hover:opacity-100"
           loading="lazy"
         />
@@ -34,24 +38,28 @@ export default function ProjectCard({
       <div className="mb-5 flex items-start justify-between gap-4">
         <div>
           <p className="font-mono text-xs uppercase text-primary-cyan-bright">
-            {showCategory ? project.categoria : `Proyecto 0${index + 1}`}
+            {showCategory
+              ? t(`projects.filters.${project.category}`)
+              : t('projects.labels.projectNumber', { number: index + 1 })}
           </p>
-          <h3 className="mt-3 text-xl font-semibold leading-snug text-text">{project.nombre}</h3>
+          <h3 className="mt-3 text-xl font-semibold leading-snug text-text">{projectName}</h3>
         </div>
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright transition duration-300 group-hover:border-primary-cyan group-hover:shadow-[0_0_22px_var(--primary-glow-soft)]">
           <ArrowUpRight size={18} />
         </span>
       </div>
 
-      <p className="flex-1 text-sm leading-7 text-muted-text">{project.descripcion}</p>
+      <p className="flex-1 text-sm leading-7 text-muted-text">
+        {t(`projects.items.${project.key}.description`)}
+      </p>
 
       <div className="mt-6 flex flex-wrap gap-2">
-        {project.tecnologias.map((technology) => (
+        {project.technologies.map((technology) => (
           <span
             key={`${project.slug}-${technology}`}
             className="rounded-md border border-border-cyber/70 bg-background/50 px-2.5 py-1 font-mono text-xs text-muted-text"
           >
-            {technology}
+            {t(`projects.technologies.${technology}`)}
           </span>
         ))}
       </div>

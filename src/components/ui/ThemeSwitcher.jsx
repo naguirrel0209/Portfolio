@@ -1,12 +1,14 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Check, Palette } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from '../../context/ThemeContext.jsx';
 
 export default function ThemeSwitcher({ onSelect }) {
   const { themeId, themes, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const wrapperRef = useRef(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!isOpen) {
@@ -45,7 +47,7 @@ export default function ThemeSwitcher({ onSelect }) {
       <button
         type="button"
         className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/80 bg-surface-high/70 text-muted-text transition-colors duration-300 hover:border-primary-cyan hover:text-primary-cyan-bright"
-        aria-label="Cambiar tema visual"
+        aria-label={t('common.theme.button')}
         aria-expanded={isOpen}
         onClick={() => setIsOpen((current) => !current)}
       >
@@ -62,7 +64,7 @@ export default function ThemeSwitcher({ onSelect }) {
             transition={{ duration: 0.18, ease: 'easeOut' }}
           >
             <p className="px-2 pb-2 font-mono text-xs uppercase text-primary-cyan-bright">
-              Tema visual
+              {t('common.theme.title')}
             </p>
 
             <div className="grid gap-1">
@@ -87,7 +89,7 @@ export default function ThemeSwitcher({ onSelect }) {
                         aria-hidden="true"
                       />
                       <span>{theme.icon}</span>
-                      {theme.label}
+                      {t(`common.theme.${theme.id}`)}
                     </span>
                     {isActive ? <Check size={15} className="text-primary-cyan-bright" /> : null}
                   </button>

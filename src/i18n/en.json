@@ -1,0 +1,358 @@
+{
+  "common": {
+    "brand": "Norman Aguirre",
+    "seo": {
+      "title": "Norman Aguirre | Portfolio",
+      "description": "Personal portfolio of Norman Aguirre, a Computer Science student focused on frontend development, backend development, databases and cloud technologies."
+    },
+    "nav": {
+      "home": "Home",
+      "projects": "Projects",
+      "contact": "Contact",
+      "open": "Open navigation",
+      "close": "Close navigation"
+    },
+    "footer": {
+      "githubPrimary": "Primary GitHub",
+      "linkedin": "LinkedIn",
+      "personalEmail": "Personal Email",
+      "contact": "Contact"
+    },
+    "theme": {
+      "button": "Change visual theme",
+      "title": "Visual theme",
+      "azul": "Blue",
+      "rojo": "Red",
+      "naranja": "Orange",
+      "verde": "Green",
+      "morado": "Purple",
+      "rosado": "Pink",
+      "plata": "Silver"
+    },
+    "language": {
+      "label": "Change language",
+      "es": "Español",
+      "en": "English"
+    }
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Junior Full Stack Developer",
+      "name": "Norman Aguirre",
+      "subtitle": "Computer Science Engineering Student",
+      "description": "I am a Computer Science student passionate about web applications, server-side systems and database-driven solutions. I enjoy transforming ideas into functional software while continuing to learn new technologies, tools and development best practices.",
+      "primaryButton": "Explore Projects",
+      "secondaryButton": "Write Me",
+      "scroll": "Scroll",
+      "photoAlt": "Main photo of Norman Aguirre",
+      "terminal": {
+        "title": "norman.dev",
+        "lines": [
+          "Building web applications",
+          "Designing database systems",
+          "Learning every day"
+        ]
+      },
+      "stack": {
+        "file": "main_stack.json",
+        "title": "Core Technologies",
+        "subtitle": "Tools that connect interface, server, data and deployment."
+      }
+    },
+    "about": {
+      "eyebrow": "Profile",
+      "title": "About Me",
+      "paragraph2": "My goal is to keep growing as a developer, expand my software engineering knowledge and continue my academic path abroad. I believe constant learning, technological curiosity and continuous improvement are essential pillars for building solutions with real impact.",
+      "cards": {
+        "location": {
+          "label": "Location",
+          "value": "Guatemala, Guatemala"
+        },
+        "education": {
+          "label": "Education",
+          "value": "Computer Science at UVG"
+        },
+        "focus": {
+          "label": "Focus",
+          "value": "Interface, Server and Databases"
+        },
+        "goal": {
+          "label": "Goal",
+          "value": "Study Abroad and Always Learn"
+        }
+      }
+    },
+    "skills": {
+      "eyebrow": "Skills Matrix",
+      "title": "Technical Skills",
+      "profile": "Technical profile",
+      "focusFile": "current_focus.json",
+      "matrixFile": "skills_matrix.json",
+      "ranges": {
+        "exploring": "0-25% · Exploring",
+        "punctual": "25-50% · Used in focused projects",
+        "frequent": "50-75% · Used frequently",
+        "advanced": "75-100% · Advanced use"
+      },
+      "groups": {
+        "frontend": {
+          "title": "Interface",
+          "description": "Tools I use to build modern, responsive interfaces focused on user experience."
+        },
+        "backend": {
+          "title": "Server",
+          "description": "Technologies that help me structure business logic, routes, services and server application fundamentals."
+        },
+        "databases": {
+          "title": "Databases",
+          "description": "Systems and tools I have used to model information, query data and build persistence for applications."
+        },
+        "languages": {
+          "title": "Languages",
+          "description": "Languages that form the foundation of my current work, from academic fundamentals to web development and server logic."
+        },
+        "cloudTools": {
+          "title": "Cloud & Tools",
+          "description": "Deployment, version control, containers and technical environment tools for working on software projects."
+        }
+      },
+      "descriptions": {
+        "react": "Reusable components, state, routes and dynamic interface development.",
+        "javascript": "Web interactivity, client-side data handling and logic for modern applications.",
+        "html": "Semantic structure, basic accessibility and content organization.",
+        "css": "Responsive styles, layouts, visual effects and adaptation across screens.",
+        "tailwind": "Utility system for building consistent interfaces that are fast to iterate.",
+        "node": "Server fundamentals, JavaScript runtime and API structure.",
+        "express": "Routes, middleware and endpoint organization for server applications.",
+        "go": "Backend services, route handling and server-side logic construction.",
+        "php": "Server-side web development and dynamic application fundamentals.",
+        "postgresql": "Relational modeling, SQL queries and structured data management.",
+        "mysql": "Queries, relationships and information management in academic projects.",
+        "sqlServer": "Relational databases, queries and understanding of enterprise systems.",
+        "sqlite": "Lightweight persistence for prototypes, local projects and full-stack applications.",
+        "prisma": "Data modeling, typed access and query organization from the application.",
+        "java": "Object-oriented programming, class modeling and academic projects.",
+        "python": "Programming fundamentals, automation, logic and continuous learning.",
+        "cpp": "Structures, low-level logic and understanding of computational fundamentals.",
+        "aws": "Cloud concepts, deployment and base services for modern applications.",
+        "cloudflareR2": "Object-compatible storage and resources for web projects.",
+        "docker": "Containers, reproducible environments and service preparation.",
+        "git": "Version control, change history and organized project work.",
+        "github": "Repositories, collaboration, documentation and code publishing.",
+        "linux": "Terminal usage, base commands and development environment for servers."
+      }
+    },
+    "featured": {
+      "eyebrow": "Personal Projects",
+      "title": "Featured Projects",
+      "subtitle": "A selection of projects that reflect my experience in web development, databases and software construction.",
+      "allButton": "View All Projects"
+    },
+    "timeline": {
+      "eyebrow": "Journey",
+      "title": "My Journey",
+      "subtitle": "Some of the most important moments in my academic formation and professional growth."
+    }
+  },
+  "projects": {
+    "page": {
+      "eyebrow": "Catalog",
+      "title": "Projects",
+      "subtitle": "Explore some of the projects I have developed across areas such as web development, mobile applications, databases and academic software."
+    },
+    "filters": {
+      "all": "All",
+      "web": "Web Development",
+      "applications": "Applications",
+      "databases": "Databases",
+      "academic": "Academic",
+      "personal": "Personal"
+    },
+    "actions": {
+      "viewProject": "View Project",
+      "viewDetails": "View Details",
+      "viewProduction": "View Live Project",
+      "viewAll": "View All Projects",
+      "back": "Back to Projects"
+    },
+    "labels": {
+      "projectNumber": "Project 0{{number}}",
+      "imageAlt": "Image of {{name}}",
+      "repository": "Repository",
+      "repositoryFrontend": "Frontend Repository",
+      "repositoryBackend": "Backend Repository"
+    },
+    "detail": {
+      "notFoundEyebrow": "Project not found",
+      "notFoundTitle": "We could not find this project",
+      "breadcrumbHome": "Home",
+      "breadcrumbProjects": "Projects",
+      "overview": "General Overview",
+      "technologies": "Technologies Used",
+      "learned": "What I Learned",
+      "repository": "Repository",
+      "repositorySingle": "The project repository is available on GitHub as a reference to review its structure, technologies used and technical evolution.",
+      "repositoryMultiple": "The project repositories are available on GitHub as a reference to review their structure, technologies used and technical evolution."
+    },
+    "technologies": {
+      "html": "HTML",
+      "css": "CSS",
+      "javascript": "JavaScript",
+      "java": "Java",
+      "oop": "OOP",
+      "webDevelopment": "Web Development",
+      "mobileDevelopment": "Mobile Development",
+      "databases": "Databases",
+      "go": "Go",
+      "sqlite": "SQLite"
+    },
+    "items": {
+      "businessCard": {
+        "name": "Business Card - Wester Aguirre",
+        "description": "Digital business card developed to offer a modern, professional and fully responsive experience.",
+        "general": "Web project focused on presenting professional contact information in a clear, modern and accessible way from any device. The experience prioritizes simple navigation, fast loading times and consistent visual presentation.",
+        "learned": [
+          "Responsive design",
+          "User experience",
+          "Professional visual design",
+          "Content organization for personal presentation"
+        ]
+      },
+      "uvgEats": {
+        "name": "UVG Eats",
+        "description": "University application developed using object-oriented programming to manage food orders and services.",
+        "general": "Academic application focused on modeling a university ordering system, applying object-oriented programming principles, separation of responsibilities and collaborative development practices.",
+        "learned": [
+          "Object-oriented programming",
+          "Collaborative work",
+          "Class modeling",
+          "Business logic structuring"
+        ]
+      },
+      "visaApp": {
+        "name": "VisaApp - Guevara Advisory",
+        "description": "Platform oriented to managing immigration processes and tracking visa applications.",
+        "general": "Platform designed to support immigration consulting processes by centralizing relevant information, request tracking and a clear experience for managing administrative workflows.",
+        "learned": [
+          "Web development",
+          "Interface design",
+          "Requirements management",
+          "User-oriented process organization"
+        ]
+      },
+      "piggyMobile": {
+        "name": "PiggyMobile - Savings App",
+        "description": "Application focused on personal expense administration and the development of saving habits.",
+        "general": "Application designed to support personal financial management through expense tracking, information organization and an experience focused on sustainable saving habits.",
+        "learned": [
+          "Application design",
+          "Personal finance management",
+          "Frontend development",
+          "Flow design for mobile users"
+        ]
+      },
+      "movieTracker": {
+        "name": "Movie Tracker",
+        "description": "Full Stack application to manage movie lists, viewing history and content tracking.",
+        "general": "Application developed to manage movie lists and track watched content, integrating server logic, data persistence and a functional web experience.",
+        "learned": [
+          "Backend development with Go",
+          "Data persistence with SQLite",
+          "Route handling",
+          "Web architecture"
+        ]
+      }
+    }
+  },
+  "timeline": {
+    "events": {
+      "programmingStart": {
+        "title": "First Programming Fundamentals",
+        "description": "I began my diversified-level studies at Colegio Suizo Americano and learned my first programming fundamentals using Python."
+      },
+      "graduation": {
+        "title": "High School Graduation",
+        "description": "I graduated as a Bachelor in Sciences and Letters with a focus in Computing from Colegio Suizo Americano."
+      },
+      "university": {
+        "title": "Beginning University",
+        "description": "I began my university studies in Computer Science Engineering and Information Technologies at Universidad del Valle de Guatemala thanks to the Potencia T scholarship."
+      },
+      "hackathons": {
+        "title": "Hackathons and Software Development",
+        "description": "I participated in different hackathons, strengthened my knowledge in software development and continued advancing in my university formation."
+      },
+      "leadership": {
+        "title": "Fifth Semester and University Leadership",
+        "description": "I am currently in the fifth semester of my degree. I have served as a teaching assistant for two university courses and had the honor of serving as President of the Student Association for my major. I also continue developing projects focused on web development, databases and cloud technologies."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's Talk",
+    "subtitle": "I am open to new opportunities, collaborations, interesting projects and conversations related to technology, software development and continuous learning.",
+    "personalInfo": "Personal Information",
+    "details": {
+      "name": "Name",
+      "linkedin": "LinkedIn",
+      "githubPrimary": "Primary GitHub",
+      "githubPersonal": "Personal GitHub",
+      "personalEmail": "Personal Email",
+      "institutionalEmail": "Institutional Email"
+    },
+    "links": {
+      "eyebrow": "Links",
+      "title": "Connect With Me",
+      "githubPrimary": {
+        "label": "Primary GitHub",
+        "description": "Main repository space for development projects and practice."
+      },
+      "githubPersonal": {
+        "label": "Personal GitHub",
+        "description": "Personal space for experimentation and continuous learning."
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "description": "Professional profile, academic background and connections."
+      },
+      "personalEmail": {
+        "label": "Personal Email",
+        "description": "Direct channel for opportunities, collaboration and projects."
+      }
+    },
+    "form": {
+      "title": "Message",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "you@email.com",
+      "subjectPlaceholder": "Message subject",
+      "messagePlaceholder": "Tell me about your project, idea or opportunity.",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Message sent successfully. I will get back to you soon.",
+      "error": "The message could not be sent.",
+      "errors": {
+        "name": "Enter your name.",
+        "email": "Enter your email.",
+        "emailInvalid": "Enter a valid email.",
+        "subject": "Enter a subject.",
+        "message": "Write your message."
+      }
+    },
+    "cv": {
+      "title": "Resume",
+      "description": "File prepared to be replaced by the final PDF version of the resume.",
+      "button": "Download Resume"
+    },
+    "cta": {
+      "title": "Shall we work together?",
+      "description": "I am always interested in learning, collaborating and participating in projects that help me continue growing as a developer.",
+      "projects": "View Projects",
+      "contact": "Contact Me"
+    }
+  }
+}

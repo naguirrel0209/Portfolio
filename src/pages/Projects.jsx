@@ -1,19 +1,19 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ProjectCard from '../components/ui/ProjectCard.jsx';
-import { projects } from '../data/projects.js';
-
-const filters = ['Todos', 'Desarrollo Web', 'Aplicaciones', 'Bases de Datos', 'Académicos', 'Personales'];
+import { projectFilters, projects } from '../data/projects.js';
 
 export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState('Todos');
+  const [activeFilter, setActiveFilter] = useState('all');
+  const { t } = useTranslation();
 
   const filteredProjects = useMemo(() => {
-    if (activeFilter === 'Todos') {
+    if (activeFilter === 'all') {
       return projects;
     }
 
-    return projects.filter((project) => project.filtros.includes(activeFilter));
+    return projects.filter((project) => project.filters.includes(activeFilter));
   }, [activeFilter]);
 
   return (
@@ -25,12 +25,13 @@ export default function Projects() {
         transition={{ duration: 0.4, ease: 'easeOut' }}
       >
         <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-          Catálogo
+          {t('projects.page.eyebrow')}
         </p>
-        <h1 className="text-4xl font-bold text-text sm:text-5xl">Proyectos</h1>
+        <h1 className="text-4xl font-bold text-text sm:text-5xl">
+          {t('projects.page.title')}
+        </h1>
         <p className="text-base leading-8 text-muted-text">
-          Explora algunos de los proyectos que he desarrollado en diferentes áreas como desarrollo
-          web, aplicaciones móviles, bases de datos y software académico.
+          {t('projects.page.subtitle')}
         </p>
       </motion.div>
 
@@ -40,7 +41,7 @@ export default function Projects() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.35, delay: 0.08, ease: 'easeOut' }}
       >
-        {filters.map((filter) => {
+        {projectFilters.map((filter) => {
           const isActive = activeFilter === filter;
 
           return (
@@ -54,7 +55,7 @@ export default function Projects() {
               }`}
               onClick={() => setActiveFilter(filter)}
             >
-              {filter}
+              {t(`projects.filters.${filter}`)}
             </button>
           );
         })}
@@ -67,7 +68,7 @@ export default function Projects() {
               key={project.slug}
               project={project}
               index={index}
-              actionLabel="Ver Detalles"
+              actionKey="viewDetails"
               showCategory
             />
           ))}

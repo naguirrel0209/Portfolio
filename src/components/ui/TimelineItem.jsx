@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export default function TimelineItem({ event, index }) {
   const isEven = index % 2 === 0;
+  const { t } = useTranslation();
 
   return (
     <motion.article
@@ -17,8 +19,12 @@ export default function TimelineItem({ event, index }) {
         }`}
       >
         <p className="font-mono text-sm font-semibold text-primary-cyan-bright">{event.year}</p>
-        <h3 className="mt-3 text-xl font-semibold text-text">{event.title}</h3>
-        <p className="mt-3 text-sm leading-7 text-muted-text">{event.description}</p>
+        <h3 className="mt-3 text-xl font-semibold text-text">
+          {t(`timeline.events.${event.key}.title`)}
+        </h3>
+        <p className="mt-3 text-sm leading-7 text-muted-text">
+          {t(`timeline.events.${event.key}.description`)}
+        </p>
       </div>
 
       <div className="absolute left-0 top-6 z-10 h-3 w-3 rounded-full bg-primary-cyan shadow-[0_0_18px_var(--primary-glow-strong)] md:relative md:left-auto md:top-8 md:col-start-2 md:row-start-1" />

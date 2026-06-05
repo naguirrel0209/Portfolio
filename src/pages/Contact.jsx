@@ -1,41 +1,38 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Code2, Download, ExternalLink, FileText, Mail, Network, Send, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import cvPlaceholder from '../assets/cv/CV_NormanAguirre.pdf';
 
 const contactDetails = [
-  { label: 'Nombre', value: 'Norman Aguirre' },
-  { label: 'LinkedIn', value: 'linkedin.com/in/norman-aguirre-lepe-6679a5340' },
-  { label: 'GitHub Principal', value: 'github.com/Naguirrel' },
-  { label: 'GitHub Personal', value: 'github.com/naguirrel0209' },
-  { label: 'Correo Personal', value: 'normanjraguirre@gmail.com', href: 'mailto:normanjraguirre@gmail.com' },
-  { label: 'Correo Institucional', value: 'agu24479@uvg.edu.gt', href: 'mailto:agu24479@uvg.edu.gt' },
+  { labelKey: 'name', value: 'Norman Aguirre' },
+  { labelKey: 'linkedin', value: 'linkedin.com/in/norman-aguirre-lepe-6679a5340' },
+  { labelKey: 'githubPrimary', value: 'github.com/Naguirrel' },
+  { labelKey: 'githubPersonal', value: 'github.com/naguirrel0209' },
+  { labelKey: 'personalEmail', value: 'normanjraguirre@gmail.com', href: 'mailto:normanjraguirre@gmail.com' },
+  { labelKey: 'institutionalEmail', value: 'agu24479@uvg.edu.gt', href: 'mailto:agu24479@uvg.edu.gt' },
 ];
 
 const contactLinks = [
   {
-    label: 'GitHub Principal',
+    key: 'githubPrimary',
     href: 'https://github.com/Naguirrel',
-    description: 'Repositorio principal de proyectos y prácticas de desarrollo.',
     icon: Code2,
   },
   {
-    label: 'GitHub Personal',
+    key: 'githubPersonal',
     href: 'https://github.com/naguirrel0209',
-    description: 'Espacio personal para experimentación y aprendizaje continuo.',
     icon: Code2,
   },
   {
-    label: 'LinkedIn',
+    key: 'linkedin',
     href: 'https://linkedin.com/in/norman-aguirre-lepe-6679a5340',
-    description: 'Perfil profesional, formación académica y conexiones.',
     icon: Network,
   },
   {
-    label: 'Correo Personal',
+    key: 'personalEmail',
     href: 'mailto:normanjraguirre@gmail.com',
-    description: 'Canal directo para oportunidades, colaboración y proyectos.',
     icon: Mail,
   },
 ];
@@ -52,25 +49,25 @@ const initialFormData = {
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-function validateForm(values) {
+function validateForm(values, t) {
   const nextErrors = {};
 
   if (!values.name.trim()) {
-    nextErrors.name = 'Ingresa tu nombre.';
+    nextErrors.name = t('contact.form.errors.name');
   }
 
   if (!values.email.trim()) {
-    nextErrors.email = 'Ingresa tu correo.';
+    nextErrors.email = t('contact.form.errors.email');
   } else if (!emailRegex.test(values.email.trim())) {
-    nextErrors.email = 'Ingresa un correo válido.';
+    nextErrors.email = t('contact.form.errors.emailInvalid');
   }
 
   if (!values.subject.trim()) {
-    nextErrors.subject = 'Ingresa un asunto.';
+    nextErrors.subject = t('contact.form.errors.subject');
   }
 
   if (!values.message.trim()) {
-    nextErrors.message = 'Escribe tu mensaje.';
+    nextErrors.message = t('contact.form.errors.message');
   }
 
   return nextErrors;
@@ -80,6 +77,7 @@ export default function Contact() {
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ type: 'idle', message: '' });
+  const { t } = useTranslation();
   const isSubmitting = status.type === 'loading';
 
   useEffect(() => {
@@ -114,7 +112,7 @@ export default function Contact() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const nextErrors = validateForm(formData);
+    const nextErrors = validateForm(formData, t);
 
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
@@ -137,13 +135,13 @@ export default function Contact() {
 
       if (!response.ok) {
         setErrors(data.errors ?? {});
-        throw new Error(data.message ?? 'No fue posible enviar el mensaje.');
+        throw new Error(data.message ?? t('contact.form.error'));
       }
 
       setFormData(initialFormData);
-      setStatus({ type: 'success', message: 'Mensaje enviado correctamente. En breve me pondré en contacto contigo.' });
+      setStatus({ type: 'success', message: t('contact.form.success') });
     } catch {
-      setStatus({ type: 'error', message: '❌ No fue posible enviar el mensaje.' });
+      setStatus({ type: 'error', message: t('contact.form.error') });
     }
   };
 
@@ -158,13 +156,13 @@ export default function Contact() {
         <div className="space-y-8">
           <div className="space-y-5">
             <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-              Contacto
+              {t('contact.eyebrow')}
             </p>
-            <h1 className="text-5xl font-bold leading-tight text-text sm:text-6xl">Hablemos</h1>
+            <h1 className="text-5xl font-bold leading-tight text-text sm:text-6xl">
+              {t('contact.title')}
+            </h1>
             <p className="max-w-3xl text-base leading-8 text-muted-text sm:text-lg">
-              Estoy abierto a nuevas oportunidades, colaboraciones, proyectos interesantes y
-              conversaciones relacionadas con tecnología, desarrollo de software y aprendizaje
-              continuo.
+              {t('contact.subtitle')}
             </p>
           </div>
 
@@ -173,17 +171,17 @@ export default function Contact() {
               <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright">
                 <User size={18} />
               </span>
-              <h2 className="text-2xl font-bold text-text">Información Personal</h2>
+              <h2 className="text-2xl font-bold text-text">{t('contact.personalInfo')}</h2>
             </div>
 
             <dl className="grid gap-4">
               {contactDetails.map((item) => (
                 <div
-                  key={item.label}
+                  key={item.labelKey}
                   className="grid gap-1 border-b border-border-cyber/50 pb-4 last:border-b-0 last:pb-0 sm:grid-cols-[11rem_1fr]"
                 >
                   <dt className="font-mono text-xs uppercase text-primary-cyan-bright">
-                    {item.label}
+                    {t(`contact.details.${item.labelKey}`)}
                   </dt>
                   <dd className="break-words text-sm leading-6 text-muted-text">
                     {item.href ? (
@@ -211,15 +209,17 @@ export default function Contact() {
         >
           <div className="space-y-4">
             <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-              Enlaces
+              {t('contact.links.eyebrow')}
             </p>
-            <h2 className="text-3xl font-bold text-text sm:text-4xl">Conecta Conmigo</h2>
+            <h2 className="text-3xl font-bold text-text sm:text-4xl">
+              {t('contact.links.title')}
+            </h2>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2">
-            {contactLinks.map(({ label, href, description, icon: Icon }) => (
+            {contactLinks.map(({ key, href, icon: Icon }) => (
               <a
-                key={label}
+                key={key}
                 href={href}
                 target={href.startsWith('mailto:') ? undefined : '_blank'}
                 rel={href.startsWith('mailto:') ? undefined : 'noreferrer'}
@@ -231,8 +231,12 @@ export default function Contact() {
                   </span>
                   <ExternalLink size={17} className="text-muted-text transition group-hover:text-primary-cyan-bright" />
                 </div>
-                <h3 className="text-lg font-semibold text-text">{label}</h3>
-                <p className="mt-3 text-sm leading-7 text-muted-text">{description}</p>
+                <h3 className="text-lg font-semibold text-text">
+                  {t(`contact.links.${key}.label`)}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-muted-text">
+                  {t(`contact.links.${key}.description`)}
+                </p>
               </a>
             ))}
           </div>
@@ -251,17 +255,19 @@ export default function Contact() {
           <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright">
             <Send size={18} />
           </span>
-          <h2 className="text-2xl font-bold text-text">Mensaje</h2>
+          <h2 className="text-2xl font-bold text-text">{t('contact.form.title')}</h2>
         </div>
 
         <div className="grid gap-4">
           <label className="grid gap-2">
-            <span className="font-mono text-xs uppercase text-muted-text">Nombre</span>
+            <span className="font-mono text-xs uppercase text-muted-text">
+              {t('contact.form.name')}
+            </span>
             <input
               className={fieldClass}
               name="name"
               type="text"
-              placeholder="Tu nombre"
+              placeholder={t('contact.form.namePlaceholder')}
               value={formData.name}
               onChange={handleChange}
               aria-invalid={Boolean(errors.name)}
@@ -271,12 +277,14 @@ export default function Contact() {
             ) : null}
           </label>
           <label className="grid gap-2">
-            <span className="font-mono text-xs uppercase text-muted-text">Correo</span>
+            <span className="font-mono text-xs uppercase text-muted-text">
+              {t('contact.form.email')}
+            </span>
             <input
               className={fieldClass}
               name="email"
               type="email"
-              placeholder="tu@correo.com"
+              placeholder={t('contact.form.emailPlaceholder')}
               value={formData.email}
               onChange={handleChange}
               aria-invalid={Boolean(errors.email)}
@@ -286,12 +294,14 @@ export default function Contact() {
             ) : null}
           </label>
           <label className="grid gap-2">
-            <span className="font-mono text-xs uppercase text-muted-text">Asunto</span>
+            <span className="font-mono text-xs uppercase text-muted-text">
+              {t('contact.form.subject')}
+            </span>
             <input
               className={fieldClass}
               name="subject"
               type="text"
-              placeholder="Motivo del mensaje"
+              placeholder={t('contact.form.subjectPlaceholder')}
               value={formData.subject}
               onChange={handleChange}
               aria-invalid={Boolean(errors.subject)}
@@ -301,11 +311,13 @@ export default function Contact() {
             ) : null}
           </label>
           <label className="grid gap-2">
-            <span className="font-mono text-xs uppercase text-muted-text">Mensaje</span>
+            <span className="font-mono text-xs uppercase text-muted-text">
+              {t('contact.form.message')}
+            </span>
             <textarea
               className={`${fieldClass} min-h-36 resize-y`}
               name="message"
-              placeholder="Cuéntame sobre tu proyecto, idea u oportunidad."
+              placeholder={t('contact.form.messagePlaceholder')}
               value={formData.message}
               onChange={handleChange}
               aria-invalid={Boolean(errors.message)}
@@ -321,7 +333,7 @@ export default function Contact() {
           className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)] disabled:cursor-not-allowed disabled:opacity-70"
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
+          {isSubmitting ? t('contact.form.submitting') : t('contact.form.submit')}
           <ArrowRight size={17} />
         </button>
 
@@ -353,10 +365,10 @@ export default function Contact() {
             <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright">
               <FileText size={18} />
             </span>
-            <h2 className="text-3xl font-bold text-text">Currículum</h2>
+            <h2 className="text-3xl font-bold text-text">{t('contact.cv.title')}</h2>
           </div>
           <p className="max-w-2xl text-sm leading-7 text-muted-text">
-            Archivo preparado para reemplazarse por la versión final del currículum en PDF.
+            {t('contact.cv.description')}
           </p>
         </div>
 
@@ -366,7 +378,7 @@ export default function Contact() {
           className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]"
         >
           <Download size={17} />
-          Descargar CV
+          {t('contact.cv.button')}
         </a>
       </motion.section>
 
@@ -377,10 +389,9 @@ export default function Contact() {
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.45, ease: 'easeOut' }}
       >
-        <h2 className="text-3xl font-bold text-text sm:text-4xl">¿Trabajamos juntos?</h2>
+        <h2 className="text-3xl font-bold text-text sm:text-4xl">{t('contact.cta.title')}</h2>
         <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-muted-text">
-          Siempre estoy interesado en aprender, colaborar y participar en proyectos que me permitan
-          seguir creciendo como desarrollador.
+          {t('contact.cta.description')}
         </p>
 
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
@@ -388,14 +399,14 @@ export default function Contact() {
             to="/projects"
             className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]"
           >
-            Ver Proyectos
+            {t('contact.cta.projects')}
             <ArrowRight size={17} />
           </Link>
           <a
             href="mailto:normanjraguirre@gmail.com"
             className="inline-flex items-center justify-center gap-2 rounded-md border border-border-cyber bg-surface-high/65 px-5 py-3 text-sm font-semibold text-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright"
           >
-            Contactarme
+            {t('contact.cta.contact')}
             <Mail size={17} />
           </a>
         </div>

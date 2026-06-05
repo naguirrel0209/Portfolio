@@ -1,0 +1,358 @@
+{
+  "common": {
+    "brand": "Norman Aguirre",
+    "seo": {
+      "title": "Norman Aguirre | Portafolio",
+      "description": "Portafolio personal de Norman Aguirre, estudiante de Ciencias de la Computación enfocado en desarrollo frontend, backend, bases de datos y tecnologías en la nube."
+    },
+    "nav": {
+      "home": "Inicio",
+      "projects": "Proyectos",
+      "contact": "Contacto",
+      "open": "Abrir navegación",
+      "close": "Cerrar navegación"
+    },
+    "footer": {
+      "githubPrimary": "GitHub Principal",
+      "linkedin": "LinkedIn",
+      "personalEmail": "Correo Personal",
+      "contact": "Contacto"
+    },
+    "theme": {
+      "button": "Cambiar tema visual",
+      "title": "Tema visual",
+      "azul": "Azul",
+      "rojo": "Rojo",
+      "naranja": "Naranja",
+      "verde": "Verde",
+      "morado": "Morado",
+      "rosado": "Rosado",
+      "plata": "Plata"
+    },
+    "language": {
+      "label": "Cambiar idioma",
+      "es": "Español",
+      "en": "English"
+    }
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Junior Full Stack Developer",
+      "name": "Norman Aguirre",
+      "subtitle": "Estudiante de Ingeniería en Ciencias de la Computación",
+      "description": "Soy estudiante de Ciencias de la Computación apasionado por el desarrollo de aplicaciones web, sistemas de servidor y soluciones basadas en bases de datos. Disfruto transformar ideas en software funcional mientras continúo aprendiendo nuevas tecnologías, herramientas y buenas prácticas de desarrollo.",
+      "primaryButton": "Explorar Proyectos",
+      "secondaryButton": "Escríbeme",
+      "scroll": "Desplázate",
+      "photoAlt": "Foto principal de Norman Aguirre",
+      "terminal": {
+        "title": "norman.dev",
+        "lines": [
+          "Construyendo aplicaciones web",
+          "Diseñando sistemas de bases de datos",
+          "Aprendiendo todos los días"
+        ]
+      },
+      "stack": {
+        "file": "stack_principal.json",
+        "title": "Tecnologías Principales",
+        "subtitle": "Herramientas que conectan interfaz, servidor, datos y despliegue."
+      }
+    },
+    "about": {
+      "eyebrow": "Perfil",
+      "title": "Sobre Mí",
+      "paragraph2": "Mi objetivo es seguir creciendo como desarrollador, ampliar mis conocimientos en ingeniería de software y continuar mi formación académica en el extranjero. Creo en el aprendizaje constante, la curiosidad tecnológica y la mejora continua como pilares fundamentales para construir soluciones que generen un impacto real.",
+      "cards": {
+        "location": {
+          "label": "Ubicación",
+          "value": "Guatemala, Guatemala"
+        },
+        "education": {
+          "label": "Educación",
+          "value": "Ciencias de la Computación en UVG"
+        },
+        "focus": {
+          "label": "Enfoque",
+          "value": "Interfaz, Servidor y Bases de Datos"
+        },
+        "goal": {
+          "label": "Meta",
+          "value": "Estudiar en el extranjero y aprender siempre"
+        }
+      }
+    },
+    "skills": {
+      "eyebrow": "Matriz de Habilidades",
+      "title": "Habilidades Técnicas",
+      "profile": "Perfil técnico",
+      "focusFile": "enfoque_actual.json",
+      "matrixFile": "habilidades_matrix.json",
+      "ranges": {
+        "exploring": "0-25% · En exploración",
+        "punctual": "25-50% · Lo he utilizado en proyectos puntuales",
+        "frequent": "50-75% · Lo he utilizado bastante",
+        "advanced": "75-100% · Uso avanzado"
+      },
+      "groups": {
+        "frontend": {
+          "title": "Interfaz",
+          "description": "Herramientas que utilizo para construir interfaces modernas, responsivas y enfocadas en la experiencia del usuario."
+        },
+        "backend": {
+          "title": "Servidor",
+          "description": "Tecnologías que me ayudan a estructurar lógica de negocio, rutas, servicios y fundamentos de aplicaciones de servidor."
+        },
+        "databases": {
+          "title": "Bases de Datos",
+          "description": "Sistemas y herramientas que he usado para modelar información, consultar datos y construir persistencia para aplicaciones."
+        },
+        "languages": {
+          "title": "Lenguajes",
+          "description": "Lenguajes que forman la base de mi trabajo actual, desde fundamentos académicos hasta desarrollo web y lógica de servidor."
+        },
+        "cloudTools": {
+          "title": "Nube y Herramientas",
+          "description": "Herramientas de despliegue, control de versiones, contenedores y entorno técnico para trabajar proyectos de software."
+        }
+      },
+      "descriptions": {
+        "react": "Componentes reutilizables, estado, rutas y construcción de interfaces dinámicas.",
+        "javascript": "Interactividad web, manejo de datos en cliente y lógica para aplicaciones modernas.",
+        "html": "Estructura semántica, accesibilidad base y organización del contenido.",
+        "css": "Estilos responsivos, layouts, efectos visuales y adaptación a diferentes pantallas.",
+        "tailwind": "Sistema utilitario para crear interfaces consistentes y rápidas de iterar.",
+        "node": "Fundamentos de servidor, ejecución de JavaScript y estructura de APIs.",
+        "express": "Rutas, middlewares y organización de endpoints para aplicaciones de servidor.",
+        "go": "Servicios backend, manejo de rutas y construcción de lógica de servidor.",
+        "php": "Desarrollo web del lado del servidor y fundamentos de aplicaciones dinámicas.",
+        "postgresql": "Modelado relacional, consultas SQL y gestión de datos estructurados.",
+        "mysql": "Consultas, relaciones y administración de información en proyectos académicos.",
+        "sqlServer": "Bases de datos relacionales, consultas y comprensión de sistemas empresariales.",
+        "sqlite": "Persistencia ligera para prototipos, proyectos locales y aplicaciones de pila completa.",
+        "prisma": "Modelado de datos, acceso tipado y organización de consultas desde la aplicación.",
+        "java": "Programación orientada a objetos, modelado de clases y proyectos académicos.",
+        "python": "Fundamentos de programación, automatización, lógica y aprendizaje constante.",
+        "cpp": "Estructuras, lógica de bajo nivel y comprensión de fundamentos computacionales.",
+        "aws": "Conceptos de nube, despliegue y servicios base para aplicaciones modernas.",
+        "cloudflareR2": "Almacenamiento compatible con objetos y recursos para proyectos web.",
+        "docker": "Contenedores, entornos reproducibles y preparación de servicios.",
+        "git": "Control de versiones, historial de cambios y trabajo ordenado en proyectos.",
+        "github": "Repositorios, colaboración, documentación y publicación de código.",
+        "linux": "Uso de terminal, comandos base y entorno de desarrollo para servidores."
+      }
+    },
+    "featured": {
+      "eyebrow": "Proyectos propios",
+      "title": "Proyectos Destacados",
+      "subtitle": "Una selección de proyectos que reflejan mi experiencia en desarrollo web, bases de datos y construcción de software.",
+      "allButton": "Ver Todos los Proyectos"
+    },
+    "timeline": {
+      "eyebrow": "Trayectoria",
+      "title": "Mi Trayectoria",
+      "subtitle": "Algunos de los momentos más importantes de mi formación académica y crecimiento profesional."
+    }
+  },
+  "projects": {
+    "page": {
+      "eyebrow": "Catálogo",
+      "title": "Proyectos",
+      "subtitle": "Explora algunos de los proyectos que he desarrollado en diferentes áreas como desarrollo web, aplicaciones móviles, bases de datos y software académico."
+    },
+    "filters": {
+      "all": "Todos",
+      "web": "Desarrollo Web",
+      "applications": "Aplicaciones",
+      "databases": "Bases de Datos",
+      "academic": "Académicos",
+      "personal": "Personales"
+    },
+    "actions": {
+      "viewProject": "Ver Proyecto",
+      "viewDetails": "Ver Detalles",
+      "viewProduction": "Ver Proyecto en Producción",
+      "viewAll": "Ver Todos los Proyectos",
+      "back": "Volver a Proyectos"
+    },
+    "labels": {
+      "projectNumber": "Proyecto 0{{number}}",
+      "imageAlt": "Imagen de {{name}}",
+      "repository": "Repositorio",
+      "repositoryFrontend": "Repositorio Frontend",
+      "repositoryBackend": "Repositorio Backend"
+    },
+    "detail": {
+      "notFoundEyebrow": "Proyecto no encontrado",
+      "notFoundTitle": "No encontramos este proyecto",
+      "breadcrumbHome": "Inicio",
+      "breadcrumbProjects": "Proyectos",
+      "overview": "Descripción General",
+      "technologies": "Tecnologías Utilizadas",
+      "learned": "Lo que Aprendí",
+      "repository": "Repositorio",
+      "repositorySingle": "El repositorio del proyecto se encuentra disponible en GitHub como referencia para revisar su estructura, tecnologías utilizadas y evolución técnica.",
+      "repositoryMultiple": "Los repositorios del proyecto se encuentran disponibles en GitHub como referencia para revisar su estructura, tecnologías utilizadas y evolución técnica."
+    },
+    "technologies": {
+      "html": "HTML",
+      "css": "CSS",
+      "javascript": "JavaScript",
+      "java": "Java",
+      "oop": "POO",
+      "webDevelopment": "Desarrollo Web",
+      "mobileDevelopment": "Desarrollo Móvil",
+      "databases": "Bases de Datos",
+      "go": "Go",
+      "sqlite": "SQLite"
+    },
+    "items": {
+      "businessCard": {
+        "name": "Business Card - Wester Aguirre",
+        "description": "Tarjeta de presentación digital desarrollada para ofrecer una experiencia moderna, profesional y completamente responsive.",
+        "general": "Proyecto web enfocado en presentar información profesional de contacto de forma clara, moderna y accesible desde cualquier dispositivo. La experiencia prioriza una navegación simple, tiempos de carga rápidos y una presentación visual consistente.",
+        "learned": [
+          "Diseño responsive",
+          "Experiencia de usuario",
+          "Diseño visual profesional",
+          "Organización de contenido para presentación personal"
+        ]
+      },
+      "uvgEats": {
+        "name": "UVG Eats",
+        "description": "Aplicación universitaria desarrollada utilizando programación orientada a objetos para gestionar pedidos y servicios de alimentación.",
+        "general": "Aplicación académica orientada a modelar un sistema de pedidos universitarios, aplicando principios de programación orientada a objetos, separación de responsabilidades y trabajo colaborativo en el desarrollo.",
+        "learned": [
+          "Programación orientada a objetos",
+          "Trabajo colaborativo",
+          "Modelado de clases",
+          "Estructuración de lógica de negocio"
+        ]
+      },
+      "visaApp": {
+        "name": "VisaApp - Guevara Advisory",
+        "description": "Plataforma orientada a la gestión de procesos migratorios y seguimiento de solicitudes de visa.",
+        "general": "Plataforma diseñada para apoyar procesos de consultoría migratoria, centralizando información relevante, seguimiento de solicitudes y una experiencia clara para gestionar flujos de trabajo administrativos.",
+        "learned": [
+          "Desarrollo web",
+          "Diseño de interfaces",
+          "Gestión de requerimientos",
+          "Organización de procesos orientados al usuario"
+        ]
+      },
+      "piggyMobile": {
+        "name": "PiggyMobile - App de Ahorro",
+        "description": "Aplicación enfocada en la administración de gastos personales y el desarrollo de hábitos de ahorro.",
+        "general": "Aplicación pensada para apoyar la gestión financiera personal mediante registro de gastos, organización de información y una experiencia enfocada en hábitos de ahorro sostenibles.",
+        "learned": [
+          "Diseño de aplicaciones",
+          "Gestión financiera personal",
+          "Desarrollo frontend",
+          "Diseño de flujos para usuarios móviles"
+        ]
+      },
+      "movieTracker": {
+        "name": "Movie Tracker",
+        "description": "Aplicación Full Stack para gestionar listas de películas, historial de visualización y seguimiento de contenido.",
+        "general": "Aplicación desarrollada para gestionar listas de películas y realizar seguimiento del contenido visualizado, integrando lógica de servidor, persistencia de datos y una experiencia web funcional.",
+        "learned": [
+          "Desarrollo backend con Go",
+          "Persistencia de datos con SQLite",
+          "Manejo de rutas",
+          "Arquitectura web"
+        ]
+      }
+    }
+  },
+  "timeline": {
+    "events": {
+      "programmingStart": {
+        "title": "Primeros Fundamentos de Programación",
+        "description": "Inicié mis estudios de nivel diversificado en el Colegio Suizo Americano y aprendí mis primeros fundamentos de programación utilizando Python."
+      },
+      "graduation": {
+        "title": "Graduación de Bachillerato",
+        "description": "Me gradué como Bachiller en Ciencias y Letras con Orientación en Computación del Colegio Suizo Americano."
+      },
+      "university": {
+        "title": "Inicio de la Universidad",
+        "description": "Inicié mis estudios universitarios en Ingeniería en Ciencias de la Computación y Tecnologías de la Información en la Universidad del Valle de Guatemala gracias a la beca Potencia T."
+      },
+      "hackathons": {
+        "title": "Hackatones y Desarrollo de Software",
+        "description": "Participé en distintos hackatones, fortalecí mis conocimientos en desarrollo de software y continué avanzando en mi formación universitaria."
+      },
+      "leadership": {
+        "title": "Quinto Semestre y Liderazgo Universitario",
+        "description": "Actualmente curso el quinto semestre de la carrera. He sido auxiliar de dos cursos dentro de la universidad y tuve el honor de desempeñarme como Presidente de la Asociación de Estudiantes de mi carrera. También continúo desarrollando proyectos enfocados en desarrollo web, bases de datos y tecnologías en la nube."
+      }
+    }
+  },
+  "contact": {
+    "eyebrow": "Contacto",
+    "title": "Hablemos",
+    "subtitle": "Estoy abierto a nuevas oportunidades, colaboraciones, proyectos interesantes y conversaciones relacionadas con tecnología, desarrollo de software y aprendizaje continuo.",
+    "personalInfo": "Información Personal",
+    "details": {
+      "name": "Nombre",
+      "linkedin": "LinkedIn",
+      "githubPrimary": "GitHub Principal",
+      "githubPersonal": "GitHub Personal",
+      "personalEmail": "Correo Personal",
+      "institutionalEmail": "Correo Institucional"
+    },
+    "links": {
+      "eyebrow": "Enlaces",
+      "title": "Conecta Conmigo",
+      "githubPrimary": {
+        "label": "GitHub Principal",
+        "description": "Repositorio principal de proyectos y prácticas de desarrollo."
+      },
+      "githubPersonal": {
+        "label": "GitHub Personal",
+        "description": "Espacio personal para experimentación y aprendizaje continuo."
+      },
+      "linkedin": {
+        "label": "LinkedIn",
+        "description": "Perfil profesional, formación académica y conexiones."
+      },
+      "personalEmail": {
+        "label": "Correo Personal",
+        "description": "Canal directo para oportunidades, colaboración y proyectos."
+      }
+    },
+    "form": {
+      "title": "Mensaje",
+      "name": "Nombre",
+      "email": "Correo",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "namePlaceholder": "Tu nombre",
+      "emailPlaceholder": "tu@correo.com",
+      "subjectPlaceholder": "Motivo del mensaje",
+      "messagePlaceholder": "Cuéntame sobre tu proyecto, idea u oportunidad.",
+      "submit": "Enviar Mensaje",
+      "submitting": "Enviando...",
+      "success": "Mensaje enviado correctamente. En breve me pondré en contacto contigo.",
+      "error": "No fue posible enviar el mensaje.",
+      "errors": {
+        "name": "Ingresa tu nombre.",
+        "email": "Ingresa tu correo.",
+        "emailInvalid": "Ingresa un correo válido.",
+        "subject": "Ingresa un asunto.",
+        "message": "Escribe tu mensaje."
+      }
+    },
+    "cv": {
+      "title": "Currículum",
+      "description": "Archivo preparado para reemplazarse por la versión final del currículum en PDF.",
+      "button": "Descargar CV"
+    },
+    "cta": {
+      "title": "¿Trabajamos juntos?",
+      "description": "Siempre estoy interesado en aprender, colaborar y participar en proyectos que me permitan seguir creciendo como desarrollador.",
+      "projects": "Ver Proyectos",
+      "contact": "Contactarme"
+    }
+  }
+}

@@ -1,21 +1,13 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, Database, GraduationCap, MapPin, Plane, Sparkles } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { ArrowRight, ChevronDown, Database, GraduationCap, MapPin, Plane, Sparkles } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import normanProfile from '../assets/images/norman-profile.jpeg';
 import ProjectCard from '../components/ui/ProjectCard.jsx';
 import TimelineItem from '../components/ui/TimelineItem.jsx';
-import normanProfile from '../assets/images/norman-profile.jpeg';
 import { featuredProjects } from '../data/projects.js';
 import { timelineEvents } from '../data/timeline.js';
-
-const introText =
-  'Soy estudiante de Ciencias de la Computación apasionado por el desarrollo de aplicaciones web, sistemas de servidor y soluciones basadas en bases de datos. Disfruto transformar ideas en software funcional mientras continúo aprendiendo nuevas tecnologías, herramientas y buenas prácticas de desarrollo.';
-
-const terminalLines = [
-  'Building Web Applications',
-  'Designing Database Systems',
-  'Learning Every Day',
-];
 
 const techStackBadges = [
   'React',
@@ -33,104 +25,65 @@ const techStackBadges = [
 ];
 
 const aboutCards = [
-  { label: 'Location', value: 'Guatemala, Guatemala', icon: MapPin },
-  { label: 'Education', value: 'Computer Science at UVG', icon: GraduationCap },
-  { label: 'Focus', value: 'Interface, Server and Database', icon: Database },
-  { label: 'Goal', value: 'Study Abroad and Learn Always', icon: Plane },
+  { key: 'location', icon: MapPin },
+  { key: 'education', icon: GraduationCap },
+  { key: 'focus', icon: Database },
+  { key: 'goal', icon: Plane },
 ];
 
 const skillGroups = [
   {
-    category: 'Interfaz',
+    key: 'frontend',
     skills: [
-      { name: 'React', segments: 7 },
-      { name: 'JavaScript', segments: 8 },
-      { name: 'HTML', segments: 9 },
-      { name: 'CSS', segments: 8 },
-      { name: 'Tailwind CSS', segments: 7 },
+      { name: 'React', key: 'react', segments: 7 },
+      { name: 'JavaScript', key: 'javascript', segments: 8 },
+      { name: 'HTML', key: 'html', segments: 9 },
+      { name: 'CSS', key: 'css', segments: 8 },
+      { name: 'Tailwind CSS', key: 'tailwind', segments: 7 },
     ],
   },
   {
-    category: 'Servidor',
+    key: 'backend',
     skills: [
-      { name: 'Node.js', segments: 7 },
-      { name: 'Express', segments: 7 },
-      { name: 'Go', segments: 6 },
-      { name: 'PHP', segments: 6 },
+      { name: 'Node.js', key: 'node', segments: 7 },
+      { name: 'Express', key: 'express', segments: 7 },
+      { name: 'Go', key: 'go', segments: 6 },
+      { name: 'PHP', key: 'php', segments: 6 },
     ],
   },
   {
-    category: 'Bases de Datos',
+    key: 'databases',
     skills: [
-      { name: 'PostgreSQL', segments: 8 },
-      { name: 'MySQL', segments: 8 },
-      { name: 'SQL Server', segments: 7 },
-      { name: 'SQLite', segments: 7 },
-      { name: 'Prisma', segments: 6 },
+      { name: 'PostgreSQL', key: 'postgresql', segments: 8 },
+      { name: 'MySQL', key: 'mysql', segments: 8 },
+      { name: 'SQL Server', key: 'sqlServer', segments: 7 },
+      { name: 'SQLite', key: 'sqlite', segments: 7 },
+      { name: 'Prisma', key: 'prisma', segments: 6 },
     ],
   },
   {
-    category: 'Lenguajes',
+    key: 'languages',
     skills: [
-      { name: 'Java', segments: 6 },
-      { name: 'Python', segments: 10 },
-      { name: 'JavaScript', segments: 8 },
-      { name: 'Go', segments: 6 },
-      { name: 'PHP', segments: 6 },
-      { name: 'C++', segments: 5 },
+      { name: 'Java', key: 'java', segments: 6 },
+      { name: 'Python', key: 'python', segments: 10 },
+      { name: 'JavaScript', key: 'javascript', segments: 8 },
+      { name: 'Go', key: 'go', segments: 6 },
+      { name: 'PHP', key: 'php', segments: 6 },
+      { name: 'C++', key: 'cpp', segments: 5 },
     ],
   },
   {
-    category: 'Nube y Herramientas',
+    key: 'cloudTools',
     skills: [
-      { name: 'AWS', segments: 5 },
-      { name: 'Cloudflare R2', segments: 5 },
-      { name: 'Docker', segments: 6 },
-      { name: 'Git', segments: 8 },
-      { name: 'GitHub', segments: 8 },
-      { name: 'Linux', segments: 7 },
+      { name: 'AWS', key: 'aws', segments: 5 },
+      { name: 'Cloudflare R2', key: 'cloudflareR2', segments: 5 },
+      { name: 'Docker', key: 'docker', segments: 6 },
+      { name: 'Git', key: 'git', segments: 8 },
+      { name: 'GitHub', key: 'github', segments: 8 },
+      { name: 'Linux', key: 'linux', segments: 7 },
     ],
   },
 ];
-
-const skillGroupDetails = {
-  Interfaz:
-    'Herramientas que utilizo para construir interfaces modernas, responsivas y enfocadas en la experiencia del usuario.',
-  Servidor:
-    'Tecnologías que me ayudan a estructurar lógica de negocio, rutas, servicios y fundamentos de aplicaciones de servidor.',
-  'Bases de Datos':
-    'Sistemas y herramientas que he usado para modelar información, consultar datos y construir persistencia para aplicaciones.',
-  Lenguajes:
-    'Lenguajes que forman la base de mi trabajo actual, desde fundamentos académicos hasta desarrollo web y lógica de servidor.',
-  'Nube y Herramientas':
-    'Herramientas de despliegue, control de versiones, contenedores y entorno técnico para trabajar proyectos de software.',
-};
-
-const skillDescriptions = {
-  React: 'Componentes reutilizables, estado, rutas y construcción de interfaces dinámicas.',
-  JavaScript: 'Interactividad web, manejo de datos en cliente y lógica para aplicaciones modernas.',
-  HTML: 'Estructura semántica, accesibilidad base y organización del contenido.',
-  CSS: 'Estilos responsivos, layouts, efectos visuales y adaptación a diferentes pantallas.',
-  'Tailwind CSS': 'Sistema utilitario para crear interfaces consistentes y rápidas de iterar.',
-  'Node.js': 'Fundamentos de servidor, ejecución de JavaScript y estructura de APIs.',
-  Express: 'Rutas, middlewares y organización de endpoints para aplicaciones de servidor.',
-  Go: 'Servicios backend, manejo de rutas y construcción de lógica de servidor.',
-  PHP: 'Desarrollo web del lado del servidor y fundamentos de aplicaciones dinámicas.',
-  PostgreSQL: 'Modelado relacional, consultas SQL y gestión de datos estructurados.',
-  MySQL: 'Consultas, relaciones y administración de información en proyectos académicos.',
-  'SQL Server': 'Bases de datos relacionales, consultas y comprensión de sistemas empresariales.',
-  SQLite: 'Persistencia ligera para prototipos, proyectos locales y aplicaciones de pila completa.',
-  Prisma: 'Modelado de datos, acceso tipado y organización de consultas desde la aplicación.',
-  Java: 'Programación orientada a objetos, modelado de clases y proyectos académicos.',
-  Python: 'Fundamentos de programación, automatización, lógica y aprendizaje constante.',
-  'C++': 'Estructuras, lógica de bajo nivel y comprensión de fundamentos computacionales.',
-  AWS: 'Conceptos de nube, despliegue y servicios base para aplicaciones modernas.',
-  'Cloudflare R2': 'Almacenamiento compatible con objetos y recursos para proyectos web.',
-  Docker: 'Contenedores, entornos reproducibles y preparación de servicios.',
-  Git: 'Control de versiones, historial de cambios y trabajo ordenado en proyectos.',
-  GitHub: 'Repositorios, colaboración, documentación y publicación de código.',
-  Linux: 'Uso de terminal, comandos base y entorno de desarrollo para servidores.',
-};
 
 const fadeIn = {
   hidden: { opacity: 0, y: 28 },
@@ -138,101 +91,192 @@ const fadeIn = {
 };
 
 function TerminalCard() {
-  const [visibleLines, setVisibleLines] = useState([]);
+  const { t, i18n } = useTranslation();
+  const lines = useMemo(
+    () => t('home.hero.terminal.lines', { returnObjects: true }),
+    [t, i18n.resolvedLanguage],
+  );
+  const [completedLines, setCompletedLines] = useState([]);
+  const [activeLineIndex, setActiveLineIndex] = useState(0);
+  const [typedText, setTypedText] = useState('');
 
   useEffect(() => {
-    const timers = terminalLines.map((line, index) =>
-      window.setTimeout(() => {
-        setVisibleLines((current) => [...current, line]);
-      }, 500 + index * 700),
-    );
+    setCompletedLines([]);
+    setActiveLineIndex(0);
+    setTypedText('');
+  }, [i18n.resolvedLanguage]);
 
-    return () => timers.forEach((timer) => window.clearTimeout(timer));
-  }, []);
+  useEffect(() => {
+    if (!Array.isArray(lines) || lines.length === 0) {
+      return undefined;
+    }
+
+    if (activeLineIndex >= lines.length) {
+      const restartTimer = window.setTimeout(() => {
+        setCompletedLines([]);
+        setActiveLineIndex(0);
+        setTypedText('');
+      }, 1400);
+
+      return () => window.clearTimeout(restartTimer);
+    }
+
+    const currentLine = lines[activeLineIndex];
+
+    if (typedText.length < currentLine.length) {
+      const typeTimer = window.setTimeout(() => {
+        setTypedText(currentLine.slice(0, typedText.length + 1));
+      }, 28);
+
+      return () => window.clearTimeout(typeTimer);
+    }
+
+    const nextLineTimer = window.setTimeout(() => {
+      setCompletedLines((current) => [...current, currentLine]);
+      setTypedText('');
+      setActiveLineIndex((current) => current + 1);
+    }, 520);
+
+    return () => window.clearTimeout(nextLineTimer);
+  }, [activeLineIndex, lines, typedText]);
 
   return (
-    <div className="overflow-hidden rounded-lg border border-border-cyber/70 bg-surface/65 shadow-[0_0_40px_var(--primary-glow-soft)] backdrop-blur-xl">
+    <div className="overflow-hidden rounded-xl border border-border-cyber/70 bg-surface/65 shadow-[0_0_44px_var(--primary-glow-soft)] backdrop-blur-xl">
       <div className="flex items-center gap-2 border-b border-border-cyber/60 bg-surface-high/70 px-4 py-3">
         <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
         <span className="h-2.5 w-2.5 rounded-full bg-yellow-300/80" />
         <span className="h-2.5 w-2.5 rounded-full bg-primary-cyan/80" />
-        <span className="ml-2 font-mono text-xs text-muted-text">norman.dev</span>
+        <span className="ml-2 font-mono text-xs text-muted-text">
+          {t('home.hero.terminal.title')}
+        </span>
       </div>
 
       <div className="min-h-36 px-4 py-5 font-mono text-sm text-muted-text">
-        {visibleLines.map((line) => (
+        {[...completedLines, typedText].filter(Boolean).map((line, index) => (
           <motion.p
-            key={line}
+            key={`${line}-${index}`}
             className="mb-3 flex items-center gap-2"
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.28, ease: 'easeOut' }}
+            transition={{ duration: 0.24, ease: 'easeOut' }}
           >
             <span className="text-primary-cyan-bright">&gt;</span>
             <span>{line}</span>
+            {index === completedLines.length ? (
+              <motion.span
+                className="h-4 w-2 bg-primary-cyan-bright"
+                animate={{ opacity: [1, 0.25, 1] }}
+                transition={{ duration: 0.85, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            ) : null}
           </motion.p>
         ))}
-        <span className="inline-block h-4 w-2 animate-pulse bg-primary-cyan-bright" />
+        {completedLines.length === 0 && !typedText ? (
+          <motion.span
+            className="inline-block h-4 w-2 bg-primary-cyan-bright"
+            animate={{ opacity: [1, 0.25, 1] }}
+            transition={{ duration: 0.85, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        ) : null}
       </div>
     </div>
   );
 }
 
 function TechStackBadges() {
+  const { t } = useTranslation();
+
   return (
     <motion.div
-      className="rounded-lg border border-border-cyber/70 bg-surface/60 p-5 shadow-[0_0_46px_var(--primary-glow-soft)] backdrop-blur-xl"
+      className="relative overflow-hidden rounded-xl border border-border-cyber/70 bg-surface/65 p-5 shadow-[0_0_56px_var(--primary-glow-soft)] backdrop-blur-xl"
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, delay: 0.12, ease: 'easeOut' }}
+      whileHover={{ y: -3 }}
     >
-      <div className="mb-5 flex items-center justify-between gap-4">
-        <div>
-          <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
-            stack_principal.json
-          </p>
-          <h2 className="mt-2 text-xl font-semibold text-text">Tecnologías Principales</h2>
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_0%,var(--primary-glow-soft),transparent_32%),linear-gradient(135deg,var(--surface-high),transparent_42%)] opacity-80" />
+      <div className="relative">
+        <div className="mb-5 flex items-start justify-between gap-4">
+          <div>
+            <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
+              {t('home.hero.stack.file')}
+            </p>
+            <h2 className="mt-2 text-xl font-semibold text-text">
+              {t('home.hero.stack.title')}
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-muted-text">
+              {t('home.hero.stack.subtitle')}
+            </p>
+          </div>
+          <div className="mt-1 flex gap-1.5" aria-hidden="true">
+            <span className="h-2 w-2 rounded-full bg-primary-cyan" />
+            <span className="h-2 w-2 rounded-full bg-primary-cyan/55" />
+            <span className="h-2 w-2 rounded-full bg-primary-cyan/25" />
+          </div>
         </div>
-        <div className="flex gap-1.5" aria-hidden="true">
-          <span className="h-2 w-2 rounded-full bg-primary-cyan" />
-          <span className="h-2 w-2 rounded-full bg-primary-cyan/55" />
-          <span className="h-2 w-2 rounded-full bg-primary-cyan/25" />
-        </div>
-      </div>
 
-      <div className="flex flex-wrap gap-2.5">
-        {techStackBadges.map((technology, index) => (
-          <motion.span
-            key={technology}
-            className="rounded-md border border-border-cyber/70 bg-background/45 px-3 py-2 font-mono text-xs font-medium text-muted-text transition duration-300 hover:-translate-y-0.5 hover:border-primary-cyan/80 hover:bg-surface-high/70 hover:text-primary-cyan-bright hover:shadow-[0_0_22px_var(--primary-glow-soft)]"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.25, delay: 0.18 + index * 0.035, ease: 'easeOut' }}
-            whileHover={{ y: -2 }}
-          >
-            {technology}
-          </motion.span>
-        ))}
+        <div className="flex flex-wrap gap-2.5">
+          {techStackBadges.map((technology, index) => (
+            <motion.span
+              key={technology}
+              className="rounded-md border border-border-cyber/70 bg-background/45 px-3 py-2 font-mono text-xs font-medium text-muted-text transition duration-300 hover:-translate-y-0.5 hover:border-primary-cyan/80 hover:bg-surface-high/70 hover:text-primary-cyan-bright hover:shadow-[0_0_24px_var(--primary-glow-soft)]"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25, delay: 0.18 + index * 0.035, ease: 'easeOut' }}
+              whileHover={{ y: -2, scale: 1.03 }}
+            >
+              {technology}
+            </motion.span>
+          ))}
+        </div>
       </div>
     </motion.div>
   );
 }
 
 function ProfilePhoto() {
+  const { t } = useTranslation();
+
   return (
     <motion.div
-      className="group relative mx-auto flex aspect-[4/5] w-full max-w-sm items-center justify-center overflow-hidden rounded-xl border border-border-cyber/80 bg-surface/55 p-5 shadow-[0_0_70px_var(--primary-glow-soft)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:shadow-[0_0_90px_var(--primary-glow)]"
+      className="group relative mx-auto flex aspect-[4/5] w-full max-w-[18rem] items-center justify-center sm:max-w-xs lg:max-w-[19rem] xl:max-w-[20rem]"
+      initial={{ opacity: 0, y: 22, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.5, delay: 0.18, ease: 'easeOut' }}
       whileHover={{ scale: 1.015 }}
-      transition={{ duration: 0.2, ease: 'easeOut' }}
     >
-      <div className="absolute inset-4 rounded-lg border border-primary-cyan/15 bg-surface-high/35" />
-      <img
-        src={normanProfile}
-        alt="Foto principal de Norman Aguirre"
-        className="relative h-full w-full rounded-lg border border-primary-cyan/35 object-cover object-center"
-      />
-      <div className="absolute -inset-px rounded-xl opacity-0 ring-1 ring-primary-cyan/40 transition duration-300 group-hover:opacity-100" />
+      <div className="absolute -inset-5 rounded-[2rem] bg-primary-cyan/15 blur-3xl transition duration-300 group-hover:bg-primary-cyan/25" />
+      <div className="absolute inset-5 rounded-2xl border border-primary-cyan/20 bg-surface-high/35" />
+      <div className="relative h-full w-full overflow-hidden rounded-2xl border border-border-cyber/80 bg-surface/55 p-4 shadow-[0_0_80px_var(--primary-glow-soft)] backdrop-blur-xl transition duration-300 group-hover:border-primary-cyan/80 group-hover:shadow-[0_0_100px_var(--primary-glow)]">
+        <img
+          src={normanProfile}
+          alt={t('home.hero.photoAlt')}
+          className="h-full w-full rounded-xl border border-primary-cyan/35 object-cover object-center"
+        />
+        <div className="pointer-events-none absolute inset-4 rounded-xl bg-[linear-gradient(135deg,rgba(255,255,255,0.10),transparent_32%,var(--primary-glow-soft))] opacity-60" />
+      </div>
     </motion.div>
+  );
+}
+
+function HeroBackground() {
+  return (
+    <>
+      <div className="pointer-events-none absolute bottom-0 left-1/2 top-0 -z-10 w-screen -translate-x-1/2 bg-[radial-gradient(circle_at_14%_18%,var(--primary-glow),transparent_34%),radial-gradient(circle_at_82%_20%,var(--primary-glow-soft),transparent_30%),linear-gradient(135deg,var(--surface)_0%,transparent_48%,var(--surface-high)_100%)] opacity-95" />
+      <motion.div
+        className="pointer-events-none absolute top-10 -z-10 h-72 w-72 rounded-full bg-primary-cyan/15 blur-3xl"
+        style={{ right: 'max(-12rem, calc((100% - 100vw) / 2 + 2rem))' }}
+        animate={{ y: [0, 18, 0], x: [0, -12, 0], opacity: [0.45, 0.75, 0.45] }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="pointer-events-none absolute bottom-16 -z-10 h-52 w-52 rounded-full border border-primary-cyan/25"
+        style={{ left: 'max(-12rem, calc((100% - 100vw) / 2 + 2rem))' }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 32, repeat: Infinity, ease: 'linear' }}
+      />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 top-0 -z-10 w-screen -translate-x-1/2 bg-[linear-gradient(var(--border)_1px,transparent_1px),linear-gradient(90deg,var(--border)_1px,transparent_1px)] bg-[size:48px_48px] opacity-[0.06]" />
+    </>
   );
 }
 
@@ -251,155 +295,20 @@ function SectionShell({ children, className = '' }) {
   );
 }
 
-function SegmentedBar({ count }) {
-  return (
-    <div className="flex gap-1" aria-hidden="true">
-      {Array.from({ length: 10 }).map((_, index) => (
-        <span
-          key={index}
-          className={`h-2 flex-1 rounded-sm ${
-            index < count ? 'bg-primary-cyan shadow-[0_0_10px_var(--primary-glow-strong)]' : 'bg-surface-highest'
-          }`}
-        />
-      ))}
-    </div>
-  );
-}
-
-function SkillsCard({ group }) {
-  return (
-    <article className="rounded-lg border border-border-cyber/70 bg-surface/60 p-5 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/70 hover:bg-surface-high/65">
-      <div className="mb-5 flex items-center justify-between gap-4">
-        <h3 className="text-xl font-semibold text-text">{group.category}</h3>
-        <Sparkles size={18} className="text-primary-cyan-bright" />
-      </div>
-
-      <div className="space-y-4">
-        {group.skills.map((skill) => (
-          <div key={`${group.category}-${skill.name}`} className="space-y-2">
-            <div className="flex items-center justify-between gap-3">
-              <span className="font-mono text-xs text-muted-text">{skill.name}</span>
-            </div>
-            <SegmentedBar count={skill.segments} />
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-6 flex flex-wrap gap-2">
-        {group.skills.map((skill) => (
-          <span
-            key={`${group.category}-chip-${skill.name}`}
-            className="rounded-md border border-border-cyber/70 bg-background/50 px-2.5 py-1 font-mono text-xs text-muted-text"
-          >
-            {skill.name}
-          </span>
-        ))}
-      </div>
-    </article>
-  );
-}
-
-function LanguageShowcase({ group }) {
-  return (
-    <motion.article
-      className="grid gap-6 rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl transition duration-300 hover:border-primary-cyan/70 hover:bg-surface-high/60 lg:grid-cols-[0.8fr_1.2fr] lg:p-8"
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.22 }}
-      transition={{ duration: 0.45, ease: 'easeOut' }}
-    >
-      <div className="space-y-5">
-        <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-          Perfil técnico
-        </p>
-        <h3 className="text-3xl font-bold text-text">Lenguajes de Programación</h3>
-        <p className="text-base leading-8 text-muted-text">
-          Estos lenguajes forman la base de mi trabajo actual. Los porcentajes son una referencia
-          visual de familiaridad práctica, tomando como punto de partida proyectos académicos,
-          desarrollo web, lógica de servidor y aprendizaje personal.
-        </p>
-
-        <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-4">
-          <p className="font-mono text-xs uppercase text-primary-cyan-bright">
-            enfoque_actual.json
-          </p>
-          <div className="mt-4 grid grid-cols-2 gap-2">
-            {group.skills.map((skill) => (
-              <span
-                key={`lenguaje-chip-${skill.name}`}
-                className="rounded-md border border-border-cyber/70 bg-surface-high/45 px-3 py-2 font-mono text-xs text-muted-text"
-              >
-                {skill.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_var(--primary-glow-soft)]">
-        <div className="mb-6 flex items-center justify-between gap-4">
-          <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
-            lenguajes_matrix.json
-          </p>
-          <div className="flex gap-1.5" aria-hidden="true">
-            <span className="h-2 w-2 rounded-full bg-primary-cyan" />
-            <span className="h-2 w-2 rounded-full bg-primary-cyan/55" />
-            <span className="h-2 w-2 rounded-full bg-primary-cyan/25" />
-          </div>
-        </div>
-
-        <div className="space-y-5">
-          {group.skills.map((skill) => {
-            const percentage = skill.segments * 10;
-
-            return (
-              <div key={`lenguaje-row-${skill.name}`} className="space-y-2">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="font-mono text-sm font-semibold text-text">{skill.name}</p>
-                    <p className="mt-1 text-xs leading-5 text-muted-text">
-                      {languageDescriptions[skill.name]}
-                    </p>
-                  </div>
-                  <span className="font-mono text-sm font-semibold text-primary-cyan-bright">
-                    {percentage}%
-                  </span>
-                </div>
-                <div className="flex gap-1" aria-hidden="true">
-                  {Array.from({ length: 10 }).map((_, index) => (
-                    <span
-                      key={`${skill.name}-${index}`}
-                      className={`h-2 flex-1 rounded-sm ${
-                        index < skill.segments
-                          ? 'bg-primary-cyan shadow-[0_0_10px_var(--primary-glow-strong)]'
-                          : 'bg-surface-highest'
-                      }`}
-                    />
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </motion.article>
-  );
-}
-
-function getSkillRangeLabel(segments) {
+function getSkillRangeLabel(segments, t) {
   if (segments <= 2) {
-    return '0-25% · En exploración';
+    return t('home.skills.ranges.exploring');
   }
 
   if (segments <= 5) {
-    return '25-50% · Lo he utilizado en proyectos puntuales';
+    return t('home.skills.ranges.punctual');
   }
 
   if (segments <= 7) {
-    return '50-75% · Lo he utilizado bastante';
+    return t('home.skills.ranges.frequent');
   }
 
-  return '75-100% · Uso avanzado';
+  return t('home.skills.ranges.advanced');
 }
 
 function SkillSegments({ count, name }) {
@@ -422,155 +331,7 @@ function SkillSegments({ count, name }) {
 function SkillsCarousel({ groups }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const activeGroup = groups[activeIndex];
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % groups.length);
-    }, 5200);
-
-    return () => window.clearInterval(timer);
-  }, [groups.length]);
-
-  const goToPrevious = () => {
-    setActiveIndex((current) => (current === 0 ? groups.length - 1 : current - 1));
-  };
-
-  const goToNext = () => {
-    setActiveIndex((current) => (current + 1) % groups.length);
-  };
-
-  return (
-    <motion.article
-      className="overflow-hidden rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl transition duration-300 hover:border-primary-cyan/70 hover:bg-surface-high/60 lg:p-8"
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.22 }}
-      transition={{ duration: 0.45, ease: 'easeOut' }}
-    >
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-md border border-border-cyber/70 bg-background/45 text-primary-cyan-bright">
-            <Sparkles size={18} />
-          </span>
-          <div>
-            <p className="font-mono text-xs font-medium uppercase text-primary-cyan-bright">
-              Carrusel técnico
-            </p>
-            <p className="text-sm text-muted-text">
-              Cambia automáticamente para mostrar cada área de habilidades.
-            </p>
-          </div>
-        </div>
-
-        <div className="flex gap-2">
-          <button
-            type="button"
-            className="rounded-md border border-border-cyber bg-surface-high/65 px-3 py-2 font-mono text-xs text-muted-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright"
-            onClick={goToPrevious}
-          >
-            Anterior
-          </button>
-          <button
-            type="button"
-            className="rounded-md border border-border-cyber bg-surface-high/65 px-3 py-2 font-mono text-xs text-muted-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright"
-            onClick={goToNext}
-          >
-            Siguiente
-          </button>
-        </div>
-      </div>
-
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={activeGroup.category}
-          className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]"
-          initial={{ opacity: 0, x: 32 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -32 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-        >
-          <div className="space-y-5">
-            <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-              Perfil técnico
-            </p>
-            <h3 className="text-3xl font-bold text-text">{activeGroup.category}</h3>
-            <p className="text-base leading-8 text-muted-text">
-              {skillGroupDetails[activeGroup.category]}
-            </p>
-
-            <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-4">
-              <p className="font-mono text-xs uppercase text-primary-cyan-bright">
-                enfoque_actual.json
-              </p>
-              <div className="mt-4 grid grid-cols-2 gap-2">
-                {activeGroup.skills.map((skill) => (
-                  <span
-                    key={`${activeGroup.category}-chip-${skill.name}`}
-                    className="rounded-md border border-border-cyber/70 bg-surface-high/45 px-3 py-2 font-mono text-xs text-muted-text"
-                  >
-                    {skill.name}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_var(--primary-glow-soft)]">
-            <div className="mb-6 flex items-center justify-between gap-4">
-              <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
-                habilidades_matrix.json
-              </p>
-              <div className="flex gap-1.5" aria-hidden="true">
-                <span className="h-2 w-2 rounded-full bg-primary-cyan" />
-                <span className="h-2 w-2 rounded-full bg-primary-cyan/55" />
-                <span className="h-2 w-2 rounded-full bg-primary-cyan/25" />
-              </div>
-            </div>
-
-            <div className="space-y-5">
-              {activeGroup.skills.map((skill) => (
-                <div key={`${activeGroup.category}-row-${skill.name}`} className="space-y-2">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="font-mono text-sm font-semibold text-text">{skill.name}</p>
-                      <p className="mt-1 text-xs leading-5 text-muted-text">
-                        {skillDescriptions[skill.name]}
-                      </p>
-                    </div>
-                    <span className="max-w-36 text-right font-mono text-xs font-semibold leading-5 text-primary-cyan-bright">
-                      {getSkillRangeLabel(skill.segments)}
-                    </span>
-                  </div>
-                  <SkillSegments count={skill.segments} name={`${activeGroup.category}-${skill.name}`} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-
-      <div className="mt-6 flex justify-center gap-2">
-        {groups.map((group, index) => (
-          <button
-            key={`skill-dot-${group.category}`}
-            type="button"
-            className={`h-2.5 rounded-full transition-all duration-200 ${
-              activeIndex === index
-                ? 'w-8 bg-primary-cyan'
-                : 'w-2.5 bg-surface-highest hover:bg-primary-cyan/60'
-            }`}
-            aria-label={`Mostrar ${group.category}`}
-            onClick={() => setActiveIndex(index)}
-          />
-        ))}
-      </div>
-    </motion.article>
-  );
-}
-
-function CleanSkillsCarousel({ groups }) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const activeGroup = groups[activeIndex];
+  const { t } = useTranslation();
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -590,7 +351,7 @@ function CleanSkillsCarousel({ groups }) {
     >
       <AnimatePresence mode="wait">
         <motion.div
-          key={activeGroup.category}
+          key={activeGroup.key}
           className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]"
           initial={{ opacity: 0, x: 32 }}
           animate={{ opacity: 1, x: 0 }}
@@ -599,21 +360,23 @@ function CleanSkillsCarousel({ groups }) {
         >
           <div className="space-y-5">
             <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-              Perfil técnico
+              {t('home.skills.profile')}
             </p>
-            <h3 className="text-3xl font-bold text-text">{activeGroup.category}</h3>
+            <h3 className="text-3xl font-bold text-text">
+              {t(`home.skills.groups.${activeGroup.key}.title`)}
+            </h3>
             <p className="text-base leading-8 text-muted-text">
-              {skillGroupDetails[activeGroup.category]}
+              {t(`home.skills.groups.${activeGroup.key}.description`)}
             </p>
 
             <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-4">
               <p className="font-mono text-xs uppercase text-primary-cyan-bright">
-                enfoque_actual.json
+                {t('home.skills.focusFile')}
               </p>
               <div className="mt-4 grid grid-cols-2 gap-2">
                 {activeGroup.skills.map((skill) => (
                   <span
-                    key={`${activeGroup.category}-clean-chip-${skill.name}`}
+                    key={`${activeGroup.key}-clean-chip-${skill.name}`}
                     className="rounded-md border border-border-cyber/70 bg-surface-high/45 px-3 py-2 font-mono text-xs text-muted-text"
                   >
                     {skill.name}
@@ -626,7 +389,7 @@ function CleanSkillsCarousel({ groups }) {
           <div className="rounded-lg border border-border-cyber/70 bg-background/45 p-5 shadow-[0_0_42px_var(--primary-glow-soft)]">
             <div className="mb-6 flex items-center justify-between gap-4">
               <p className="font-mono text-xs font-semibold uppercase text-primary-cyan-bright">
-                habilidades_matrix.json
+                {t('home.skills.matrixFile')}
               </p>
               <div className="flex gap-1.5" aria-hidden="true">
                 <span className="h-2 w-2 rounded-full bg-primary-cyan" />
@@ -637,21 +400,21 @@ function CleanSkillsCarousel({ groups }) {
 
             <div className="space-y-5">
               {activeGroup.skills.map((skill) => (
-                <div key={`${activeGroup.category}-clean-row-${skill.name}`} className="space-y-2">
+                <div key={`${activeGroup.key}-clean-row-${skill.name}`} className="space-y-2">
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="font-mono text-sm font-semibold text-text">{skill.name}</p>
                       <p className="mt-1 text-xs leading-5 text-muted-text">
-                        {skillDescriptions[skill.name]}
+                        {t(`home.skills.descriptions.${skill.key}`)}
                       </p>
                     </div>
                     <span className="max-w-36 text-right font-mono text-xs font-semibold leading-5 text-primary-cyan-bright">
-                      {getSkillRangeLabel(skill.segments)}
+                      {getSkillRangeLabel(skill.segments, t)}
                     </span>
                   </div>
                   <SkillSegments
                     count={skill.segments}
-                    name={`${activeGroup.category}-clean-${skill.name}`}
+                    name={`${activeGroup.key}-clean-${skill.name}`}
                   />
                 </div>
               ))}
@@ -663,14 +426,14 @@ function CleanSkillsCarousel({ groups }) {
       <div className="mt-6 flex justify-center gap-2">
         {groups.map((group, index) => (
           <button
-            key={`clean-skill-dot-${group.category}`}
+            key={`clean-skill-dot-${group.key}`}
             type="button"
             className={`h-2.5 rounded-full transition-all duration-200 ${
               activeIndex === index
                 ? 'w-8 bg-primary-cyan'
                 : 'w-2.5 bg-surface-highest hover:bg-primary-cyan/60'
             }`}
-            aria-label={`Mostrar ${group.category}`}
+            aria-label={t(`home.skills.groups.${group.key}.title`)}
             onClick={() => setActiveIndex(index)}
           />
         ))}
@@ -680,78 +443,100 @@ function CleanSkillsCarousel({ groups }) {
 }
 
 export default function Home() {
+  const { t } = useTranslation();
+
   return (
     <div className="w-full space-y-24">
-      <SectionShell className="grid min-h-[calc(100vh-12rem)] items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-        <div className="space-y-8">
-          <div className="space-y-5">
-            <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-              Junior Full Stack Developer
-            </p>
-            <div className="space-y-3">
-              <h1 className="text-5xl font-bold leading-tight text-text sm:text-6xl lg:text-7xl">
-                Norman Aguirre
-              </h1>
-              <p className="text-xl font-semibold text-primary-cyan sm:text-2xl">
-                Estudiante de Ingeniería en Ciencias de la Computación
+      <SectionShell className="relative isolate min-h-[calc(100vh-10rem)] overflow-visible py-8 lg:py-10">
+        <HeroBackground />
+        <div className="relative grid min-w-0 items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="space-y-8">
+            <div className="space-y-5">
+              <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
+                {t('home.hero.eyebrow')}
+              </p>
+              <div className="space-y-3">
+                <motion.h1
+                  className="break-words text-5xl font-bold leading-tight text-text sm:text-6xl xl:text-7xl"
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.45, ease: 'easeOut' }}
+                >
+                  {t('home.hero.name')}
+                </motion.h1>
+                <p className="text-xl font-semibold text-primary-cyan sm:text-2xl">
+                  {t('home.hero.subtitle')}
+                </p>
+              </div>
+              <p className="max-w-2xl text-base leading-8 text-muted-text sm:text-lg">
+                {t('home.hero.description')}
               </p>
             </div>
-            <p className="max-w-2xl text-base leading-8 text-muted-text sm:text-lg">{introText}</p>
+
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link
+                to="/projects"
+                className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]"
+              >
+                {t('home.hero.primaryButton')}
+                <ArrowRight size={17} />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center justify-center rounded-md border border-border-cyber bg-surface-high/65 px-5 py-3 text-sm font-semibold text-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright"
+              >
+                {t('home.hero.secondaryButton')}
+              </Link>
+            </div>
+
+            <TerminalCard />
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row">
-            <Link
-              to="/projects"
-              className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]"
-            >
-              Explorar Proyectos
-              <ArrowRight size={17} />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center rounded-md border border-border-cyber bg-surface-high/65 px-5 py-3 text-sm font-semibold text-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright"
-            >
-              Escríbeme
-            </Link>
+          <div className="space-y-6">
+            <TechStackBadges />
+            <ProfilePhoto />
           </div>
-
-          <TerminalCard />
         </div>
 
-        <div className="space-y-5">
-          <TechStackBadges />
-          <ProfilePhoto />
-        </div>
+        <motion.div
+          className="absolute bottom-2 left-1/2 hidden -translate-x-1/2 items-center gap-2 font-mono text-xs uppercase text-muted-text lg:flex"
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <span>{t('home.hero.scroll')}</span>
+          <ChevronDown size={15} className="text-primary-cyan-bright" />
+        </motion.div>
       </SectionShell>
 
       <SectionShell className="space-y-8">
         <div className="max-w-3xl space-y-4">
-          <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">Perfil</p>
-          <h2 className="text-3xl font-bold text-text sm:text-4xl">Sobre Mí</h2>
+          <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
+            {t('home.about.eyebrow')}
+          </p>
+          <h2 className="text-3xl font-bold text-text sm:text-4xl">{t('home.about.title')}</h2>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="rounded-lg border border-border-cyber/70 bg-surface/60 p-6 backdrop-blur-xl sm:p-8">
             <div className="space-y-5 text-base leading-8 text-muted-text">
-              <p>{introText}</p>
-              <p>
-                Mi objetivo es seguir creciendo como desarrollador, ampliar mis conocimientos en
-                ingeniería de software y continuar mi formación académica en el extranjero. Creo en
-                el aprendizaje constante, la curiosidad tecnológica y la mejora continua como
-                pilares fundamentales para construir soluciones que generen un impacto real.
-              </p>
+              <p>{t('home.hero.description')}</p>
+              <p>{t('home.about.paragraph2')}</p>
             </div>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            {aboutCards.map(({ label, value, icon: Icon }) => (
+            {aboutCards.map(({ key, icon: Icon }) => (
               <article
-                key={label}
+                key={key}
                 className="rounded-lg border border-border-cyber/70 bg-surface/60 p-5 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/70 hover:bg-surface-high/70"
               >
                 <Icon size={20} className="mb-5 text-primary-cyan-bright" />
-                <p className="font-mono text-xs uppercase text-muted-text">{label}</p>
-                <p className="mt-2 text-lg font-semibold text-text">{value}</p>
+                <p className="font-mono text-xs uppercase text-muted-text">
+                  {t(`home.about.cards.${key}.label`)}
+                </p>
+                <p className="mt-2 text-lg font-semibold text-text">
+                  {t(`home.about.cards.${key}.value`)}
+                </p>
               </article>
             ))}
           </div>
@@ -761,23 +546,24 @@ export default function Home() {
       <SectionShell className="space-y-8">
         <div className="max-w-3xl space-y-4">
           <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-            Matriz de Habilidades
+            {t('home.skills.eyebrow')}
           </p>
-          <h2 className="text-3xl font-bold text-text sm:text-4xl">Habilidades Técnicas</h2>
+          <h2 className="text-3xl font-bold text-text sm:text-4xl">{t('home.skills.title')}</h2>
         </div>
 
-        <CleanSkillsCarousel groups={skillGroups} />
+        <SkillsCarousel groups={skillGroups} />
       </SectionShell>
 
       <SectionShell className="space-y-8">
         <div className="max-w-3xl space-y-4">
           <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-            Proyectos propios
+            {t('home.featured.eyebrow')}
           </p>
-          <h2 className="text-3xl font-bold text-text sm:text-4xl">Proyectos Destacados</h2>
+          <h2 className="text-3xl font-bold text-text sm:text-4xl">
+            {t('home.featured.title')}
+          </h2>
           <p className="text-base leading-8 text-muted-text">
-            Una selección de proyectos que reflejan mi experiencia en desarrollo web, bases de
-            datos y construcción de software.
+            {t('home.featured.subtitle')}
           </p>
         </div>
 
@@ -792,7 +578,7 @@ export default function Home() {
             to="/projects"
             className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]"
           >
-            Ver Todos los Proyectos
+            {t('home.featured.allButton')}
             <ArrowRight size={17} />
           </Link>
         </div>
@@ -801,12 +587,11 @@ export default function Home() {
       <SectionShell className="space-y-10">
         <div className="max-w-3xl space-y-4">
           <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-            Trayectoria
+            {t('home.timeline.eyebrow')}
           </p>
-          <h2 className="text-3xl font-bold text-text sm:text-4xl">Mi Trayectoria</h2>
+          <h2 className="text-3xl font-bold text-text sm:text-4xl">{t('home.timeline.title')}</h2>
           <p className="text-base leading-8 text-muted-text">
-            Algunos de los momentos más importantes de mi formación académica y crecimiento
-            profesional.
+            {t('home.timeline.subtitle')}
           </p>
         </div>
 

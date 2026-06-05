@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowLeft, Code2, ExternalLink } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import { projects } from '../data/projects.js';
 
@@ -20,30 +21,40 @@ function DetailSection({ title, children }) {
 
 export default function ProjectDetail() {
   const { slug } = useParams();
+  const { t } = useTranslation();
   const project = projects.find((item) => item.slug === slug);
-  const repositories = [
-    project?.github ? { label: 'Repositorio', href: project.github } : null,
-    project?.githubFrontend ? { label: 'Repositorio Frontend', href: project.githubFrontend } : null,
-    project?.githubBackend ? { label: 'Repositorio Backend', href: project.githubBackend } : null,
-  ].filter(Boolean);
 
   if (!project) {
     return (
       <section className="w-full rounded-lg border border-border-cyber/70 bg-surface/60 p-8 text-center backdrop-blur-xl">
         <p className="font-mono text-sm uppercase text-primary-cyan-bright">
-          Proyecto no encontrado
+          {t('projects.detail.notFoundEyebrow')}
         </p>
-        <h1 className="mt-4 text-3xl font-bold text-text">No encontramos este proyecto</h1>
+        <h1 className="mt-4 text-3xl font-bold text-text">
+          {t('projects.detail.notFoundTitle')}
+        </h1>
         <Link
           to="/projects"
           className="mt-8 inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-200 hover:bg-primary-cyan-bright"
         >
           <ArrowLeft size={17} />
-          Volver a Proyectos
+          {t('projects.actions.back')}
         </Link>
       </section>
     );
   }
+
+  const projectName = t(`projects.items.${project.key}.name`);
+  const repositories = [
+    project.github ? { label: t('projects.labels.repository'), href: project.github } : null,
+    project.githubFrontend
+      ? { label: t('projects.labels.repositoryFrontend'), href: project.githubFrontend }
+      : null,
+    project.githubBackend
+      ? { label: t('projects.labels.repositoryBackend'), href: project.githubBackend }
+      : null,
+  ].filter(Boolean);
+  const learnedItems = t(`projects.items.${project.key}.learned`, { returnObjects: true });
 
   return (
     <article className="w-full space-y-10">
@@ -55,33 +66,35 @@ export default function ProjectDetail() {
       >
         <nav className="flex flex-wrap items-center gap-2 font-mono text-xs text-muted-text">
           <Link to="/" className="transition duration-200 hover:text-primary-cyan-bright">
-            Inicio
+            {t('projects.detail.breadcrumbHome')}
           </Link>
           <span>/</span>
           <Link to="/projects" className="transition duration-200 hover:text-primary-cyan-bright">
-            Proyectos
+            {t('projects.detail.breadcrumbProjects')}
           </Link>
           <span>/</span>
-          <span className="text-primary-cyan-bright">{project.nombre}</span>
+          <span className="text-primary-cyan-bright">{projectName}</span>
         </nav>
 
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div className="space-y-6">
             <p className="font-mono text-sm font-medium uppercase text-primary-cyan-bright">
-              {project.categoria}
+              {t(`projects.filters.${project.category}`)}
             </p>
             <h1 className="text-4xl font-bold leading-tight text-text sm:text-5xl">
-              {project.nombre}
+              {projectName}
             </h1>
-            <p className="max-w-3xl text-base leading-8 text-muted-text">{project.descripcion}</p>
+            <p className="max-w-3xl text-base leading-8 text-muted-text">
+              {t(`projects.items.${project.key}.description`)}
+            </p>
 
             <div className="flex flex-wrap gap-2">
-              {project.tecnologias.map((technology) => (
+              {project.technologies.map((technology) => (
                 <span
                   key={`${project.slug}-hero-${technology}`}
                   className="rounded-md border border-border-cyber/70 bg-background/50 px-2.5 py-1 font-mono text-xs text-muted-text"
                 >
-                  {technology}
+                  {t(`projects.technologies.${technology}`)}
                 </span>
               ))}
             </div>
@@ -95,7 +108,7 @@ export default function ProjectDetail() {
                   className="inline-flex items-center justify-center gap-2 rounded-md border border-primary-cyan bg-primary-cyan px-5 py-3 text-sm font-semibold text-background transition duration-300 hover:bg-primary-cyan-bright hover:shadow-[0_0_30px_var(--primary-glow)]"
                 >
                   <ExternalLink size={17} />
-                  Ver Proyecto en Producción
+                  {t('projects.actions.viewProduction')}
                 </a>
               ) : null}
 
@@ -121,15 +134,15 @@ export default function ProjectDetail() {
                 className="inline-flex items-center justify-center gap-2 rounded-md border border-border-cyber bg-surface-high/65 px-5 py-3 text-sm font-semibold text-text transition duration-200 hover:border-primary-cyan hover:text-primary-cyan-bright"
               >
                 <ArrowLeft size={17} />
-                Volver a Proyectos
+                {t('projects.actions.back')}
               </Link>
             </div>
           </div>
 
           <div className="rounded-xl border border-border-cyber/80 bg-surface/55 p-5 shadow-[0_0_70px_var(--primary-glow-soft)] backdrop-blur-xl">
             <img
-              src={project.imagen}
-              alt={`Imagen de ${project.nombre}`}
+              src={project.image}
+              alt={t('projects.labels.imageAlt', { name: projectName })}
               className="aspect-video w-full rounded-lg border border-primary-cyan/30 object-cover"
             />
           </div>
@@ -137,26 +150,26 @@ export default function ProjectDetail() {
       </motion.div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <DetailSection title="Descripción General">
-          <p>{project.descripcionGeneral}</p>
+        <DetailSection title={t('projects.detail.overview')}>
+          <p>{t(`projects.items.${project.key}.general`)}</p>
         </DetailSection>
 
-        <DetailSection title="Tecnologías Utilizadas">
+        <DetailSection title={t('projects.detail.technologies')}>
           <div className="flex flex-wrap gap-2">
-            {project.tecnologias.map((technology) => (
+            {project.technologies.map((technology) => (
               <span
                 key={`${project.slug}-detail-${technology}`}
                 className="rounded-md border border-border-cyber/70 bg-background/50 px-3 py-1.5 font-mono text-xs text-muted-text"
               >
-                {technology}
+                {t(`projects.technologies.${technology}`)}
               </span>
             ))}
           </div>
         </DetailSection>
 
-        <DetailSection title="Lo que Aprendí">
+        <DetailSection title={t('projects.detail.learned')}>
           <ul className="space-y-3">
-            {project.aprendizajes.map((item) => (
+            {learnedItems.map((item) => (
               <li key={item} className="flex gap-3">
                 <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-primary-cyan shadow-[0_0_12px_var(--primary-glow-strong)]" />
                 <span>{item}</span>
@@ -165,11 +178,11 @@ export default function ProjectDetail() {
           </ul>
         </DetailSection>
 
-        <DetailSection title="Repositorio">
+        <DetailSection title={t('projects.detail.repository')}>
           <p>
             {repositories.length > 1
-              ? 'Los repositorios del proyecto se encuentran disponibles en GitHub como referencia para revisar su estructura, tecnologías utilizadas y evolución técnica.'
-              : 'El repositorio del proyecto se encuentra disponible en GitHub como referencia para revisar su estructura, tecnologías utilizadas y evolución técnica.'}
+              ? t('projects.detail.repositoryMultiple')
+              : t('projects.detail.repositorySingle')}
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             {repositories.map((repository) => (
