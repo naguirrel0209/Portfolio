@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProjectCard from '../components/ui/ProjectCard.jsx';
 import TimelineItem from '../components/ui/TimelineItem.jsx';
+import normanProfile from '../assets/images/norman-profile.jpeg';
 import { featuredProjects } from '../data/projects.js';
 import { timelineEvents } from '../data/timeline.js';
 
@@ -123,19 +124,19 @@ function TerminalCard() {
   );
 }
 
-function PhotoPlaceholder() {
+function ProfilePhoto() {
   return (
     <motion.div
-      className="group relative mx-auto flex aspect-[4/5] w-full max-w-sm items-center justify-center rounded-xl border border-border-cyber/80 bg-surface/55 p-5 shadow-[0_0_70px_rgba(0,220,229,0.16)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:shadow-[0_0_90px_rgba(0,220,229,0.22)]"
+      className="group relative mx-auto flex aspect-[4/5] w-full max-w-sm items-center justify-center overflow-hidden rounded-xl border border-border-cyber/80 bg-surface/55 p-5 shadow-[0_0_70px_rgba(0,220,229,0.16)] backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-primary-cyan/80 hover:shadow-[0_0_90px_rgba(0,220,229,0.22)]"
       whileHover={{ scale: 1.015 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
     >
       <div className="absolute inset-4 rounded-lg border border-primary-cyan/15 bg-surface-high/35" />
-      <div className="relative flex h-full w-full items-center justify-center rounded-lg border border-dashed border-primary-cyan/45 bg-background/45">
-        <p className="max-w-44 text-center font-mono text-xs font-medium uppercase text-primary-cyan-bright">
-          FOTO_PENDIENTE.png
-        </p>
-      </div>
+      <img
+        src={normanProfile}
+        alt="Foto principal de Norman Aguirre"
+        className="relative h-full w-full rounded-lg border border-primary-cyan/35 object-cover object-center"
+      />
       <div className="absolute -inset-px rounded-xl opacity-0 ring-1 ring-primary-cyan/40 transition duration-300 group-hover:opacity-100" />
     </motion.div>
   );
@@ -243,7 +244,7 @@ export default function Home() {
           <TerminalCard />
         </div>
 
-        <PhotoPlaceholder />
+        <ProfilePhoto />
       </SectionShell>
 
       <SectionShell className="space-y-8">
@@ -309,7 +310,7 @@ export default function Home() {
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {featuredProjects.map((project, index) => (
-            <ProjectCard key={project.name} project={project} index={index} />
+            <ProjectCard key={project.slug} project={project} index={index} />
           ))}
         </div>
 

@@ -12,7 +12,7 @@ export const projects = [
     tecnologias: ['HTML', 'CSS', 'JavaScript'],
     github: 'https://github.com/naguirrel0209/BussinessCardWesterAguirre',
     productionUrl: 'https://westeraguirre-card.vercel.app/',
-    imagen: '/images/projects/business-card.jpeg',
+    imagen: '/images/projects/bussiness-card.jpeg',
     aprendizajes: [
       'Diseño responsive',
       'Experiencia de usuario',

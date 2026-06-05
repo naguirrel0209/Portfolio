@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Code2, Download, ExternalLink, FileText, Mail, Network, Send, User } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import cvPlaceholder from '../assets/cv/cv-placeholder.pdf';
+import cvPlaceholder from '../assets/cv/CV_NormanAguirre.pdf';
 
 const contactDetails = [
   { label: 'Nombre', value: 'Norman Aguirre' },
