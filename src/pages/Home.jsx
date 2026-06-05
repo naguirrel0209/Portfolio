@@ -85,6 +85,8 @@ const skillGroups = [
   },
 ];
 
+const SKILLS_CAROUSEL_INTERVAL = 10000;
+
 const fadeIn = {
   hidden: { opacity: 0, y: 28 },
   visible: { opacity: 1, y: 0 },
@@ -336,7 +338,7 @@ function SkillsCarousel({ groups }) {
   useEffect(() => {
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % groups.length);
-    }, 5200);
+    }, SKILLS_CAROUSEL_INTERVAL);
 
     return () => window.clearInterval(timer);
   }, [groups.length]);
