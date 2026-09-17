@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Code2, Download, ExternalLink, FileText, Mail, Network, Send, User } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import cvPlaceholder from '../assets/cv/CV_NormanAguirre.pdf';
+import { useContactForm } from '../hooks/useContactForm.js';
 
 const contactDetails = [
   { labelKey: 'name', value: 'Norman Aguirre' },
@@ -40,110 +40,10 @@ const contactLinks = [
 const fieldClass =
   'w-full rounded-md border border-border-cyber/70 bg-background/45 px-4 py-3 text-sm text-text outline-none transition duration-300 placeholder:text-muted-text/60 focus:border-primary-cyan focus:shadow-[0_0_24px_var(--primary-glow-soft)]';
 
-const initialFormData = {
-  name: '',
-  email: '',
-  subject: '',
-  message: '',
-};
-
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function validateForm(values, t) {
-  const nextErrors = {};
-
-  if (!values.name.trim()) {
-    nextErrors.name = t('contact.form.errors.name');
-  }
-
-  if (!values.email.trim()) {
-    nextErrors.email = t('contact.form.errors.email');
-  } else if (!emailRegex.test(values.email.trim())) {
-    nextErrors.email = t('contact.form.errors.emailInvalid');
-  }
-
-  if (!values.subject.trim()) {
-    nextErrors.subject = t('contact.form.errors.subject');
-  }
-
-  if (!values.message.trim()) {
-    nextErrors.message = t('contact.form.errors.message');
-  }
-
-  return nextErrors;
-}
-
 export default function Contact() {
-  const [formData, setFormData] = useState(initialFormData);
-  const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState({ type: 'idle', message: '' });
   const { t } = useTranslation();
-  const isSubmitting = status.type === 'loading';
-
-  useEffect(() => {
-    if (!status.message || status.type === 'loading') {
-      return undefined;
-    }
-
-    const timer = window.setTimeout(
-      () => setStatus({ type: 'idle', message: '' }),
-      5200,
-    );
-    return () => window.clearTimeout(timer);
-  }, [status.message, status.type]);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormData((current) => ({
-      ...current,
-      [name]: value,
-    }));
-
-    if (errors[name]) {
-      setErrors((current) => {
-        const nextErrors = { ...current };
-        delete nextErrors[name];
-        return nextErrors;
-      });
-    }
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const nextErrors = validateForm(formData, t);
-
-    if (Object.keys(nextErrors).length > 0) {
-      setErrors(nextErrors);
-      setStatus({ type: 'idle', message: '' });
-      return;
-    }
-
-    setErrors({});
-    setStatus({ type: 'loading', message: '' });
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json().catch(() => ({}));
-
-      if (!response.ok) {
-        setErrors(data.errors ?? {});
-        throw new Error(data.message ?? t('contact.form.error'));
-      }
-
-      setFormData(initialFormData);
-      setStatus({ type: 'success', message: t('contact.form.success') });
-    } catch {
-      setStatus({ type: 'error', message: t('contact.form.error') });
-    }
-  };
+  const { errors, formData, handleChange, handleSubmit, isSubmitting, status } =
+    useContactForm();
 
   return (
     <div className="w-full space-y-16">

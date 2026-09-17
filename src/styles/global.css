@@ -88,3 +88,43 @@ select {
 [data-mainframe-cinema='true'] .mainframe-secondary {
   display: none;
 }
+
+.pixel-desktop-root[data-pixel-text-size='small'] .pixel-desktop-content,
+.pixel-desktop-root[data-pixel-text-size='small'] .pixel-desktop-content * {
+  font-size: 0.8125rem;
+}
+
+.pixel-desktop-root[data-pixel-text-size='medium'] .pixel-desktop-content,
+.pixel-desktop-root[data-pixel-text-size='medium'] .pixel-desktop-content * {
+  font-size: 0.875rem;
+}
+
+.pixel-desktop-root[data-pixel-text-size='large'] .pixel-desktop-content,
+.pixel-desktop-root[data-pixel-text-size='large'] .pixel-desktop-content * {
+  font-size: 1rem;
+}
+
+.pixel-desktop-root[data-pixel-cinema='true'] .pixel-desktop-content {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+.classic-web-root[data-classic-text-size='small'] .classic-web-readable,
+.classic-web-root[data-classic-text-size='small'] .classic-web-readable * {
+  font-size: 0.8125rem;
+}
+
+.classic-web-root[data-classic-text-size='medium'] .classic-web-readable,
+.classic-web-root[data-classic-text-size='medium'] .classic-web-readable * {
+  font-size: 0.875rem;
+}
+
+.classic-web-root[data-classic-text-size='large'] .classic-web-readable,
+.classic-web-root[data-classic-text-size='large'] .classic-web-readable * {
+  font-size: 1rem;
+}
+
+.classic-web-root[data-classic-cinema='true'] main {
+  outline: 2px solid #000080;
+  outline-offset: 3px;
+}

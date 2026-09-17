@@ -10,7 +10,7 @@ export default function PixelDesktopStartMenu({ items, menuTitle, onOpenItem }) 
             key={item.to}
             to={item.to}
             className="px-3 py-2 hover:bg-[#000080] hover:text-white focus:bg-[#000080] focus:text-white"
-            onClick={onOpenItem}
+            onClick={() => onOpenItem(item.key)}
           >
             {item.icon} {item.label}
           </Link>

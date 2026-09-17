@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import ClassicWebShell from './components/classic-web/ClassicWebShell.jsx';
 import BootScreen from './components/era/BootScreen.jsx';
 import EraResetControl from './components/era/EraResetControl.jsx';
 import Layout from './components/layout/Layout.jsx';
@@ -54,6 +55,21 @@ export default function App() {
     return (
       <Routes>
         <Route element={<PixelDesktopShell />}>
+          <Route path="/" element={null} />
+          <Route path="/about" element={null} />
+          <Route path="/projects" element={null} />
+          <Route path="/projects/:slug" element={null} />
+          <Route path="/contact" element={null} />
+          <Route path="/settings" element={null} />
+        </Route>
+      </Routes>
+    );
+  }
+
+  if (selectedEra === 'classic-web') {
+    return (
+      <Routes>
+        <Route element={<ClassicWebShell />}>
           <Route path="/" element={null} />
           <Route path="/about" element={null} />
           <Route path="/projects" element={null} />

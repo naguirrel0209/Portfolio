@@ -34,6 +34,13 @@
       "es": "Español",
       "en": "English"
     },
+    "boot": {
+      "lines": [
+        "INICIALIZANDO SISTEMA DEL PORTAFOLIO...",
+        "BIENVENIDO AL PORTAFOLIO DE NORMAN AGUIRRE",
+        "SELECCIONA UNA ERA PARA CONTINUAR:"
+      ]
+    },
     "mainframeSettings": {
       "title": "CONFIGURACIÓN",
       "changeEra": "Cambiar de era",
@@ -193,6 +200,69 @@
       "startMenu": {
         "title": "Norman OS"
       },
+      "settings": {
+        "changeEra": "Cambiar de era",
+        "changeEraDescription": "Selecciona el entorno visual que quieres cargar.",
+        "changeLanguage": "Cambiar idioma",
+        "changeLanguageDescription": "Selecciona el idioma de la interfaz Pixel Desktop.",
+        "cinemaMode": "Modo cine",
+        "cinemaModeDescription": "Reduce la presencia del escritorio y enfoca la ventana activa.",
+        "textSize": "Tamaño del texto",
+        "textSizeDescription": "Ajusta el tamaño de lectura dentro de las ventanas Pixel Desktop.",
+        "on": "Activado",
+        "off": "Desactivado",
+        "textSizes": {
+          "small": "Pequeño",
+          "medium": "Mediano",
+          "large": "Grande"
+        }
+      },
+      "about": {
+        "windowTitle": "ABOUT",
+        "selectorTitle": "Seleccionar documento",
+        "selectorDescription": "About está dividido en dos documentos independientes. Abre uno para revisar su información.",
+        "back": "Volver a About",
+        "modules": {
+          "norman": {
+            "label": "ABOUT NORMAN"
+          },
+          "naguirrel": {
+            "label": "ABOUT NAGUIRREL"
+          }
+        },
+        "norman": {
+          "profile": "Perfil personal",
+          "story": "Historia",
+          "education": "Educación",
+          "path": "Trayectoria",
+          "goals": "Metas",
+          "future": "Información ampliable",
+          "futureDescription": "Este documento queda preparado para agregar más información personal, logros, experiencias y notas académicas en próximas etapas."
+        },
+        "naguirrel": {
+          "identityDescription": "NAGUIRREL es la identidad de programación utilizada para organizar el trabajo de software de Norman: experimentos, proyectos académicos, práctica full-stack y crecimiento técnico.",
+          "identity": "Identidad profesional",
+          "skills": "Perfil como desarrollador",
+          "technologies": "Tecnologías",
+          "interests": "Áreas de interés",
+          "projects": "Proyectos destacados"
+        }
+      },
+      "projects": {
+        "windowTitle": "PROJECTS",
+        "folderTitle": "Carpeta de proyectos",
+        "filterLabel": "Filtros",
+        "category": "Categoría",
+        "mainTechnology": "Tecnología principal",
+        "description": "Descripción",
+        "productionUrl": "URL de producción",
+        "repositories": "Repositorios disponibles",
+        "noRepositories": "Sin repositorios disponibles"
+      },
+      "contact": {
+        "windowTitle": "CONTACT",
+        "infoTitle": "Información de contacto"
+      },
       "window": {
         "defaultTitle": "Portafolio",
         "status": "Módulo preparado para la siguiente etapa.",
@@ -216,6 +286,114 @@
         "settings": {
           "description": "Acceso a configuración de la era. El contenido específico se implementará en la siguiente etapa."
         }
+      }
+    },
+    "classicWeb": {
+      "navLabel": "Navegación Classic Web",
+      "header": {
+        "kicker": "Sitio personal en construcción",
+        "subtitle": "Una versión inspirada en páginas personales de finales de los 90 e inicios de los 2000."
+      },
+      "nav": {
+        "home": "Inicio",
+        "about": "Sobre mí",
+        "projects": "Proyectos",
+        "contact": "Contacto",
+        "settings": "Configuración"
+      },
+      "sidebar": {
+        "title": "Web links",
+        "description": "Selecciona una sección desde la navegación superior para recorrer el sitio Classic Web."
+      },
+      "modules": {
+        "placeholder": "Contenido del módulo reservado para una etapa posterior.",
+        "home": {
+          "title": "HOME",
+          "description": "Bienvenido al shell Classic Web del portafolio."
+        },
+        "about": {
+          "title": "ABOUT",
+          "description": "Perfil personal y profesional dividido en documentos clásicos."
+        },
+        "projects": {
+          "title": "PROJECTS",
+          "description": "Catálogo completo de proyectos con filtros y detalles."
+        },
+        "contact": {
+          "title": "CONTACT",
+          "description": "Enlaces, descarga de CV y formulario de mensaje."
+        },
+        "settings": {
+          "title": "SETTINGS",
+          "description": "Configuración básica de la era Classic Web."
+        }
+      },
+      "home": {
+        "directoryTitle": "Directorio principal"
+      },
+      "settings": {
+        "changeEra": "Cambiar de era",
+        "changeEraDescription": "Selecciona qué entorno visual quieres cargar.",
+        "changeLanguage": "Cambiar idioma",
+        "changeLanguageDescription": "Selecciona el idioma de la interfaz Classic Web.",
+        "cinemaMode": "Modo cine",
+        "cinemaModeDescription": "Reduce distracciones visuales y resalta el área principal del sitio.",
+        "textSize": "Tamaño del texto",
+        "textSizeDescription": "Ajusta el tamaño de lectura dentro de las ventanas Classic Web.",
+        "on": "Activado",
+        "off": "Desactivado",
+        "textSizes": {
+          "small": "Pequeño",
+          "medium": "Mediano",
+          "large": "Grande"
+        }
+      },
+      "about": {
+        "selectorDescription": "Selecciona una sección para abrirla como documento independiente.",
+        "backToSelector": "Volver al índice de About",
+        "modules": {
+          "norman": {
+            "title": "ABOUT NORMAN",
+            "description": "Perfil personal, historia, educación, trayectoria y metas."
+          },
+          "naguirrel": {
+            "title": "ABOUT NAGUIRREL",
+            "description": "Identidad profesional, habilidades, tecnologías e intereses como desarrollador."
+          }
+        },
+        "norman": {
+          "profile": "Perfil personal",
+          "story": "Historia",
+          "education": "Educación",
+          "journey": "Trayectoria",
+          "goals": "Metas",
+          "futureDescription": "Esta estructura queda preparada para agregar más información personal, académica y de crecimiento después."
+        },
+        "naguirrel": {
+          "identity": "Identidad profesional",
+          "identityDescription": "Naguirrel es mi identidad como desarrollador: un perfil orientado a construir software claro, funcional y mantenible, conectando interfaces, lógica de servidor, bases de datos y aprendizaje continuo.",
+          "skills": "Habilidades técnicas",
+          "technologies": "Tecnologías",
+          "interests": "Áreas de interés",
+          "featuredProjects": "Proyectos destacados"
+        }
+      },
+      "projects": {
+        "catalogTitle": "Catálogo completo de proyectos",
+        "filterLabel": "Filtros de proyectos",
+        "image": "Imagen",
+        "name": "Nombre",
+        "category": "Categoría",
+        "links": "Enlaces",
+        "noProductionUrl": "Este proyecto no tiene URL de producción disponible.",
+        "noRepositories": "No hay repositorios disponibles."
+      },
+      "contact": {
+        "infoTitle": "Información de contacto"
+      },
+      "footer": {
+        "copyright": "© {{year}} {{name}}. Todos los derechos reservados.",
+        "note": "Optimizado para pantallas modernas con espíritu web clásico."
       }
     }
   },

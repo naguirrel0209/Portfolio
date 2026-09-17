@@ -1,13 +1,14 @@
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import EraSelector from './EraSelector.jsx';
 import { useTypewriterOnce } from '../../hooks/useTypewriterOnce.js';
 
-const bootLines = [
-  'INITIALIZING PORTFOLIO SYSTEM...',
-  'WELCOME TO NORMAN AGUIRRE PORTFOLIO',
-  'SELECT AN ERA TO CONTINUE:',
-];
-
 export default function BootScreen() {
+  const { i18n, t } = useTranslation();
+  const bootLines = useMemo(
+    () => t('common.boot.lines', { returnObjects: true }),
+    [i18n.resolvedLanguage, t],
+  );
   const { displayedLines, isComplete } = useTypewriterOnce(bootLines, {
     characterDelay: 30,
     lineDelay: 360,
