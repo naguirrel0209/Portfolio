@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { projectFilters, projects } from '../../data/projects.js';
 import MainframeSection from './MainframeSection.jsx';
+import { mainframeAction } from './mainframeStyles.js';
 
 function getRepositories(project) {
   return [
@@ -26,8 +27,10 @@ export default function MainframeProjectList({ limit }) {
   }, [activeFilter, limit]);
 
   return (
-    <MainframeSection label="projects" title={t('projects.page.title')}>
-      <p className="mb-6 max-w-4xl text-[#37ff73]/80">{t('projects.page.subtitle')}</p>
+    <MainframeSection label={t('common.mainframe.projects.sectionLabel')} title={t('projects.page.title')}>
+      <p className="mainframe-secondary mb-6 max-w-4xl text-[#37ff73]/80">
+        {t('projects.page.subtitle')}
+      </p>
 
       <div className="mb-8 flex flex-wrap gap-x-5 gap-y-2 uppercase">
         {projectFilters.map((filter) => {
@@ -37,9 +40,9 @@ export default function MainframeProjectList({ limit }) {
             <button
               key={filter}
               type="button"
-              className={`bg-transparent p-0 text-left hover:bg-[#37ff73] hover:text-black ${
+              className={mainframeAction(`border-0 text-left ${
                 isActive ? 'text-[#37ff73]' : 'text-[#37ff73]/70'
-              }`}
+              }`)}
               onClick={() => setActiveFilter(filter)}
             >
               {isActive ? '> ' : '  '}
@@ -57,25 +60,36 @@ export default function MainframeProjectList({ limit }) {
           return (
             <article key={project.slug} className="border-t border-[#37ff73]/35 pt-5">
               <p className="uppercase text-[#37ff73]/75">
-                ID {String(project.id).padStart(2, '0')} / {t(`projects.filters.${project.category}`)}
+                {t('common.mainframe.projects.id', {
+                  id: String(project.id).padStart(2, '0'),
+                })}{' '}
+                / {t(`projects.filters.${project.category}`)}
               </p>
               <h3 className="mt-2 text-lg uppercase text-[#37ff73]">{projectName}</h3>
-              <p className="mt-3 max-w-4xl text-[#37ff73]/80">
+              <p className="mainframe-secondary mt-3 max-w-4xl text-[#37ff73]/80">
                 {t(`projects.items.${project.key}.description`)}
               </p>
               <p className="mt-3 uppercase text-[#37ff73]/75">
-                TECH:{' '}
+                {t('common.mainframe.projects.tech')}:{' '}
                 {project.technologies
                   .map((technology) => t(`projects.technologies.${technology}`))
                   .join(' / ')}
               </p>
               <p className="mt-1 uppercase text-[#37ff73]/75">
-                LINKS: {project.productionUrl ? 'PRODUCTION / ' : ''}
-                {repositories.length > 0 ? `${repositories.length} REPOSITORY` : 'NO REPOSITORY'}
+                {t('common.mainframe.projects.links')}:{' '}
+                {project.productionUrl ? `${t('common.mainframe.projects.production')} / ` : ''}
+                {repositories.length > 0
+                  ? t(
+                      repositories.length === 1
+                        ? 'common.mainframe.projects.repository'
+                        : 'common.mainframe.projects.repositories',
+                      { count: repositories.length },
+                    )
+                  : t('common.mainframe.projects.noRepository')}
               </p>
               <Link
                 to={`/projects/${project.slug}`}
-                className="mt-4 inline-block uppercase text-[#37ff73] hover:bg-[#37ff73] hover:text-black"
+                className={mainframeAction('mt-4')}
               >
                 {'> '}
                 {t('projects.actions.viewDetails')}

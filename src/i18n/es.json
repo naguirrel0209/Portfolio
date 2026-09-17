@@ -33,6 +33,190 @@
       "label": "Cambiar idioma",
       "es": "Español",
       "en": "English"
+    },
+    "mainframeSettings": {
+      "title": "CONFIGURACIÓN",
+      "changeEra": "Cambiar de era",
+      "changeLanguage": "Cambiar idioma",
+      "cinemaMode": "Modo cine",
+      "textSize": "Tamaño del texto",
+      "back": "Volver",
+      "on": "Activado",
+      "off": "Desactivado",
+      "panels": {
+        "root": "Configuración",
+        "era": "Seleccionar era",
+        "language": "Seleccionar idioma",
+        "textSize": "Seleccionar tamaño del texto"
+      },
+      "textSizes": {
+        "small": "Pequeño",
+        "medium": "Mediano",
+        "large": "Grande"
+      }
+    },
+    "mainframe": {
+      "nav": {
+        "about": "About",
+        "aboutNorman": "About Norman",
+        "aboutNaguirrel": "About Naguirrel",
+        "era": "ERA: {{era}}"
+      },
+      "home": {
+        "entryLabel": "Punto de entrada",
+        "title": "Bienvenido al portafolio de Norman Aguirre",
+        "sessionReady": "Sesión Mainframe lista.",
+        "availableModules": "Módulos disponibles:",
+        "modules": {
+          "about": {
+            "label": "About",
+            "description": "Perfil personal, educación, enfoque, habilidades y trayectoria."
+          },
+          "projects": {
+            "label": "Proyectos",
+            "description": "Índice textual de proyectos de software actuales."
+          },
+          "contact": {
+            "label": "Contacto",
+            "description": "Enlaces, formulario de mensaje y descarga de CV."
+          }
+        }
+      },
+      "about": {
+        "label": "About",
+        "title": "Seleccionar módulo de perfil",
+        "description": "About está dividido en dos registros independientes. Elige un módulo para inspeccionar.",
+        "modules": {
+          "norman": {
+            "label": "About Norman",
+            "description": "Perfil personal, historia, trayectoria académica, experiencias, metas y timeline."
+          },
+          "naguirrel": {
+            "label": "About Naguirrel",
+            "description": "Identidad como programador, perfil técnico, tecnologías y proyectos seleccionados."
+          }
+        }
+      },
+      "aboutNorman": {
+        "sections": {
+          "profile": {
+            "label": "Norman 01",
+            "title": "Perfil personal"
+          },
+          "story": {
+            "label": "Norman 02",
+            "title": "Historia"
+          },
+          "academic": {
+            "label": "Norman 03",
+            "title": "Trayectoria académica"
+          },
+          "experiences": {
+            "label": "Norman 04",
+            "title": "Experiencias"
+          },
+          "goals": {
+            "label": "Norman 05",
+            "title": "Metas"
+          },
+          "timeline": {
+            "label": "Norman 06",
+            "title": "Timeline personal y académico"
+          }
+        }
+      },
+      "aboutNaguirrel": {
+        "identityDescription": "NAGUIRREL es la identidad de programación utilizada para organizar el trabajo de software de Norman: experimentos, proyectos académicos, práctica full-stack y crecimiento técnico.",
+        "sections": {
+          "identity": {
+            "label": "Naguirrel 01",
+            "title": "Identidad"
+          },
+          "profile": {
+            "label": "Naguirrel 02",
+            "title": "Perfil como programador"
+          },
+          "skills": {
+            "label": "Naguirrel 03",
+            "title": "Habilidades técnicas"
+          },
+          "technologies": {
+            "label": "Naguirrel 04",
+            "title": "Tecnologías"
+          },
+          "projects": {
+            "label": "Naguirrel 05",
+            "title": "Proyectos seleccionados"
+          }
+        }
+      },
+      "projects": {
+        "sectionLabel": "Proyectos",
+        "id": "ID {{id}}",
+        "tech": "TECNOLOGÍAS",
+        "links": "ENLACES",
+        "production": "PRODUCCIÓN",
+        "repository": "{{count}} REPOSITORIO",
+        "repositories": "{{count}} REPOSITORIOS",
+        "noRepository": "SIN REPOSITORIO"
+      },
+      "projectDetail": {
+        "errorLabel": "Error",
+        "sectionLabel": "Detalle de proyecto",
+        "technologyLabel": "Tecnología",
+        "outputLabel": "Resultado",
+        "linksLabel": "Enlaces",
+        "category": "CATEGORÍA",
+        "description": "DESCRIPCIÓN",
+        "overview": "RESUMEN"
+      },
+      "contact": {
+        "sections": {
+          "contact": "Contacto",
+          "message": "Mensaje",
+          "cv": "CV",
+          "next": "Siguiente"
+        }
+      }
+    },
+    "pixelDesktop": {
+      "shortcuts": {
+        "about": "About",
+        "projects": "Proyectos",
+        "contact": "Contacto",
+        "settings": "Configuración"
+      },
+      "taskbar": {
+        "start": "Inicio",
+        "ready": "Listo"
+      },
+      "startMenu": {
+        "title": "Norman OS"
+      },
+      "window": {
+        "defaultTitle": "Portafolio",
+        "status": "Módulo preparado para la siguiente etapa.",
+        "minimize": "Minimizar ventana",
+        "maximize": "Maximizar ventana",
+        "close": "Cerrar ventana"
+      },
+      "modules": {
+        "home": {
+          "description": "Escritorio inicial de Pixel Desktop. Abre un acceso directo para continuar."
+        },
+        "about": {
+          "description": "Acceso al módulo About. El contenido específico se implementará en la siguiente etapa."
+        },
+        "projects": {
+          "description": "Acceso al catálogo de proyectos. El contenido específico se implementará en la siguiente etapa."
+        },
+        "contact": {
+          "description": "Acceso al módulo de contacto. El contenido específico se implementará en la siguiente etapa."
+        },
+        "settings": {
+          "description": "Acceso a configuración de la era. El contenido específico se implementará en la siguiente etapa."
+        }
+      }
     }
   },
   "home": {

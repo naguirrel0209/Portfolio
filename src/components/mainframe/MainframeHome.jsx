@@ -1,143 +1,73 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { timelineEvents } from '../../data/timeline.js';
-import MainframeProjectList from './MainframeProjectList.jsx';
 import MainframeSection from './MainframeSection.jsx';
-
-const skillGroups = [
-  {
-    key: 'frontend',
-    skills: ['react', 'javascript', 'html', 'css', 'tailwind'],
-  },
-  {
-    key: 'backend',
-    skills: ['node', 'express', 'go', 'php'],
-  },
-  {
-    key: 'databases',
-    skills: ['postgresql', 'mysql', 'sqlServer', 'sqlite', 'prisma'],
-  },
-  {
-    key: 'languages',
-    skills: ['java', 'python', 'javascript', 'go', 'php', 'cpp'],
-  },
-  {
-    key: 'cloudTools',
-    skills: ['aws', 'cloudflareR2', 'docker', 'git', 'github', 'linux'],
-  },
-];
-
-const aboutCards = ['location', 'education', 'focus', 'goal'];
-
-function getSkillName(skillKey) {
-  const names = {
-    react: 'React',
-    javascript: 'JavaScript',
-    html: 'HTML',
-    css: 'CSS',
-    tailwind: 'Tailwind CSS',
-    node: 'Node.js',
-    express: 'Express',
-    go: 'Go',
-    php: 'PHP',
-    postgresql: 'PostgreSQL',
-    mysql: 'MySQL',
-    sqlServer: 'SQL Server',
-    sqlite: 'SQLite',
-    prisma: 'Prisma',
-    java: 'Java',
-    python: 'Python',
-    cpp: 'C++',
-    aws: 'AWS',
-    cloudflareR2: 'Cloudflare R2',
-    docker: 'Docker',
-    git: 'Git',
-    github: 'GitHub',
-    linux: 'Linux',
-  };
-
-  return names[skillKey] ?? skillKey;
-}
+import MainframeTypedText from './MainframeTypedText.jsx';
+import { mainframeAction } from './mainframeStyles.js';
 
 export default function MainframeHome() {
   const { t } = useTranslation();
+  const modules = [
+    {
+      label: t('common.mainframe.home.modules.about.label'),
+      path: '/about',
+      description: t('common.mainframe.home.modules.about.description'),
+    },
+    {
+      label: t('common.mainframe.home.modules.projects.label'),
+      path: '/projects',
+      description: t('common.mainframe.home.modules.projects.description'),
+    },
+    {
+      label: t('common.mainframe.home.modules.contact.label'),
+      path: '/contact',
+      description: t('common.mainframe.home.modules.contact.description'),
+    },
+  ];
 
   return (
-    <div>
-      <MainframeSection label="system profile" title={t('home.hero.name')}>
-        <div className="grid gap-4">
-          <p className="uppercase text-[#37ff73]/75">{t('home.hero.eyebrow')}</p>
-          <p className="text-lg uppercase text-[#37ff73]">{t('home.hero.subtitle')}</p>
-          <p className="max-w-4xl text-[#37ff73]/80">{t('home.hero.description')}</p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2 uppercase">
-            <Link to="/projects" className="hover:bg-[#37ff73] hover:text-black">
-              {'> '}
-              {t('home.hero.primaryButton')}
-            </Link>
-            <Link to="/contact" className="hover:bg-[#37ff73] hover:text-black">
-              {'> '}
-              {t('home.hero.secondaryButton')}
-            </Link>
+    <div className="min-h-[calc(100vh-12rem)] py-8">
+      <MainframeSection
+        label={t('common.mainframe.home.entryLabel')}
+        title={t('common.mainframe.home.title')}
+      >
+        <div className="grid gap-8">
+          <div className="grid gap-4">
+            <MainframeTypedText
+              as="p"
+              className="uppercase text-[#37ff73]/75"
+              lines={t('common.mainframe.home.sessionReady')}
+            />
+            <h1 className="text-3xl uppercase leading-tight text-[#37ff73] sm:text-5xl">
+              {t('home.hero.name')}
+            </h1>
+            <p className="text-lg uppercase text-[#37ff73]">{t('home.hero.eyebrow')}</p>
+            <p className="max-w-3xl text-[#37ff73]/80">
+              {t('home.hero.description')}
+            </p>
+          </div>
+
+          <div>
+            <p className="mb-4 uppercase text-[#37ff73]/75">
+              {t('common.mainframe.home.availableModules')}
+            </p>
+            <ul className="grid gap-4">
+              {modules.map((module) => (
+                <li key={module.path} className="grid gap-1 sm:grid-cols-[10rem_1fr]">
+                  <Link
+                    to={module.path}
+                    className={mainframeAction()}
+                  >
+                    {'> '}
+                    {module.label}
+                  </Link>
+                  <span className="mainframe-secondary text-[#37ff73]/70">
+                    {module.description}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </MainframeSection>
-
-      <MainframeSection label="about" title={t('home.about.title')}>
-        <div className="grid gap-5">
-          <p className="max-w-4xl text-[#37ff73]/80">{t('home.about.paragraph2')}</p>
-          <dl className="grid gap-3 sm:grid-cols-2">
-            {aboutCards.map((card) => (
-              <div key={card}>
-                <dt className="uppercase text-[#37ff73]/70">
-                  {t(`home.about.cards.${card}.label`)}
-                </dt>
-                <dd className="text-[#37ff73]">{t(`home.about.cards.${card}.value`)}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </MainframeSection>
-
-      <MainframeSection label="skills" title={t('home.skills.title')}>
-        <div className="grid gap-7">
-          {skillGroups.map((group) => (
-            <div key={group.key}>
-              <h3 className="uppercase text-[#37ff73]">
-                {t(`home.skills.groups.${group.key}.title`)}
-              </h3>
-              <p className="mt-2 max-w-4xl text-[#37ff73]/75">
-                {t(`home.skills.groups.${group.key}.description`)}
-              </p>
-              <ul className="mt-3 grid gap-2">
-                {group.skills.map((skill) => (
-                  <li key={`${group.key}-${skill}`}>
-                    {'> '}
-                    {getSkillName(skill)} :: {t(`home.skills.descriptions.${skill}`)}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </MainframeSection>
-
-      <MainframeProjectList limit={5} />
-
-      <MainframeSection label="timeline" title={t('home.timeline.title')}>
-        <p className="mb-6 max-w-4xl text-[#37ff73]/80">{t('home.timeline.subtitle')}</p>
-        <ol className="grid gap-5">
-          {timelineEvents.map((event) => (
-            <li key={event.year} className="border-t border-[#37ff73]/25 pt-4">
-              <p className="text-[#37ff73]/75">{event.year}</p>
-              <h3 className="uppercase text-[#37ff73]">
-                {t(`timeline.events.${event.key}.title`)}
-              </h3>
-              <p className="mt-2 max-w-4xl text-[#37ff73]/80">
-                {t(`timeline.events.${event.key}.description`)}
-              </p>
-            </li>
-          ))}
-        </ol>
       </MainframeSection>
     </div>
   );

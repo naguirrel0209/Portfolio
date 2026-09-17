@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router-dom';
 import { projects } from '../../data/projects.js';
 import MainframeSection from './MainframeSection.jsx';
+import { mainframeAction } from './mainframeStyles.js';
 
 function getRepositories(project, t) {
   return [
@@ -22,8 +23,11 @@ export default function MainframeProjectDetail() {
 
   if (!project) {
     return (
-      <MainframeSection label="error" title={t('projects.detail.notFoundTitle')}>
-        <Link to="/projects" className="uppercase hover:bg-[#37ff73] hover:text-black">
+      <MainframeSection
+        label={t('common.mainframe.projectDetail.errorLabel')}
+        title={t('projects.detail.notFoundTitle')}
+      >
+        <Link to="/projects" className={mainframeAction()}>
           {'> '}
           {t('projects.actions.back')}
         </Link>
@@ -37,48 +41,61 @@ export default function MainframeProjectDetail() {
 
   return (
     <article>
-      <MainframeSection label="project detail" title={projectName}>
+      <MainframeSection
+        label={t('common.mainframe.projectDetail.sectionLabel')}
+        title={projectName}
+      >
         <div className="grid gap-3 text-[#37ff73]/80">
           <p>
-            CATEGORY: <span className="text-[#37ff73]">{t(`projects.filters.${project.category}`)}</span>
+            {t('common.mainframe.projectDetail.category')}:{' '}
+            <span className="text-[#37ff73]">{t(`projects.filters.${project.category}`)}</span>
           </p>
           <p>
-            DESCRIPTION:{' '}
+            {t('common.mainframe.projectDetail.description')}:{' '}
             <span className="text-[#37ff73]">
               {t(`projects.items.${project.key}.description`)}
             </span>
           </p>
           <p>
-            OVERVIEW:{' '}
+            {t('common.mainframe.projectDetail.overview')}:{' '}
             <span className="text-[#37ff73]">{t(`projects.items.${project.key}.general`)}</span>
           </p>
         </div>
       </MainframeSection>
 
-      <MainframeSection label="technology" title={t('projects.detail.technologies')}>
+      <MainframeSection
+        label={t('common.mainframe.projectDetail.technologyLabel')}
+        title={t('projects.detail.technologies')}
+      >
         <ul className="grid gap-2">
-          {project.technologies.map((technology) => (
-            <li key={technology}>{'> '} {t(`projects.technologies.${technology}`)}</li>
+          {project.technologies.map((technology, index) => (
+            <li key={`${technology}-${index}`}>{'> '} {t(`projects.technologies.${technology}`)}</li>
           ))}
         </ul>
       </MainframeSection>
 
-      <MainframeSection label="output" title={t('projects.detail.learned')}>
+      <MainframeSection
+        label={t('common.mainframe.projectDetail.outputLabel')}
+        title={t('projects.detail.learned')}
+      >
         <ul className="grid gap-2">
-          {learnedItems.map((item) => (
-            <li key={item}>{'> '} {item}</li>
+          {learnedItems.map((item, index) => (
+            <li key={`${item}-${index}`}>{'> '} {item}</li>
           ))}
         </ul>
       </MainframeSection>
 
-      <MainframeSection label="links" title={t('projects.detail.repository')}>
+      <MainframeSection
+        label={t('common.mainframe.projectDetail.linksLabel')}
+        title={t('projects.detail.repository')}
+      >
         <div className="grid gap-3">
           {project.productionUrl ? (
             <a
               href={project.productionUrl}
               target="_blank"
               rel="noreferrer"
-              className="w-fit uppercase hover:bg-[#37ff73] hover:text-black"
+              className={mainframeAction()}
             >
               {'> '}
               {t('projects.actions.viewProduction')}
@@ -91,14 +108,14 @@ export default function MainframeProjectDetail() {
               href={repository.href}
               target="_blank"
               rel="noreferrer"
-              className="w-fit uppercase hover:bg-[#37ff73] hover:text-black"
+              className={mainframeAction()}
             >
               {'> '}
               {repository.label}
             </a>
           ))}
 
-          <Link to="/projects" className="w-fit uppercase hover:bg-[#37ff73] hover:text-black">
+          <Link to="/projects" className={mainframeAction()}>
             {'> '}
             {t('projects.actions.back')}
           </Link>

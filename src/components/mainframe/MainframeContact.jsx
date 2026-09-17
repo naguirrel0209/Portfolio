@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import cvPlaceholder from '../../assets/cv/CV_NormanAguirre.pdf';
 import MainframeSection from './MainframeSection.jsx';
+import { mainframeAction } from './mainframeStyles.js';
 
 const contactDetails = [
   { labelKey: 'name', value: 'Norman Aguirre' },
@@ -68,7 +69,7 @@ export default function MainframeContact() {
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ type: 'idle', message: '' });
-  const { t } = useTranslation();
+  const { i18n, t } = useTranslation();
   const isSubmitting = status.type === 'loading';
 
   useEffect(() => {
@@ -79,6 +80,14 @@ export default function MainframeContact() {
     const timer = window.setTimeout(() => setStatus({ type: 'idle', message: '' }), 5200);
     return () => window.clearTimeout(timer);
   }, [status.message, status.type]);
+
+  useEffect(() => {
+    if (Object.keys(errors).length === 0) {
+      return;
+    }
+
+    setErrors(validateForm(formData, t));
+  }, [i18n.resolvedLanguage, t]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -135,8 +144,13 @@ export default function MainframeContact() {
 
   return (
     <div>
-      <MainframeSection label="contact" title={t('contact.title')}>
-        <p className="mb-6 max-w-4xl text-[#37ff73]/80">{t('contact.subtitle')}</p>
+      <MainframeSection
+        label={t('common.mainframe.contact.sections.contact')}
+        title={t('contact.title')}
+      >
+        <p className="mainframe-secondary mb-6 max-w-4xl text-[#37ff73]/80">
+          {t('contact.subtitle')}
+        </p>
         <dl className="grid gap-3">
           {contactDetails.map((item) => (
             <div key={item.labelKey} className="grid gap-1 sm:grid-cols-[14rem_1fr]">
@@ -147,7 +161,7 @@ export default function MainframeContact() {
                     href={item.href}
                     target={item.href.startsWith('mailto:') ? undefined : '_blank'}
                     rel={item.href.startsWith('mailto:') ? undefined : 'noreferrer'}
-                    className="hover:bg-[#37ff73] hover:text-black"
+                    className={mainframeAction()}
                   >
                     {item.value}
                   </a>
@@ -160,7 +174,10 @@ export default function MainframeContact() {
         </dl>
       </MainframeSection>
 
-      <MainframeSection label="message" title={t('contact.form.title')}>
+      <MainframeSection
+        label={t('common.mainframe.contact.sections.message')}
+        title={t('contact.form.title')}
+      >
         <form className="grid max-w-3xl gap-4" onSubmit={handleSubmit}>
           <label className="grid gap-2">
             <span className="uppercase text-[#37ff73]/70">{t('contact.form.name')}</span>
@@ -219,7 +236,7 @@ export default function MainframeContact() {
 
           <button
             type="submit"
-            className="w-fit border border-[#37ff73]/55 bg-black px-3 py-2 uppercase text-[#37ff73] hover:bg-[#37ff73] hover:text-black disabled:opacity-60"
+            className={mainframeAction('border border-[#37ff73]/55 px-3 py-2 disabled:opacity-60')}
             disabled={isSubmitting}
           >
             {'> '}
@@ -234,26 +251,36 @@ export default function MainframeContact() {
         </form>
       </MainframeSection>
 
-      <MainframeSection label="cv" title={t('contact.cv.title')}>
-        <p className="mb-4 max-w-4xl text-[#37ff73]/80">{t('contact.cv.description')}</p>
+      <MainframeSection
+        label={t('common.mainframe.contact.sections.cv')}
+        title={t('contact.cv.title')}
+      >
+        <p className="mainframe-secondary mb-4 max-w-4xl text-[#37ff73]/80">
+          {t('contact.cv.description')}
+        </p>
         <a
           href={cvPlaceholder}
           download="CV-Norman-Aguirre.pdf"
-          className="inline-block uppercase hover:bg-[#37ff73] hover:text-black"
+          className={mainframeAction()}
         >
           {'> '}
           {t('contact.cv.button')}
         </a>
       </MainframeSection>
 
-      <MainframeSection label="next" title={t('contact.cta.title')}>
-        <p className="mb-4 max-w-4xl text-[#37ff73]/80">{t('contact.cta.description')}</p>
+      <MainframeSection
+        label={t('common.mainframe.contact.sections.next')}
+        title={t('contact.cta.title')}
+      >
+        <p className="mainframe-secondary mb-4 max-w-4xl text-[#37ff73]/80">
+          {t('contact.cta.description')}
+        </p>
         <div className="flex flex-wrap gap-x-5 gap-y-2 uppercase">
-          <Link to="/projects" className="hover:bg-[#37ff73] hover:text-black">
+          <Link to="/projects" className={mainframeAction()}>
             {'> '}
             {t('contact.cta.projects')}
           </Link>
-          <a href="mailto:normanjraguirre@gmail.com" className="hover:bg-[#37ff73] hover:text-black">
+          <a href="mailto:normanjraguirre@gmail.com" className={mainframeAction()}>
             {'> '}
             {t('contact.cta.contact')}
           </a>

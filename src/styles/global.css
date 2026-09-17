@@ -84,3 +84,7 @@ select {
   background: var(--primary-selection);
   color: var(--text);
 }
+
+[data-mainframe-cinema='true'] .mainframe-secondary {
+  display: none;
+}

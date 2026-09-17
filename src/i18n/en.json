@@ -33,6 +33,190 @@
       "label": "Change language",
       "es": "Español",
       "en": "English"
+    },
+    "mainframeSettings": {
+      "title": "SETTINGS",
+      "changeEra": "Change Era",
+      "changeLanguage": "Change Language",
+      "cinemaMode": "Cinema Mode",
+      "textSize": "Text Size",
+      "back": "Back",
+      "on": "On",
+      "off": "Off",
+      "panels": {
+        "root": "Settings",
+        "era": "Select Era",
+        "language": "Select Language",
+        "textSize": "Select Text Size"
+      },
+      "textSizes": {
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large"
+      }
+    },
+    "mainframe": {
+      "nav": {
+        "about": "About",
+        "aboutNorman": "About Norman",
+        "aboutNaguirrel": "About Naguirrel",
+        "era": "ERA: {{era}}"
+      },
+      "home": {
+        "entryLabel": "Entry point",
+        "title": "Welcome to Norman Aguirre Portfolio",
+        "sessionReady": "Mainframe session ready.",
+        "availableModules": "Available modules:",
+        "modules": {
+          "about": {
+            "label": "About",
+            "description": "Personal profile, education, focus, skills and timeline."
+          },
+          "projects": {
+            "label": "Projects",
+            "description": "Text index of current software projects."
+          },
+          "contact": {
+            "label": "Contact",
+            "description": "Links, message form and CV download."
+          }
+        }
+      },
+      "about": {
+        "label": "About",
+        "title": "Select profile module",
+        "description": "About is divided into two independent records. Choose one module to inspect.",
+        "modules": {
+          "norman": {
+            "label": "About Norman",
+            "description": "Personal profile, story, academic path, experiences, goals and timeline."
+          },
+          "naguirrel": {
+            "label": "About Naguirrel",
+            "description": "Programming identity, technical profile, technologies and selected projects."
+          }
+        }
+      },
+      "aboutNorman": {
+        "sections": {
+          "profile": {
+            "label": "Norman 01",
+            "title": "Personal profile"
+          },
+          "story": {
+            "label": "Norman 02",
+            "title": "Story"
+          },
+          "academic": {
+            "label": "Norman 03",
+            "title": "Academic path"
+          },
+          "experiences": {
+            "label": "Norman 04",
+            "title": "Experiences"
+          },
+          "goals": {
+            "label": "Norman 05",
+            "title": "Goals"
+          },
+          "timeline": {
+            "label": "Norman 06",
+            "title": "Personal and academic timeline"
+          }
+        }
+      },
+      "aboutNaguirrel": {
+        "identityDescription": "NAGUIRREL is the programming identity used to organize Norman's software work: experiments, academic builds, full-stack practice and technical growth.",
+        "sections": {
+          "identity": {
+            "label": "Naguirrel 01",
+            "title": "Identity"
+          },
+          "profile": {
+            "label": "Naguirrel 02",
+            "title": "Programmer profile"
+          },
+          "skills": {
+            "label": "Naguirrel 03",
+            "title": "Technical skills"
+          },
+          "technologies": {
+            "label": "Naguirrel 04",
+            "title": "Technologies"
+          },
+          "projects": {
+            "label": "Naguirrel 05",
+            "title": "Selected projects"
+          }
+        }
+      },
+      "projects": {
+        "sectionLabel": "Projects",
+        "id": "ID {{id}}",
+        "tech": "TECH",
+        "links": "LINKS",
+        "production": "PRODUCTION",
+        "repository": "{{count}} REPOSITORY",
+        "repositories": "{{count}} REPOSITORIES",
+        "noRepository": "NO REPOSITORY"
+      },
+      "projectDetail": {
+        "errorLabel": "Error",
+        "sectionLabel": "Project detail",
+        "technologyLabel": "Technology",
+        "outputLabel": "Output",
+        "linksLabel": "Links",
+        "category": "CATEGORY",
+        "description": "DESCRIPTION",
+        "overview": "OVERVIEW"
+      },
+      "contact": {
+        "sections": {
+          "contact": "Contact",
+          "message": "Message",
+          "cv": "CV",
+          "next": "Next"
+        }
+      }
+    },
+    "pixelDesktop": {
+      "shortcuts": {
+        "about": "About",
+        "projects": "Projects",
+        "contact": "Contact",
+        "settings": "Settings"
+      },
+      "taskbar": {
+        "start": "Start",
+        "ready": "Ready"
+      },
+      "startMenu": {
+        "title": "Norman OS"
+      },
+      "window": {
+        "defaultTitle": "Portfolio",
+        "status": "Module prepared for the next stage.",
+        "minimize": "Minimize window",
+        "maximize": "Maximize window",
+        "close": "Close window"
+      },
+      "modules": {
+        "home": {
+          "description": "Pixel Desktop starting workspace. Open a shortcut to continue."
+        },
+        "about": {
+          "description": "Shortcut to the About module. Specific content will be implemented in the next stage."
+        },
+        "projects": {
+          "description": "Shortcut to the projects catalog. Specific content will be implemented in the next stage."
+        },
+        "contact": {
+          "description": "Shortcut to the contact module. Specific content will be implemented in the next stage."
+        },
+        "settings": {
+          "description": "Shortcut to era settings. Specific content will be implemented in the next stage."
+        }
+      }
     }
   },
   "home": {
